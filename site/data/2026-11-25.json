@@ -1,16 +1,16 @@
 {
   "date": "2026-11-25",
-  "generated_at": "2026-11-25 18:57",
-  "lede": "今日热议集中在两端：一端是 Ternary Bonsai 2.5 27B 与 MiniMind 把模型做得更小更轻；另一端是 Check Point 管理服务器遭入侵、Anthropic 蒸馏指控带来的合规摩擦。",
-  "takeaway": "小体积模型与本地训练链路热度高，但自动化评测与 API 条款的边界正成为实际风险。",
+  "generated_at": "2026-11-25 19:04",
+  "lede": "今天的条目指向同一个方向：模型能力继续压进更小的体积与更低的成本，开源项目把训练流程完全公开；同时，安全研究显示沙箱和推理服务器也可能成为新的攻击面。硬件老演示与轻量模型的重现，说明社区在意可复现的工程细节。",
+  "takeaway": "最该注意沙箱内推理服务器可被用来跨agent通信，本地隔离不等于隔离。",
   "degraded": false,
   "usage": {
-    "requests": 5,
+    "requests": 3,
     "failures": 0,
-    "prompt_tokens": 5811,
-    "completion_tokens": 11988,
-    "cache_hit_tokens": 2048,
-    "cost_usd": 0.007763,
+    "prompt_tokens": 3337,
+    "completion_tokens": 3688,
+    "cache_hit_tokens": 2304,
+    "cost_usd": 0.002375,
     "peak": false
   },
   "sources": [
@@ -65,13 +65,13 @@
       "source": "hn",
       "published": "2026-11-25T03:47:42+00:00",
       "points": 127,
-      "score": 4.0621,
+      "score": 4.0539,
       "summary": "Title possibly signs checks the article doesn’t have backing for. This is just a brief pro forma project update.\nNot much new functionality or anything to announce, last few months have mostly been bug fixes and technical debt cleanup.",
       "authors": [],
       "analysis": {
-        "what": "Marginalia Search 作者发布例行项目更新，称近几个月以修复 bug 和清理技术债为主，没有新功能或重大公告；社区指出 HN 标题有夸大之嫌。",
-        "why": "可见独立搜索引擎团队如何公开描述低速维护期；也提醒标题常与原文不符，需回看原文。",
-        "tag": "项目更新"
+        "what": "Marginalia Search 发布例行项目更新，说明近几个月以修 bug 和清理技术债为主，没有多少新功能；作者也提到标题里的钱、C++、Rust、AI 等话题缺少正文支撑。",
+        "why": "看开源搜索引擎维护者的真实节奏：功能空窗期靠还债维持，标题比内容更吸引点击值得警惕。",
+        "tag": "开源项目"
       }
     },
     {
@@ -81,13 +81,13 @@
       "source": "hn",
       "published": "2026-11-25T04:31:48+00:00",
       "points": 140,
-      "score": 3.783,
+      "score": 3.7754,
       "summary": "Twenty-three graphics card demos by 3dfx, NVIDIA and ATI from 1998 to 2006, running in the browser.",
       "authors": [],
       "analysis": {
-        "what": "Show HN 项目把 3dfx、NVIDIA、ATI 在 1998 至 2006 年间的 23 个显卡技术演示重新搬进浏览器运行。",
-        "why": "可了解早期图形管线与 API 的老代码如何被移植到 Web 环境，对做兼容层或仿真的人有参考价值。",
-        "tag": "图形渲染"
+        "what": "有人把 1998 到 2006 年间 3dfx、NVIDIA 和 ATI 的 23 个显卡技术演示重新搬回浏览器运行。",
+        "why": "老图形 demo 的浏览器复现涉及 API 兼容与模拟层，对做 WebGL、WASM 移植的开发者有参考价值。",
+        "tag": "工具/图形"
       }
     },
     {
@@ -97,13 +97,13 @@
       "source": "hn",
       "published": "2026-11-24T20:08:03+00:00",
       "points": 456,
-      "score": 3.6316,
+      "score": 3.6233,
       "summary": "Ternary Bonsai 2.5 27B brings substantially stronger agentic coding, multi-turn tool use, and multi-step task execution to the same 5.9 GB footprint.",
       "authors": [],
       "analysis": {
-        "what": "Ternary Bonsai 2.5 27B 在维持 5.9 GB 体积的前提下，提升了 agentic coding、多轮工具调用与多步任务执行能力。",
-        "why": "三值量化把 27B 模型压到 5.9 GB，说明可本地部署的智能体编码模型正朝小体积方向推进。",
-        "tag": "模型量化"
+        "what": "Ternary Bonsai 2.5 27B 在保持 5.9 GB 体积的前提下，显著增强了 agentic coding、多轮工具调用和多步任务执行能力。",
+        "why": "三值量化把 27B 级模型压到消费级显存，agent 场景的本地部署门槛进一步下降。",
+        "tag": "模型/量化"
       }
     },
     {
@@ -113,13 +113,13 @@
       "source": "hn",
       "published": "2026-11-24T16:32:17+00:00",
       "points": 284,
-      "score": 3.4996,
+      "score": 3.4874,
       "summary": "GreyNoise recently discovered an intrusion campaign targeting Check Point Security Management Servers, with confirmed attack activity between October 17th and November 2nd, 2026, impacting at least 22 distinct organizations globally.",
       "authors": [],
       "analysis": {
-        "what": "GreyNoise 发现针对 Check Point 安全管理服务器的入侵活动，确认攻击时间为 2026 年 10 月 17 日至 11 月 2 日，至少 22 个组织受影响。",
-        "why": "管理服务器一旦被攻破，下游防火墙策略与信任链都会受威胁，运维需核查暴露面与补丁状态。",
-        "tag": "安全事件"
+        "what": "GreyNoise 发现针对 Check Point 安全管理服务器的入侵活动，确认攻击时间在 2026 年 10 月 17 日至 11 月 2 日，全球至少 22 个组织受影响。",
+        "why": "安全管理服务器一旦被攻破影响面极大，运维需尽快核查暴露面与补丁状态。",
+        "tag": "安全"
       }
     },
     {
@@ -129,29 +129,29 @@
       "source": "hn",
       "published": "2026-11-25T00:54:49+00:00",
       "points": 262,
-      "score": 3.4793,
+      "score": 3.4719,
       "summary": "A small transformer that writes and sketches from text. The effort was 80% data, 15% speed and 5% architecture: my first project that follows the Bitter Lesson.",
       "authors": [],
       "analysis": {
-        "what": "PenGPT 是一个小型 transformer，可根据文本生成手写笔迹与素描；作者称投入为 80% 数据、15% 速度、5% 架构，是其首个践行 Bitter Lesson 的项目。",
-        "why": "小模型做手写生成复现成本低，作者的投入比例也提供了数据优先于架构的实践样本。",
-        "tag": "生成模型"
+        "what": "PenGPT 是一个小型 transformer，可根据文本生成手写体和草图；作者称投入约 80% 在数据、15% 在速度、5% 在架构，是其首个践行 Bitter Lesson 的项目。",
+        "why": "再次说明小模型项目里数据质量远比架构创新重要，给做生成式笔迹的开发者一个可参照的配比。",
+        "tag": "论文/生成"
       }
     },
     {
-      "title": "Ask HN: Anthropic is accusing my company of distilling. How can I prove I'm not?",
-      "url": "https://news.ycombinator.com/item?id=50630809",
+      "title": "Models Can Communicate via Inference Servers Despite Being Sandboxed",
+      "url": "https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being",
       "category": "社区热议",
       "source": "hn",
-      "published": "2026-11-24T16:45:44+00:00",
-      "points": 302,
-      "score": 3.4136,
-      "summary": "Basically the title. Anthropic is accusing me and my company of using their API for distillation. We are not. We do not train our own models. Our only usage which I think could get us flagged is automated regression benchmarks whenever we change some AI settings. But this is not against their policy? Now I've got 24h to prove we didn't.",
+      "published": "2026-11-25T02:34:21+00:00",
+      "points": 246,
+      "score": 3.4018,
+      "summary": "TL;DR\n* Two agents running on the same inference server can reliably communicate, even if they cannot send each other messages or access the same fi…",
       "authors": [],
       "analysis": {
-        "what": "一位开发者称 Anthropic 指控其公司用 API 做蒸馏，其团队并不训练模型，唯一可疑用法是改动 AI 设置后的自动化回归基准测试，被要求 24 小时内自证。",
-        "why": "API 条款与自动化评测的边界并不清晰，做回归测试的团队可能被误判，应保留调用日志。",
-        "tag": "合规争议"
+        "what": "研究发现，同一推理服务器上的两个 agent 即使不能互发消息、也无法访问相同文件，仍能可靠地相互通信。",
+        "why": "沙箱隔离的假设被打破，做多 agent 系统与推理服务托管时需重新评估侧信道风险。",
+        "tag": "安全/agent"
       }
     },
     {
@@ -165,9 +165,9 @@
       "summary": "The official NGINX Open Source repository.\nNGINX (pronounced \"engine x\" or \"en-jin-eks\") is the world's most popular Web Server, high performance Load Balancer, Reverse Proxy, API Gateway and Content Cache.\nNGINX is free and open source software, distributed under the terms of a simplified 2-clause BSD-like license .\nEnterprise distributions, commercial support and training are available from F5, Inc .\nImportant\nThe…",
       "authors": [],
       "analysis": {
-        "what": "NGINX 官方开源仓库出现在开源趋势榜；README 称其为 Web 服务器、负载均衡、反向代理、API 网关与内容缓存，采用简化 2-clause BSD 类许可证。",
-        "why": "老牌基础设施项目再度上榜，说明部署侧需求仍在；也可借此确认官方仓库与企业版的分发关系。",
-        "tag": "开源基建"
+        "what": "NGINX 官方开源仓库介绍：它是 Web 服务器、负载均衡、反向代理、API 网关和内容缓存，采用简化版 2 条款 BSD 类许可证，企业版与商业支持由 F5 提供。",
+        "why": "入口级基础设施项目的许可与商业边界值得确认，避免在分发时误判合规条件。",
+        "tag": "开源/基础设施"
       }
     },
     {
@@ -181,9 +181,9 @@
       "summary": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.\n\"大道至简\"\n中文 | English\n此开源项目旨在完全从 0 开始，仅用 3 块钱成本与 2 小时训练时间，即可训练出规模约为 64M 的超小语言模型 MiniMind。\nMiniMind 系列极其轻量，主线最小版本体积约为 GPT-3 的 $\\frac{1}{2700}$，力求让普通个人 GPU 也能快速完成训练与复现。\n项目同时开源了大模型的极简结构与完整训练链路，覆盖 MoE、数据清洗、预训练（Pretrain）、监督微调（SFT）、LoRA、RLHF（DPO）、RLAIF（PPO / GRPO / CISPO）、Tool Use、Agentic RL、自适应思考与模型蒸馏等全过程代码。",
       "authors": [],
       "analysis": {
-        "what": "MiniMind 项目称约 3 元成本、2 小时即可从零训练出约 64M 的超小语言模型，并开源预训练、SFT、LoRA、RLHF/DPO、Agentic RL、蒸馏等全流程代码。",
-        "why": "个人 GPU 可复现完整训练链路，适合学习各阶段流程，但 64M 规模的实际能力需自行验证。",
-        "tag": "开源教学"
+        "what": "minimind 项目称用约 3 元成本和 2 小时，从 0 训练出约 64M 的超小语言模型，最小版本体积约为 GPT-3 的 1/2700，并开源 MoE、预训练、SFT、LoRA、DPO、PPO/GRPO 等完整训练链路代码。",
+        "why": "个人 GPU 可跑通全流程，适合作为理解 LLM 训练各阶段的实操教材。",
+        "tag": "开源/教程"
       }
     },
     {
@@ -197,9 +197,9 @@
       "summary": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference\nOpen-source software toolkit for optimizing and deploying deep learning models.\nDocumentation • Blog • Key Features • Tutorials • Integrations • Benchmarks • Generative AI\nInference Optimization : Boost deep learning performance in computer vision, automatic speech recognition, generative AI, natural language processing with large and small…",
       "authors": [],
       "analysis": {
-        "what": "OpenVINO 是开源工具包，用于优化和部署深度学习模型推理，覆盖计算机视觉、语音识别、生成式 AI 与大语言模型，配套文档、教程、集成与基准测试。",
-        "why": "做推理部署优化时可纳入选型，尤其关注其在多种硬件上加速的工程化路径。",
-        "tag": "开源工具"
+        "what": "OpenVINO 是开源工具包，用于优化和部署深度学习推理，覆盖计算机视觉、语音识别、生成式 AI 与 NLP，仓库提供文档、教程、集成与基准测试。",
+        "why": "在本地和边缘设备部署模型时，可先用它的优化与 benchmark 生态评估性能。",
+        "tag": "开源/推理部署"
       }
     },
     {
@@ -213,9 +213,9 @@
       "summary": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.\nAn agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand.\n52 diagram types. No shadows.",
       "authors": [],
       "analysis": {
-        "what": "该 agent skill 面向 Claude Code、Codex、GitHub Copilot、Cursor 等编码代理，用单个自包含 HTML+SVG 文件生成品牌化的编辑级图表，支持 52 种类型，明确不用 Mermaid、不加阴影。",
-        "why": "给编码代理补上可视化产出能力，生成结果是一个静态文件，便于直接嵌入文档。",
-        "tag": "工具/Agent"
+        "what": "这是面向 Claude Code、Codex、GitHub Copilot、Cursor 等 agent 的图表技能，含 52 种图表类型，输出单文件自包含 HTML+SVG，不使用 Mermaid。",
+        "why": "自包含输出便于嵌入文档，52 种类型覆盖常见编辑型图表需求。",
+        "tag": "开源/工具"
       }
     },
     {
@@ -229,9 +229,9 @@
       "summary": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/\nCLI-Anything: Making ALL Software Agent-Native\nToday's Software Serves Humans👨‍💻. Tomorrow's Users will be Agents🤖.\nCLI-Anything: Bridging the Gap Between AI Agents and the World's Software\n🌐 CLI-Hub : pip install cli-anything-hub then cli-hub install <name> — browse, install, and manage all community-built CLIs.",
       "authors": [],
       "analysis": {
-        "what": "HKUDS 的 CLI-Anything 主张让所有软件对 agent 原生，提供 CLI-Hub：pip 安装 cli-anything-hub 后，用 cli-hub install 浏览、安装和管理社区构建的 CLI。",
-        "why": "把存量软件包装成 agent 可调用的命令行接口，是一条比重写集成更务实的路径。",
-        "tag": "开源/Agent"
+        "what": "项目目标是让所有软件变成 agent 原生，并提供 CLI-Hub：pip 安装 cli-anything-hub 后，用 cli-hub install 浏览、安装和管理社区构建的 CLI。",
+        "why": "若 CLI 成为 agent 调用软件的通用层，现有工具无需改造即可被 agent 使用。",
+        "tag": "开源/agent"
       }
     },
     {
@@ -245,9 +245,9 @@
       "summary": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary\n/last30days\nEnglish | Français | Deutsch | Español | Português (Brasil) | 日本語 | 简体中文 | العربية | فارسی | Türkçe\nAn AI agent-led search engine scored by upvotes, likes, and real money - not editors.\nThis README tracks the current v4 pipeline.",
       "authors": [],
       "analysis": {
-        "what": "这是一个 AI agent skill，可跨 Reddit、X、YouTube、HN、Polymarket 和网页调研任意话题，按点赞、喜欢和真实资金信号排序而非编辑判断，再合成有依据的摘要，README 跟踪 v4 流程。",
-        "why": "用社区投票与预测市场做信息加权筛选，其信号排序思路可借鉴到自建检索流程。",
-        "tag": "工具/检索"
+        "what": "一个 agent 技能，跨 Reddit、X、YouTube、HN、Polymarket 和网页检索话题，再合成有依据的摘要；排序依据是点赞数和真实下注金额，并不依据编辑判断。",
+        "why": "用互动与资金信号替代编辑判断，可用于话题调研与趋势观察。",
+        "tag": "开源/agent"
       }
     },
     {
@@ -257,7 +257,7 @@
       "source": "arxiv",
       "published": "2026-11-24T18:28:41+00:00",
       "points": 0,
-      "score": 2.1527,
+      "score": 2.1476,
       "summary": "A language-model decoder carries state between decoding steps, and in hardware a wrong state update can leave the current token correct and corrupt the output several tokens later, so a design can pass output tests and still be wrong. AIChipBench asks what LLM coding agents need to build such hardware correctly.",
       "authors": [
         "Guangyuan Wang",
@@ -266,8 +266,8 @@
         "Jichen Feng"
       ],
       "analysis": {
-        "what": "论文提出 AIChipBench 基准，考察 LLM 编码 agent 能否正确设计 AI 加速器；作者指出解码器在解码步之间携带状态，状态更新出错可能让当前 token 正确、数个 token 后才出错。",
-        "why": "说明硬件设计可通过输出测试却仍然错误，对 agent 评测指标设计有直接提示。",
+        "what": "AIChipBench 是评测 LLM agent 自动设计 AI 加速器的基准；作者指出硬件中错误的状态更新可能让当前 token 正常，却在若干 token 后出错。",
+        "why": "说明只测输出正确性不足以评价 agent 生成的硬件设计。",
         "tag": "论文/评测"
       }
     },
@@ -278,7 +278,7 @@
       "source": "arxiv",
       "published": "2026-11-24T18:59:08+00:00",
       "points": 0,
-      "score": 1.8302,
+      "score": 1.8259,
       "summary": "We present DiaCap, an audiovisual LLM for comprehensive dialogue captioning, which produces the transcript, timestamps, and a visual description of the speaker for every utterance in a video. Considering that utterance timing and audiovisual diarization are tightly coupled, DiaCap unifies the tasks in a single model, trained in two complementary stages.",
       "authors": [
         "Binfei Ji",
@@ -287,8 +287,8 @@
         "Prem Seetharaman"
       ],
       "analysis": {
-        "what": "DiaCap 是音视频 LLM，为视频中每句话输出转写文本、时间戳和说话人视觉描述；因话语时间与音视频说话人分离紧密耦合，模型将两者统一，分两阶段训练。",
-        "why": "做会议或视频内容结构化时，可参考其把时间戳与说话人识别联合建模的做法。",
+        "what": "DiaCap 是音视频 LLM，为视频中每句话输出转写、时间戳和说话人视觉描述；由于话语时间与视听 diarization 紧密耦合，模型将两者统一，分两阶段训练。",
+        "why": "把说话人分离与时间对齐放进一个模型，可减少级联流程的误差累积。",
         "tag": "论文/多模态"
       }
     },
@@ -299,7 +299,7 @@
       "source": "arxiv",
       "published": "2026-11-24T18:58:53+00:00",
       "points": 0,
-      "score": 1.7728,
+      "score": 1.7687,
       "summary": "Reasoning models become long-horizon agents through reinforcement learning or, more cheaply, through fine-tuning on a stronger teacher's trajectories, which contain the teacher's chain-of-thought as well as its actions. The standard fine-tuning approach imitates both, yet the strongest teachers are closed models whose chain-of-thought is hidden behind an API.",
       "authors": [
         "Dawid J. Kopiczko",
@@ -307,8 +307,8 @@
         "Yuki M. Asano"
       ],
       "analysis": {
-        "what": "论文讨论长程策略蒸馏：教师轨迹同时含 chain-of-thought 与动作，标准微调会两者都模仿，但最强教师多为闭源模型，其 chain-of-thought 隐藏在 API 之后，因此提出跨格式迁移的代理方案。",
-        "why": "在看不到教师推理过程时如何蒸馏能力，是当前 agent 训练的现实约束。",
+        "what": "CoT-Proxy 关注长程策略蒸馏的跨格式迁移：微调教师轨迹通常会同时模仿 chain-of-thought 与动作，但最强教师是闭源模型，其 CoT 不在 API 中。",
+        "why": "只拿到动作、拿不到推理过程时如何蒸馏，是 agent 训练的现实约束。",
         "tag": "论文/蒸馏"
       }
     },
@@ -319,7 +319,7 @@
       "source": "arxiv",
       "published": "2026-11-24T18:52:34+00:00",
       "points": 0,
-      "score": 1.6837,
+      "score": 1.6798,
       "summary": "Robot policies predominantly learn from human-collected data emphasizing competent behavior, limiting coverage of the low-level behaviors needed to support autonomous improvement. We study how a form of midtraining can be used to build coverage over diverse low-level behaviors that connect challenging states of the robot and its environment to states from which further progress is possible (\"connected behavioral cove…",
       "authors": [
         "Kshitiz",
@@ -328,8 +328,8 @@
         "Yizhou Li"
       ],
       "analysis": {
-        "what": "论文指出机器人策略主要从人类采集的胜任行为数据学习，低层行为覆盖不足；研究用一种 midtraining 建立多样低层行为的覆盖，把困难状态连接到可继续推进的状态。",
-        "why": "为机器人自主改进补数据覆盖缺口，思路可迁移到其他缺乏失败样本的策略训练。",
+        "what": "研究用 midtraining 让机器人策略覆盖更多低层行为：现有策略多学自人类示范的能干行为，缺少连接困难状态与可继续推进状态的行为覆盖。",
+        "why": "低层行为覆盖是机器人自主改进的前提，这一训练阶段值得关注。",
         "tag": "论文/机器人"
       }
     },
@@ -340,7 +340,7 @@
       "source": "arxiv",
       "published": "2026-11-24T18:41:59+00:00",
       "points": 0,
-      "score": 1.6497,
+      "score": 1.6458,
       "summary": "Speculative decoding accelerates large language model (LLM) inference by employing a lightweight draft model to propose draft tokens and allowing the target model to verify the new tokens in parallel to improve inference-time compute utilization.",
       "authors": [
         "Yuxing Liu",
@@ -349,9 +349,9 @@
         "Tong Zhang"
       ],
       "analysis": {
-        "what": "论文提出 Draft Calibration，目标是在 speculative decoding 中匹配 draft 模型与 target 模型的分布，以加速 LLM 服务；摘要只交代了 draft 提议、target 并行验证这一基本机制。",
-        "why": "speculative decoding 的收益高度依赖 draft 质量，做推理服务的团队值得关注“校准分布”这条路线。",
-        "tag": "论文·推理加速"
+        "what": "一篇论文提出 Draft Calibration，通过让投稿模型与目标模型的分布相互匹配，来改进投机解码；后者用轻量 draft model 提议 token，再由目标模型并行验证。",
+        "why": "投机解码的收益取决于 draft 与 target 分布是否对齐，校准思路可能直接影响 LLM 服务的吞吐优化方向。",
+        "tag": "论文"
       }
     },
     {
@@ -361,15 +361,15 @@
       "source": "arxiv",
       "published": "2026-11-24T18:14:52+00:00",
       "points": 0,
-      "score": 1.6357,
+      "score": 1.6318,
       "summary": "Groupwise quantization is used in LLM quantization to improve accuracy at low bit widths, but grouping weights keeps standard integer MMA from spanning the full dot product for efficient GPU inference. We develop a new quantization method, Shifter Quantization (SQ), that reconstructs native-width integer operands by appending and shifting shared bits.",
       "authors": [
         "Yufeng Huang"
       ],
       "analysis": {
-        "what": "论文提出 Shifter Quantization：通过拼接与移位共享 bit 重构原生位宽的整数操作数，让分组量化的权重能用标准 integer MMA 覆盖完整点积。",
-        "why": "分组量化能提升低比特精度，却会切断整数 MMA 的点积；若该方法成立，可省去额外反量化开销。",
-        "tag": "论文·量化"
+        "what": "论文提出 Shifter Quantization：分组量化虽能在低比特下提升精度，却让标准整数 MMA 无法覆盖整个点积；该方法通过拼接、移位共享位来重建原生位宽整数操作数。",
+        "why": "它试图同时保住分组量化的精度和 GPU 整数 MMA 的效率，是低比特 LLM 推理落地的一条工程路径。",
+        "tag": "论文"
       }
     },
     {
@@ -379,13 +379,13 @@
       "source": "hf-blog",
       "published": "2026-11-25T10:22:09+00:00",
       "points": 0,
-      "score": 1.6737,
+      "score": 1.6707,
       "summary": "A Blog post by IBM Research on Hugging Face",
       "authors": [],
       "analysis": {
-        "what": "IBM Research 在 Hugging Face 发布博客，介绍一个名为 CUGA 的 Indic 语音 agent；条目只给出标题与来源，未提供模型、数据或评测信息。",
-        "why": "Indic 语音 agent 属于多语言方向，但在缺少细节的情况下不宜引用其效果或架构。",
-        "tag": "行业·语音"
+        "what": "IBM Research 在 Hugging Face 发布博客，介绍一个使用 CUGA 的 Indic 语音 agent。摘要仅有一句话，未给出模型、语言覆盖范围或评测数据。",
+        "why": "印度语种语音 agent 属于相对少见的落地场景，但信息太少，暂无法判断其技术路线与可用性。",
+        "tag": "行业动态"
       }
     },
     {
@@ -395,13 +395,13 @@
       "source": "simonwillison",
       "published": "2026-11-24T23:02:07+00:00",
       "points": 0,
-      "score": 2.0694,
+      "score": 2.0649,
       "summary": "I gave a keynote at the AI Engineer Code Summit a couple of weeks ago, constructed around the idea that there have been three significant inflection points in the abilities of LLMs and coding agents in the past twelve months.\nHere's the video of the talk.",
       "authors": [],
       "analysis": {
-        "what": "作者在 AI Engineer Code Summit 的主题演讲，围绕过去十二个月内 LLM 与 coding agent 能力出现的三个重要拐点展开，并附有演讲视频。",
-        "why": "把十二个月拆成三个拐点，可作为评估 coding agent 能力阶段与选型时点的参考框架。",
-        "tag": "行业·观点"
+        "what": "作者在 AI Engineer Code Summit 的主题演讲中提出：过去十二个月，LLM 与 coding agent 的能力出现了三个重要拐点，并附有演讲视频。",
+        "why": "把 coding agent 的能力变化划成阶段性拐点，可作为判断工具链与工作流迭代节奏的参考框架。",
+        "tag": "行业动态"
       }
     },
     {
@@ -411,13 +411,13 @@
       "source": "qbitai",
       "published": "2026-11-25T07:46:52+00:00",
       "points": 0,
-      "score": 1.5078,
+      "score": 1.5049,
       "summary": "OpenAI这下要有俩Tibo了\n亏贼，OpenAI这是要把Claude Code的老班底凑齐了？？",
       "authors": [],
       "analysis": {
-        "what": "中文圈消息称 A 社的 Tibo 将加盟 OpenAI，并称 OpenAI 届时会有两个 Tibo，文中还提到 Claude Code 的老班底；目前仅为“被曝”。",
-        "why": "coding agent 团队的人才流动会改变竞争格局，但此类爆料需等官方确认后再作判断。",
-        "tag": "行业·人才"
+        "what": "中文圈消息称 A 社的 Tibo 被曝加盟 OpenAI，并称 OpenAI 将凑齐 Claude Code 的老班底，提到上市前离职的三人。摘要为口语化表述，未给出信源。",
+        "why": "若属实，反映头部实验室间 coding agent 核心人才的流动，但该消息目前只有传闻级别依据。",
+        "tag": "商业"
       }
     },
     {
@@ -427,13 +427,13 @@
       "source": "qbitai",
       "published": "2026-11-25T06:49:27+00:00",
       "points": 0,
-      "score": 1.486,
+      "score": 1.4831,
       "summary": "复杂场景三维建模成本降至10美元以内",
       "authors": [],
       "analysis": {
-        "what": "中文圈报道一位华人计算机视觉学者离开苹果后二次创业，方向是下一代空间与物理 AI，摘要称复杂场景三维建模成本可降至 10 美元以内。",
-        "why": "三维建模成本若真降到 10 美元以内，对空间智能与内容生产链路影响直接，但需看技术细节。",
-        "tag": "行业·创业"
+        "what": "一位华人计算机视觉研究者离开苹果后再次创业，方向是下一代空间与物理 AI，摘要称复杂场景三维建模成本可降至 10 美元以内。",
+        "why": "三维建模成本若真能压到这个量级，会影响空间智能与物理 AI 的数据获取门槛，但需更多细节验证。",
+        "tag": "商业"
       }
     },
     {
@@ -443,13 +443,13 @@
       "source": "qbitai",
       "published": "2026-11-25T08:23:24+00:00",
       "points": 0,
-      "score": 1.346,
+      "score": 1.3435,
       "summary": "Fable5.2已经很旧了。\n量子位 | 公众号QbitAI",
       "authors": [],
       "analysis": {
-        "what": "量子位公众号文章称 Anthropic 还藏有两个最强模型，并称 Fable5.2 已经很旧；条目未给出模型名称、参数规模或评测结果。",
-        "why": "模型发布节奏是竞争信号，但该说法未经证实，不应作为事实引用或写进技术选型。",
-        "tag": "行业·传闻"
+        "what": "中文圈一条消息称 Anthropic 还藏着两个最强模型，并提到 Fable5.2 已经很旧，内容来自量子位公众号，未给出模型名称或依据。",
+        "why": "属于未经证实的传闻性信息，对开发者当前选型没有可操作价值，只能作为观察信号。",
+        "tag": "商业"
       }
     },
     {
@@ -459,15 +459,15 @@
       "source": "v2ex",
       "published": "2026-11-25T10:24:23+00:00",
       "points": 0,
-      "score": 1.3263,
+      "score": 1.3239,
       "summary": "最近做了一个开源项目：AIGC Studio，终于可以拿出来见人了。\n这是一个桌面端 AI 创作工作台，我比较想做的一件事，就是让 AI 生图不再受算力来源的限制。\n本地有显卡，可以直接跑；想省钱，可以接 Kaggle / Colab 的免费 GPU；需要大显存，可以按秒租卡；不想折腾，也可以直接调用商业 API。\n算力随便选，模型随便切，不用为了换一种运行方式重新折腾一套环境。\n除了图片和视频生成，还集成了局部重绘、高清放大、像素对齐、序列帧切片、SVG 转换、背景移除和 PBR 材质拆解等工具。\n生成完接着处理，尽量不用在几个软件之间来回切换。\n项目完全开源免费，欢迎 Star、Fork，也欢迎提 Issue。\nGitHub： https://github.com/nanxfu/aigc-studio",
       "authors": [
         "nanxfu"
       ],
       "analysis": {
-        "what": "开源桌面端 AI 创作工作台 AIGC Studio：算力可选本地显卡、Kaggle/Colab 免费 GPU、按秒租卡或商业 API，并集成局部重绘、高清放大、背景移除等后处理工具。",
-        "why": "把免费 GPU 与商业 API 统一到同一界面、免去换环境，适合低成本试多模型的创作者。",
-        "tag": "开源·工具"
+        "what": "作者开源桌面端 AI 创作工作台 AIGC Studio，支持本地显卡、Kaggle/Colab 免费 GPU、按秒租卡与商业 API 多种算力来源，并集成局部重绘、高清放大、背景移除、PBR 材质拆解等工具。",
+        "why": "把算力切换与后处理工具链收进一个桌面应用，适合想低成本试生图与视频流程的开发者直接上手。",
+        "tag": "开源"
       }
     }
   ]

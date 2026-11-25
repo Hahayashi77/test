@@ -13,7 +13,7 @@ language = "zh-CN"
 [model]
 provider = "yyapi"                        # 中转站；官方就写 deepseek
 base_url = "https://www.yyapi.cloud/v1"   # 注意：中转站地址通常带 /v1
-model = "deepseek-chat"                   # ⚠ 可能要用中转站的实际模型名，见 README「换供应商」
+model = "deepseek-v4.1-flash"             # 已核对：该中转站可用（另有 deepseek-v4-pro）
 temperature = 0.3
 # 每次请求塞多少条给模型（条目多→分批，避免单次超长）
 batch_size = 8

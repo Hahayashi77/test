@@ -21,10 +21,15 @@ from dataclasses import dataclass, field
 from .config import Model
 from .feed import Item
 
-# 每 1M token 的美元单价（deepseek-flash，2026-11 官方价）
+# 每 1M token 的美元单价（DeepSeek 官方价，2026-11）
+# 中转站常用不同模型名，这里把常见别名都列上，避免"认不出"而估算失真。
 PRICES = {
     "deepseek-flash": {"cache_hit": 0.003, "cache_miss": 0.15, "output": 0.6},
+    "deepseek-v4.1-flash": {"cache_hit": 0.003, "cache_miss": 0.15, "output": 0.6},
+    "deepseek-v4-flash": {"cache_hit": 0.003, "cache_miss": 0.15, "output": 0.6},
     "deepseek-v4-pro": {"cache_hit": 0.022, "cache_miss": 0.66, "output": 1.98},
+    "deepseek-chat": {"cache_hit": 0.003, "cache_miss": 0.15, "output": 0.6},
+    "deepseek-reasoner": {"cache_hit": 0.022, "cache_miss": 0.66, "output": 1.98},
 }
 
 BEIJING = dt.timezone(dt.timedelta(hours=8))
@@ -101,9 +106,13 @@ def _price_table(model: Model) -> dict:
     """取该模型的官方单价；中转站按 model.pricing 的倍率与汇率折算。"""
     known = PRICES.get(model.model)
     if known is None:
-        # 中转站的模型名千奇百怪（如 deepseek-v3.2、claude-sonnet-4.5）；
-        # 认不出来的按官方 Flash 价估算，宁可高估，别让预算熔断失效。
-        known = PRICES["deepseek-flash"]
+        # 中转站模型名千奇百怪；按名字里有没有 "pro"/"reasoner" 猜档位，
+        # 都不像就按 Flash 价。宁可高估，别让预算熔断失效。
+        low = (model.model or "").lower()
+        if any(k in low for k in ("pro", "reasoner", "r1", "max")):
+            known = PRICES["deepseek-v4-pro"]
+        else:
+            known = PRICES["deepseek-flash"]
     mult = max(0.0, model.price_multiplier) * max(0.0, model.usd_per_unit)
     return {k: v * mult for k, v in known.items()}
 

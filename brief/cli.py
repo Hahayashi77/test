@@ -372,6 +372,66 @@ def doctor(args) -> int:
     return 0
 
 
+def verify(args) -> int:
+    """发布前校验：冲突标记、JSON 合法性、必需文件、解读完整性。
+
+    这个命令是"用血的教训换来的"：曾有带 <<<<<<< HEAD 的坏 JSON 被当成成功
+    产物发布到 Pages，线上数据全废。所以发布前必须过这一关。
+    """
+    site_dir = Path(args.site)
+    problems: list[str] = []
+
+    required = ["index.html", "archive.html", "feed.xml", "data/latest.json"]
+    for name in required:
+        if not (site_dir / name).exists():
+            problems.append(f"缺少必需文件: {name}")
+
+    # 1) 冲突标记：扫所有文本文件
+    marker = re.compile(r"^(<{7}|={7}|>{7})( |$)", re.M)
+    for path in site_dir.rglob("*"):
+        if not path.is_file() or path.suffix.lower() in (".png", ".jpg", ".webp", ".ico"):
+            continue
+        try:
+            text = path.read_text(encoding="utf-8", errors="replace")
+        except Exception:
+            continue
+        if marker.search(text):
+            problems.append(f"含 Git 冲突标记: {path.relative_to(site_dir)}")
+
+    # 2) JSON 合法性
+    for path in (site_dir / "data").glob("*.json"):
+        try:
+            json.loads(path.read_text(encoding="utf-8"))
+        except Exception as exc:
+            problems.append(f"JSON 不合法: {path.name} ({str(exc)[:60]})")
+
+    # 3) 解读完整性（降级运行时可豁免）
+    latest = site_dir / "data" / "latest.json"
+    if latest.exists():
+        try:
+            snap = json.loads(latest.read_text(encoding="utf-8"))
+            items = snap.get("items") or []
+            missing = [i for i, it in enumerate(items, 1) if not it.get("analysis")]
+            if missing:
+                msg = f"{len(missing)}/{len(items)} 条缺解读（序号 {missing[:8]}）"
+                if snap.get("degraded") or args.allow_degraded:
+                    print(f"… {msg}（已标记降级，允许发布）")
+                else:
+                    problems.append(msg)
+            print(f"· 快照 {snap.get('date')}：{len(items)} 条，"
+                  f"{len(items) - len(missing)} 条有解读")
+        except Exception as exc:
+            problems.append(f"latest.json 无法解析: {exc}")
+
+    if problems:
+        print("✗ 校验未通过：")
+        for p in problems:
+            print(f"  - {p}")
+        return 1
+    print("✓ 校验通过，可以发布")
+    return 0
+
+
 def main(argv=None) -> int:
     # Windows 控制台默认 GBK，中文日志会乱码；这里强制 UTF-8
     for stream in (sys.stdout, sys.stderr):
@@ -400,6 +460,12 @@ def main(argv=None) -> int:
     d.add_argument("--config", default=str(ROOT / "config.toml"))
     d.add_argument("--ask", action="store_true", help="发一次真实请求验证（花极少的钱）")
     d.set_defaults(func=doctor)
+
+    v = sub.add_parser("verify", help="发布前校验生成物（冲突标记/JSON/完整性）")
+    v.add_argument("site", nargs="?", default=str(SITE), help="站点目录（默认 ./site）")
+    v.add_argument("--allow-degraded", action="store_true",
+                   help="降级运行（无模型）时允许缺解读")
+    v.set_defaults(func=verify)
 
     args = parser.parse_args(argv)
     try:

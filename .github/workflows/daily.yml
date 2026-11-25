@@ -58,14 +58,22 @@ jobs:
             python -m brief build --offline --force --github-output "$GITHUB_OUTPUT"
           fi
 
+      - name: 校验生成物（防止坏文件进入 Pages）
+        run: |
+          set -euo pipefail
+          # 生成目录里绝不允许出现 Git 冲突标记。曾因 rebase 冲突残留 <<<<<<< HEAD
+          # 被当成"成功产物"发布到 Pages，导致线上 JSON 全部损坏。
+          if grep -rIl -E '^(<{7}|={7}|>{7})( |$)' site/ ; then
+            echo "::error::生成物里出现 Git 冲突标记，拒绝发布"
+            exit 1
+          fi
+          python -m brief verify site ${{ inputs.dry_run == true && '--allow-degraded' || '' }}
+
       - name: 提交结果
         run: |
           set -euo pipefail
           git config user.name  "brief-bot"
           git config user.email "brief-bot@users.noreply.github.com"
-          # rebase 而不是 merge：日报是纯生成物，冲突时以本地新生成的内容为准也没问题，
-          # 但如果不重叠就直接快进，历史最干净。
-          git config pull.rebase true
           git add site/
           if git diff --staged --quiet; then
             echo "内容无变化，跳过提交"
@@ -73,21 +81,29 @@ jobs:
           fi
           git commit -m "chore: 日报 $(date -u +%Y-%m-%d)"
 
-          # 并发的两次运行会撞车：先拉再推，最多重试 5 次（每次指数退避）
+          # 并发运行会撞车。但 site/ 是纯生成物，rebase 必冲突（每次内容都不同），
+          # 所以冲突时用"我们的版本"重建这次提交，而不是让 rebase 留下冲突标记。
           for i in 1 2 3 4 5; do
             if git push; then
               echo "推送成功（第 $i 次尝试）"
               exit 0
             fi
             echo "推送被拒（第 $i 次），拉取远端后重试…"
-            git pull --rebase --autostash origin main || {
-              echo "rebase 失败，放弃本次提交（不影响已生成的产物）"
-              exit 0
-            }
+            git fetch origin main
+            # --abort 保证不会留下半完成的 rebase 状态
+            git rebase --abort 2>/dev/null || true
+            if ! git rebase origin/main; then
+              git rebase --abort 2>/dev/null || true
+              # 生成物冲突：以本次生成的内容为准，重新提交在远端最新之上
+              git reset --soft origin/main
+              git add site/
+              git commit -m "chore: 日报 $(date -u +%Y-%m-%d)"
+            fi
             sleep $((i * 3))
           done
-          echo "::warning::推送连续失败，但日报已生成，下次运行会再提交"
-          exit 0
+          # 提交失败不能让整次运行变绿：产物已在 Pages 上，但仓库没同步，需要人看见
+          echo "::error::连续 5 次推送失败，仓库未同步（站点已发布）"
+          exit 1
 
       - uses: actions/upload-pages-artifact@v3
         with:

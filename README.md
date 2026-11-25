@@ -73,10 +73,48 @@ python -m http.server 8000 -d site
 | 想让某类内容多出现 | `[select.keywords]` 加词、调大权重 |
 | 想屏蔽某类内容 | `[select.negative_keywords]`（命中即大幅减分）；会议/招聘类会被 `PROMO_RE` 直接丢弃 |
 | 摘要更详细（更贵） | `[model] excerpt_chars` 调大，同时看 `batch_size` |
-| 换模型 / 换端点 | `[model] model` / `base_url`（任何 OpenAI 兼容端点都行，价格表在 `brief/llm.py` 顶部） |
+| 换模型 / 换端点 | `[model] model` / `base_url`（任何 OpenAI 兼容端点都行） |
 | 板块顺序 | `[[sources]] order`，小的排前面 |
 
-## 5. 代码地图
+## 5. 换供应商 / 用中转站
+
+这个项目只要求端点**OpenAI 兼容**，所以官方、中转站、自建 vLLM 都能用。
+但中转站有三个坑，代码已经全部处理好了：
+
+```bash
+# 换 Key 之前，先体检（不花什么钱）
+python -m brief doctor --ask
+```
+
+会发生什么：
+
+1. **模型名不一定叫 `deepseek-flash`** —— `doctor` 会拉 `/models` 列表，
+   告诉你 `deepseek-chat` 在不在、该改成什么，并列出所有 DeepSeek 相关模型。
+   名字不对时**直接退出**，不会连发 24 次失败请求。
+2. **不支持 `response_format: json_object`** —— 很多中转站会返回 400。
+   `json_mode = "auto"`（默认）会先试一次，被拒后自动降级成纯文本、加严提示词重发，
+   并把这个开关**永久关掉**，后续批次不再浪费请求。
+3. **计价规则不同** —— 中转站常按"充 1 元 = 1 美元额度"、再乘分组倍率。
+   在配置里填两个数就能让成本统计接近真实：
+
+```toml
+[model]
+json_mode = "auto"
+price_multiplier = 1.0    # 你所在分组的倍率（如 0.5x 就填 0.5）
+usd_per_unit = 1.0        # 1 个"站内美元"折多少真美元（1 元/刀 ≈ 0.14）
+```
+
+另外，中转站一般**没有峰谷价差**，代码会自动只对官方域名
+（`api.deepseek.com`）套用峰谷计价，不会把中转站的花费算错成 2 倍。
+
+Key 的环境变量名也可以改（默认 `DEEPSEEK_API_KEY`）：
+
+```toml
+[model]
+api_key_env = "YYAPI_KEY"
+```
+
+## 6. 代码地图
 
 ```
 brief/

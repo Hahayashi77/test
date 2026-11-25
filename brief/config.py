@@ -25,6 +25,12 @@ class Model:
     batch_size: int = 8
     max_output_tokens: int = 3000
     excerpt_chars: int = 420
+    # OpenAI 兼容端点通用旋钮
+    json_mode: str = "auto"       # auto | on | off
+    # 中转站计价：官方价 × 倍率 × 汇率。三者都为默认值时等价于"按官方美元价"。
+    price_multiplier: float = 1.0
+    usd_per_unit: float = 1.0     # 1 个"站内美元"折多少真美元
+    api_key_env: str = "DEEPSEEK_API_KEY"
 
 
 @dataclass

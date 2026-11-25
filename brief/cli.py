@@ -164,15 +164,17 @@ def build(args) -> int:
         except Exception as exc:
             log(f"摘要补全失败（忽略）：{exc}")
 
-    client = llm.DeepSeek(cfg.model, os.environ.get("DEEPSEEK_API_KEY"))
+    client = llm.DeepSeek(cfg.model, os.environ.get(cfg.model.api_key_env))
     if args.mock:
         analyses, digest_meta = mock_analyses(items)
     elif args.dry_run:
         analyses, digest_meta = {}, {"lede": "", "takeaway": "", "degraded": True}
     else:
         if not client.api_key:
-            log("缺少 DEEPSEEK_API_KEY；使用 --dry-run 可先验证抓取，或 --mock 演练")
+            log(f"缺少 {cfg.model.api_key_env}；使用 --dry-run 可先验证抓取，或 --mock 演练")
             return 3
+        if not _check_endpoint(cfg, client):
+            return 4
         analyses, digest_meta = analyze_all(client, cfg, items)
 
     meta = {
@@ -226,6 +228,37 @@ def build(args) -> int:
     return 0
 
 
+def _check_endpoint(cfg, client) -> bool:
+    """调用前先确认端点、鉴权、模型名都对，避免 24 次无意义的失败请求。
+
+    返回 False 只代表"确定不可用"；拿不到 /models 列表（很多中转站关了这个接口）
+    时按"未知"处理，继续往下跑。
+    """
+    info = client.probe()
+    if not info["reachable"]:
+        log(f"✗ 端点连不上：{cfg.model.base_url}（{info.get('error')}）")
+        return False
+    if not info["auth_ok"]:
+        log(f"✗ 鉴权失败：{info.get('error')}")
+        return False
+
+    ids = info.get("available_models")
+    if ids is None:
+        log(f"… {cfg.model.base_url} 可达，但没拿到模型列表（不影响使用）")
+        return True
+    if info.get("model_ok"):
+        log(f"· 模型 {cfg.model.model} 已在端点列表中（共 {len(ids)} 个）")
+        return True
+
+    hint = client.suggest_model()
+    log(f"✗ 模型名 '{cfg.model.model}' 不在该端点的模型列表里（共 {len(ids)} 个）")
+    if hint:
+        log(f"  → 列表里有 '{hint}'，把 config.toml 的 model 改成它试试")
+    sample = ", ".join(ids[:12])
+    log(f"  → 端点支持的部分模型：{sample}")
+    return False
+
+
 def _items_from_cache(cfg) -> tuple[list[feed.Item], list[dict]]:
     """只用 .cache 里的快照出报：适合离线重排版、或信源全挂时的兜底。"""
     items: list[feed.Item] = []
@@ -264,6 +297,66 @@ def _load_archive(site_dir: Path) -> dict:
     return {}
 
 
+def doctor(args) -> int:
+    """排查供应商：端点是否可达、Key 是否有效、模型名对不对、跑一次真请求要多少钱。
+
+    换中转站时先跑这个，别直接 build —— 24 条 × 分批的失败请求又慢又难查。
+    """
+    cfg = cfgmod.load(args.config)
+    key = os.environ.get(cfg.model.api_key_env)
+    print(f"配置: {cfg.model.provider} / {cfg.model.model}")
+    print(f"地址: {cfg.model.base_url}")
+    print(f"Key : {'已设置' if key else '✗ 未设置'}（环境变量 {cfg.model.api_key_env}）")
+    if not key:
+        print(f"\n先设置：$env:{cfg.model.api_key_env}=\"sk-...\"")
+        return 3
+
+    client = llm.DeepSeek(cfg.model, key)
+    info = client.probe()
+    print(f"\n连接: {'OK' if info['reachable'] else '✗ ' + str(info.get('error'))}")
+    if not info["reachable"]:
+        return 1
+    print(f"鉴权: {'OK' if info['auth_ok'] else '✗ ' + str(info.get('error'))}")
+    if not info["auth_ok"]:
+        return 2
+
+    ids = info.get("available_models")
+    if ids is None:
+        print("模型: 端点不提供 /models 列表，只能实测")
+    else:
+        print(f"模型: 列表共 {len(ids)} 个")
+        ok = info.get("model_ok")
+        print(f"  {cfg.model.model}: {'✓ 可用' if ok else '✗ 不在列表里'}")
+        deepseekish = [m for m in ids if "deepseek" in m.lower()]
+        if deepseekish:
+            print(f"  列表中的 DeepSeek 相关模型：{', '.join(deepseekish[:12])}")
+        elif not ok:
+            print(f"  列表样例：{', '.join(ids[:12])}")
+        if not ok:
+            hint = client.suggest_model()
+            print(f"  → 建议把 config.toml 的 model 改成：{hint}")
+
+    if args.ask:
+        print(f"\n实测一次调用（约 {cfg.model.max_output_tokens} token 输出上限）…")
+        try:
+            reply = client.chat(
+                [{"role": "system", "content": "你是测试助手。"},
+                 {"role": "user", "content": "只回复两个字：可用"}],
+                max_tokens=32, json_mode=False)
+            print(f"回复: {reply.strip()[:80]!r}")
+            u = client.usage
+            print(f"用量: 输入 {u.prompt_tokens} / 输出 {u.completion_tokens} token")
+            print(f"估算花费: ${u.cost_usd:.6f}")
+            print(f"JSON 模式: {'已启用' if client._json_mode else '已降级/关闭'}")
+        except Exception as exc:
+            print(f"✗ 实测失败: {exc}")
+            return 5
+
+    print("\n按默认配置，一期 24 条约需 $%.4f" % llm.estimate_cost(
+        cfg.model, "x" * 13000, cfg.model.max_output_tokens))
+    return 0
+
+
 def main(argv=None) -> int:
     # Windows 控制台默认 GBK，中文日志会乱码；这里强制 UTF-8
     for stream in (sys.stdout, sys.stderr):
@@ -287,6 +380,11 @@ def main(argv=None) -> int:
     b.add_argument("--force", action="store_true", help="覆盖当天已存在的文件")
     b.add_argument("--github-output", help="把 lede/count/cost 追加到文件（Actions 用）")
     b.set_defaults(func=build)
+
+    d = sub.add_parser("doctor", help="排查 API 供应商（换中转站先跑这个）")
+    d.add_argument("--config", default=str(ROOT / "config.toml"))
+    d.add_argument("--ask", action="store_true", help="发一次真实请求验证（花极少的钱）")
+    d.set_defaults(func=doctor)
 
     args = parser.parse_args(argv)
     try:

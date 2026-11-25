@@ -11,9 +11,9 @@ base_url = "https://hahayashi77.github.io/test"
 language = "zh-CN"
 
 [model]
-provider = "deepseek"
-model = "deepseek-flash"
-base_url = "https://api.deepseek.com"
+provider = "yyapi"                        # 中转站；官方就写 deepseek
+base_url = "https://www.yyapi.cloud/v1"   # 注意：中转站地址通常带 /v1
+model = "deepseek-chat"                   # ⚠ 可能要用中转站的实际模型名，见 README「换供应商」
 temperature = 0.3
 # 每次请求塞多少条给模型（条目多→分批，避免单次超长）
 batch_size = 8
@@ -21,6 +21,18 @@ batch_size = 8
 max_output_tokens = 3000
 # 摘录截断长度：越大越贵但信息越全
 excerpt_chars = 420
+
+# OpenAI 兼容端点通用旋钮（中转站经常不支持 json 模式）
+json_mode = "auto"          # auto=先试，400 就自动关掉 | on | off
+
+# 计价：真实花费 = 官方价 × price_multiplier × usd_per_unit
+# 官方 DeepSeek 保持 1.0 / 1.0 即可；中转站按你自己的充值比例填。
+# 例：官方价 0.5x、充值 1 元 = 1 美元（汇率约 7）→ 0.5 和 0.14
+price_multiplier = 1.0
+usd_per_unit = 1.0
+
+# GitHub Actions 里取的 Secret 名
+api_key_env = "DEEPSEEK_API_KEY"
 
 [budget]
 # 单次运行的成本上限（美元）。超出后停止调用模型，用降级模式出报。

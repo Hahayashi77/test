@@ -53,6 +53,8 @@ jobs:
           if [ "${{ inputs.dry_run }}" = "true" ]; then
             python -m brief build --dry-run --force
           else
+            # 先体检：模型名/端点/Key 不对时立刻报错，而不是连发 24 次失败请求
+            python -m brief doctor --ask
             python -m brief build --offline --force --github-output "$GITHUB_OUTPUT"
           fi
 

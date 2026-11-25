@@ -97,12 +97,28 @@ def _estimate_tokens(text: str) -> int:
     return int(cjk / 1.5 + other / 4) + 8
 
 
+def _price_table(model: Model) -> dict:
+    """取该模型的官方单价；中转站按 model.pricing 的倍率与汇率折算。"""
+    known = PRICES.get(model.model)
+    if known is None:
+        # 中转站的模型名千奇百怪（如 deepseek-v3.2、claude-sonnet-4.5）；
+        # 认不出来的按官方 Flash 价估算，宁可高估，别让预算熔断失效。
+        known = PRICES["deepseek-flash"]
+    mult = max(0.0, model.price_multiplier) * max(0.0, model.usd_per_unit)
+    return {k: v * mult for k, v in known.items()}
+
+
 def estimate_cost(model: Model, prompt: str, expected_out: int) -> float:
-    p = PRICES.get(model.model, PRICES["deepseek-flash"])
-    factor = 2.0 if is_peak() else 1.0
+    p = _price_table(model)
+    # 中转站通常没有峰谷价差；只有官方域名才按峰谷算
+    factor = 2.0 if (is_peak() and _is_official(model)) else 1.0
     in_cost = (_estimate_tokens(prompt) / 1_000_000) * p["cache_miss"] * factor
     out_cost = (expected_out / 1_000_000) * p["output"] * factor
     return in_cost + out_cost
+
+
+def _is_official(model: Model) -> bool:
+    return "api.deepseek.com" in (model.base_url or "")
 
 
 class DeepSeek:
@@ -110,13 +126,77 @@ class DeepSeek:
         self.model = model
         self.api_key = api_key
         self.timeout = timeout
-        self.usage = Usage(peak=is_peak())
+        self.usage = Usage(peak=is_peak() and _is_official(model))
+        # json_mode 的运行时开关：on=一直要，off=一直不要，auto=先要，遇 400 自动关掉
+        self._json_mode = {"on": True, "off": False}.get(model.json_mode, True)
+        self._probed: dict | None = None
+
+    # ── 探测：中转站的模型名和 /models 列表必须核对 ──────────────
+    def probe(self) -> dict:
+        """检查端点与模型是否可用，返回诊断信息（不抛异常）。
+
+        - available_models: /models 返回的列表（端点不支持时为 None）
+        - model_ok: 目标模型是否在列表里（列表拿不到时为 None=未知）
+        """
+        if self._probed is not None:
+            return self._probed
+        info: dict = {"base_url": self.model.base_url, "model": self.model.model,
+                      "reachable": False, "auth_ok": False,
+                      "available_models": None, "model_ok": None, "error": None}
+        url = self.model.base_url.rstrip("/") + "/models"
+        try:
+            req = urllib.request.Request(url, headers={
+                "Authorization": f"Bearer {self.api_key}",
+                "User-Agent": "daily-brief/1.0",
+            })
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                payload = json.loads(resp.read().decode("utf-8"))
+            info["reachable"] = True
+            info["auth_ok"] = True
+            ids = [str(m.get("id")) for m in (payload.get("data") or [])
+                   if isinstance(m, dict) and m.get("id")]
+            if ids:
+                info["available_models"] = ids
+                info["model_ok"] = self.model.model in ids
+        except urllib.error.HTTPError as exc:
+            info["reachable"] = True
+            detail = exc.read().decode("utf-8", "replace")[:200]
+            exc.close()
+            info["error"] = f"HTTP {exc.code}: {detail}"
+            info["auth_ok"] = exc.code != 401
+        except Exception as exc:
+            info["error"] = str(exc)[:200]
+        self._probed = info
+        return info
+
+    def suggest_model(self) -> str | None:
+        """从 /models 列表里挑一个最像 DeepSeek 的（给用户改配置用）。"""
+        ids = (self.probe().get("available_models") or [])
+        for kw in ("deepseek", "v3", "v4"):
+            for mid in ids:
+                if kw in mid.lower():
+                    return mid
+        return ids[0] if ids else None
 
     # ── 底层请求 ────────────────────────────────────────────────
-    def chat(self, messages: list[dict], max_tokens: int, json_mode: bool = True,
+    def chat(self, messages: list[dict], max_tokens: int, json_mode: bool | None = True,
              retries: int = 3) -> str:
         if not self.api_key:
-            raise RuntimeError("缺少 DEEPSEEK_API_KEY")
+            raise RuntimeError(f"缺少 {self.model.api_key_env}")
+        # json_mode: True=要，False=不要，None=交给自适应开关
+        want_json = bool(self._json_mode) if json_mode is None else bool(json_mode)
+
+        while True:
+            try:
+                return self._post(messages, max_tokens, want_json, retries)
+            except _JsonFormatRejected as exc:
+                # 端点不认 response_format：关掉开关，立刻用纯文本重发（只降级一次）
+                log_json_fallback(str(exc))
+                self._json_mode = False
+                want_json = False
+
+    def _post(self, messages: list[dict], max_tokens: int, want_json: bool,
+              retries: int) -> str:
         body = {
             "model": self.model.model,
             "messages": messages,
@@ -124,7 +204,7 @@ class DeepSeek:
             "max_tokens": max_tokens,
             "stream": False,
         }
-        if json_mode:
+        if want_json:
             body["response_format"] = {"type": "json_object"}
         data = json.dumps(body, ensure_ascii=False).encode("utf-8")
         url = self.model.base_url.rstrip("/") + "/chat/completions"
@@ -135,6 +215,7 @@ class DeepSeek:
                 req = urllib.request.Request(url, data=data, method="POST", headers={
                     "Content-Type": "application/json",
                     "Authorization": f"Bearer {self.api_key}",
+                    "User-Agent": "daily-brief/1.0",
                 })
                 with urllib.request.urlopen(req, timeout=self.timeout) as resp:
                     payload = json.loads(resp.read().decode("utf-8"))
@@ -143,13 +224,15 @@ class DeepSeek:
                 return payload["choices"][0]["message"]["content"] or ""
             except urllib.error.HTTPError as exc:
                 last = exc
-                # 429 / 5xx 退避重试；4xx（key 错、参数错）直接放弃
+                detail = exc.read().decode("utf-8", "replace")[:400]
+                exc.close()
+                # 400 + 明确指向 response_format → 交给上层降级重发
+                if (exc.code == 400 and want_json
+                        and _looks_like_format_error(detail)):
+                    raise _JsonFormatRejected(detail) from exc
                 if exc.code in (408, 409, 425, 429, 500, 502, 503, 504) and attempt < retries:
-                    exc.close()
                     time.sleep(min(20, 2 ** attempt * 2))
                     continue
-                detail = exc.read().decode("utf-8", "replace")[:300]
-                exc.close()
                 raise RuntimeError(f"HTTP {exc.code}: {detail}") from exc
             except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
                 last = exc
@@ -160,7 +243,7 @@ class DeepSeek:
         raise RuntimeError(f"请求失败: {last}")
 
     def _account(self, usage: dict) -> None:
-        price = PRICES.get(self.model.model, PRICES["deepseek-flash"])
+        price = _price_table(self.model)
         factor = 2.0 if self.usage.peak else 1.0
         prompt = int(usage.get("prompt_tokens") or 0)
         hit = int(usage.get("prompt_cache_hit_tokens")
@@ -188,12 +271,25 @@ class DeepSeek:
             [{"role": "system", "content": SYSTEM},
              {"role": "user", "content": prompt}],
             max_tokens=self.model.max_output_tokens,
+            json_mode=None,          # 交给自适应开关决定
         )
         data = _loads_loose(raw)
+        if not data:
+            # 纯文本端点（无 json 模式）偶尔会拒答或输出废格式：补一次极简重试
+            raw = self.chat(
+                [{"role": "system", "content": SYSTEM},
+                 {"role": "user", "content": prompt
+                  + "\n\n再次强调：只输出一个 JSON 对象，第一个字符必须是 {，不要任何前言后语。"}],
+                max_tokens=self.model.max_output_tokens,
+                json_mode=False,
+            )
+            data = _loads_loose(raw)
         out: dict[str, dict] = {}
         for obj in (data.get("items") or []):
+            if not isinstance(obj, dict):
+                continue
             try:
-                idx = int(obj.get("id"))
+                idx = int(str(obj.get("id", "")).strip(" []"))
                 if 1 <= idx <= len(items):
                     out[items[idx - 1].uid] = {
                         "what": str(obj.get("what", "")).strip()[:220],
@@ -221,8 +317,23 @@ class DeepSeek:
                 + "\n\n" + SCHEMA_HINT)
 
 
+class _JsonFormatRejected(RuntimeError):
+    """端点以 400 拒绝 response_format —— 内部信号，触发一次降级重发。"""
+
+
+def log_json_fallback(detail: str) -> None:
+    print(f"  ⚠ 端点不接受 response_format，已自动降级为纯文本 JSON 输出"
+          f"（{detail[:100]}）", flush=True)
+
+
+def _looks_like_format_error(detail: str) -> bool:
+    """判断 400 是不是"不认识 response_format"，避免把别的参数错误也当成它。"""
+    low = (detail or "").lower()
+    hints = ("response_format", "json_object", "json mode", "response format")
+    return any(h in low for h in hints)
+
+
 def _loads_loose(raw: str) -> dict:
-    """模型偶尔会包 ```json 代码块或前后加话，这里做一次容错。"""
     text = (raw or "").strip()
     text = re.sub(r"^```(?:json)?\s*|\s*```$", "", text, flags=re.S)
     try:

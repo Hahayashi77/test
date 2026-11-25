@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>每日技术简报 · 2026-11-25</title>
+<meta property="og:title" content="每日技术简报 · 2026-11-25">
+<link rel="canonical" href="https://hahayashi77.github.io/test/d/2026-11-25.html">
+<style>
+:root{
+  --ink:#14181f; --ink-2:#3d4653; --ink-3:#6b7686;
+  --bg:#fbfaf7; --card:#ffffff; --line:#e6e2da;
+  --accent:#0f62fe; --accent-soft:#e8f0ff;
+  --whale:#2b6cb0; --warm:#b45309;
+  --serif:"Iowan Old Style","Charter","Songti SC","Noto Serif CJK SC",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",
+         "Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  --mono:"SF Mono","JetBrains Mono",Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --ink:#e9eaee; --ink-2:#b6bcc9; --ink-3:#8b94a5;
+    --bg:#0f1216; --card:#161a20; --line:#262b33;
+    --accent:#6ea8ff; --accent-soft:#1b2637; --whale:#7aa7d9; --warm:#e0a458; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px}
+
+/* ── 报头 ── */
+header.top{padding:34px 0 22px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.masthead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.masthead h1{font-family:var(--serif);font-size:30px;margin:0;letter-spacing:-.4px}
+.masthead .date{color:var(--ink-3);font-size:13px;font-variant-numeric:tabular-nums}
+.masthead nav{margin-left:auto;font-size:13px;display:flex;gap:16px}
+.tagline{color:var(--ink-2);font-size:14px;margin-top:6px}
+
+/* ── 导语 ── */
+.lede{font-family:var(--serif);font-size:18.5px;line-height:1.72;color:var(--ink);
+  margin:0 0 26px;padding-left:16px;border-left:3px solid var(--accent)}
+.lede .lbl{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+
+/* ── 板块 ── */
+.section{margin:38px 0 0}
+.section h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;margin:0 0 14px;padding-bottom:8px;
+  border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+.section h2 .count{font-variant-numeric:tabular-nums;color:var(--accent);
+  background:var(--accent-soft);border-radius:20px;padding:1px 8px;
+  font-size:11px;letter-spacing:0}
+
+/* ── 条目 ── */
+.item{padding:16px 0 18px;border-bottom:1px dashed var(--line)}
+.item:last-child{border-bottom:0}
+.item-head{display:flex;gap:10px;align-items:baseline}
+.rank{font-family:var(--mono);font-size:12px;color:var(--ink-3);
+  min-width:22px;padding-top:3px;font-variant-numeric:tabular-nums}
+.title{font-size:17px;font-weight:600;line-height:1.45;letter-spacing:-.1px;margin:0}
+.title a{color:var(--ink)}
+.title a:hover{color:var(--accent);text-decoration:none}
+.meta{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--ink-3);
+  margin:6px 0 0 32px;font-variant-numeric:tabular-nums}
+.meta .tag{color:var(--whale);background:var(--accent-soft);border-radius:4px;
+  padding:1px 7px;font-size:11px;font-weight:600;letter-spacing:.02em}
+.body{margin:8px 0 0 32px}
+.what{color:var(--ink-2);font-size:14.5px;margin:0}
+.why{color:var(--ink-2);font-size:13.5px;margin:7px 0 0;padding-left:11px;
+  border-left:2px solid var(--line)}
+.why b{color:var(--warm);font-weight:600;font-size:12px;letter-spacing:.06em}
+.raw{color:var(--ink-3);font-size:13.5px;margin:0}
+.authors{color:var(--ink-3);font-size:12.5px;margin-top:5px}
+
+/* ── 今日判断 / 页脚 ── */
+.takeaway{margin:44px 0 0;padding:20px 22px;background:var(--card);
+  border:1px solid var(--line);border-radius:10px}
+.takeaway .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--warm);font-weight:700}
+.takeaway p{margin:8px 0 0;font-size:15.5px;line-height:1.65}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--ink-3);display:flex;gap:16px;flex-wrap:wrap;
+  font-variant-numeric:tabular-nums}
+footer a{color:var(--ink-3);text-decoration:underline}
+.degraded{background:#fff8e6;border:1px solid #f0d9a8;color:#7a5a12;
+  padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:24px}
+@media (prefers-color-scheme: dark){.degraded{background:#2a2415;border-color:#4a3d1d;color:#e0bf7a}}
+
+/* ── 归档 ── */
+.arc-list{list-style:none;padding:0;margin:0}
+.arc-list li{display:flex;gap:14px;align-items:baseline;padding:11px 0;
+  border-bottom:1px solid var(--line);font-size:15px}
+.arc-list .d{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);min-width:88px}
+.arc-list .t{color:var(--ink-2);font-size:13.5px;margin-left:auto;text-align:right;
+  max-width:52%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:640px){
+  .masthead h1{font-size:24px}
+  .masthead nav{width:100%;margin-left:0}
+  .body,.meta{margin-left:0}
+  .rank{display:none}
+  .arc-list .t{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="masthead">
+    <h1>每日技术简报</h1>
+    <span class="date">2026 年 11 月 25 日 · 星期三</span>
+    <nav><a href="archive.html">归档</a><a href="feed.xml">RSS</a></nav>
+  </div>
+  <div class="tagline">AI · 开源 · 工程 —— 每天 5 分钟读完</div>
+</header><div class="lede"><span class="lbl">今日概述</span>今天的条目一头是“变轻”：27B 三值模型塞进 5.9GB、3 元训 64M 小模型；另一头是“变险”：Check Point 管理服务器被入侵，有团队被指蒸馏并限时自证。</div>
+<div class="degraded">本次运行未使用模型（预算上限或 API 不可用），以下为未经解读的原始标题列表。</div>
+<section class="section"><h2>社区热议<span class="count">6</span></h2><article class="item">
+  <div class="item-head">
+    <span class="rank">01</span>
+    <h3 class="title"><a href="https://www.marginalia.nu/log/a_141_marginalia_update/" target="_blank" rel="noopener">Marginalia Search, Money, C++, Rust, AI, Stuff</a></h3>
+  </div>
+  <div class="meta"><span class="tag">开源项目</span><span>社区热议</span><span>HN 125 分</span></div>
+  <div class="body"><p class="what">Marginalia Search 作者发布例行项目更新：近几个月以修 bug 和清理技术债为主，没有多少新功能可宣布；评论指出标题暗示的结论在正文中缺乏支撑。</p><p class="why"><b>为什么值得看</b> 独立搜索引擎长期处于维护状态是常态，值得看的是社区如何直接点破更新标题与内容的不匹配。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">02</span>
+    <h3 class="title"><a href="https://gpu-demo-gallery.pages.dev/" target="_blank" rel="noopener">Show HN: Old Nvidia and ATI tech demos, running again in the browser</a></h3>
+  </div>
+  <div class="meta"><span class="tag">工具/图形</span><span>社区热议</span><span>HN 134 分</span></div>
+  <div class="body"><p class="what">有人把 3dfx、NVIDIA、ATI 在 1998 至 2006 年间的 23 个显卡技术演示重新跑在浏览器里。</p><p class="why"><b>为什么值得看</b> 说明浏览器图形栈已能复现固定管线时代的渲染效果，也是研究老 GPU 技术的可运行样本。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">03</span>
+    <h3 class="title"><a href="https://prismml.com/news/bonsai-2-5-27b" target="_blank" rel="noopener">Ternary Bonsai 2.5 27B</a></h3>
+  </div>
+  <div class="meta"><span class="tag">模型/推理</span><span>社区热议</span><span>HN 452 分</span></div>
+  <div class="body"><p class="what">Ternary Bonsai 2.5 27B 在同样 5.9 GB 占用下，带来更强的 agentic coding、多轮工具调用与多步任务执行能力。</p><p class="why"><b>为什么值得看</b> 三值权重把 27B 级模型压到消费级显存，本地跑 agent 工作流的门槛继续下降。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">04</span>
+    <h3 class="title"><a href="https://www.greynoise.io/blog/check-point-security-management-servers-intrusion-campaign" target="_blank" rel="noopener">Active intrusion campaign against Check Point security management servers</a></h3>
+  </div>
+  <div class="meta"><span class="tag">安全</span><span>社区热议</span><span>HN 284 分</span></div>
+  <div class="body"><p class="what">GreyNoise 发现针对 Check Point 安全管理服务器的入侵行动，确认攻击活动发生在 2026 年 10 月 17 日至 11 月 2 日，至少影响全球 22 个组织。</p><p class="why"><b>为什么值得看</b> 管理服务器是安全设施的中枢，运维方应优先排查其暴露面与访问日志，而非按普通终端事件处理。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">05</span>
+    <h3 class="title"><a href="https://greydanus.github.io/2026/11/12/pengpt/" target="_blank" rel="noopener">PenGPT: A Generative Transformer for Handwriting and Sketches</a></h3>
+  </div>
+  <div class="meta"><span class="tag">研究/生成模型</span><span>社区热议</span><span>HN 260 分</span></div>
+  <div class="body"><p class="what">PenGPT 是一个小型 transformer，可根据文本生成手写与草图；作者称投入约为 80% 数据、15% 速度、5% 架构，是其第一个遵循 Bitter Lesson 的项目。</p><p class="why"><b>为什么值得看</b> 强调数据规模胜过架构技巧，且复现成本低，适合作为训练流程的入门参考。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">06</span>
+    <h3 class="title"><a href="https://news.ycombinator.com/item?id=50630809" target="_blank" rel="noopener">Ask HN: Anthropic is accusing my company of distilling. How can I prove I&#x27;m not?</a></h3>
+  </div>
+  <div class="meta"><span class="tag">商业/合规</span><span>社区热议</span><span>HN 297 分</span></div>
+  <div class="body"><p class="what">开发者称 Anthropic 指控其公司借 API 做蒸馏，但其并不训练自研模型，唯一可疑用法是改配置后跑自动化回归基准，且被限 24 小时自证。</p><p class="why"><b>为什么值得看</b> API 条款对评测与基准测试的边界模糊，做自动化评测的团队需留存用途说明与数据流向证据。</p></div>
+</article></section>
+<section class="section"><h2>开源趋势<span class="count">6</span></h2><article class="item">
+  <div class="item-head">
+    <span class="rank">07</span>
+    <h3 class="title"><a href="https://github.com/nginx/nginx" target="_blank" rel="noopener">nginx/nginx</a></h3>
+  </div>
+  <div class="meta"><span class="tag">开源/基础设施</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">NGINX 官方开源仓库，覆盖 Web 服务器、负载均衡、反向代理、API 网关与内容缓存，采用简化版 2-clause BSD 类许可证，商业发行版与支持由 F5 提供。</p><p class="why"><b>为什么值得看</b> 属于基础设施常识条目，新意有限；值得留意的是开源许可证与商业发行版之间的边界说明。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">08</span>
+    <h3 class="title"><a href="https://github.com/jingyaogong/minimind" target="_blank" rel="noopener">jingyaogong/minimind</a></h3>
+  </div>
+  <div class="meta"><span class="tag">开源/训练</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">MiniMind 主打约 3 元成本、2 小时从零训练 64M 小模型，主线最小版本约为 GPT-3 体积的 1/2700，并开源 MoE、预训练、SFT、LoRA、RLHF、Agentic RL、蒸馏等全链路代码。</p><p class="why"><b>为什么值得看</b> 个人 GPU 即可跑通完整训练管线，适合用来理解流程与各阶段衔接，而非追求模型效果。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">09</span>
+    <h3 class="title"><a href="https://github.com/openvinotoolkit/openvino" target="_blank" rel="noopener">openvinotoolkit/openvino</a></h3>
+  </div>
+  <div class="meta"><span class="tag">开源/推理部署</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">OpenVINO 是开源工具包，用于优化与部署深度学习模型推理，覆盖计算机视觉、语音识别、生成式 AI、NLP，并附带教程、集成与基准测试。</p><p class="why"><b>为什么值得看</b> 本地或边缘侧部署推理时，这类推理优化工具是降低延迟的常规选项，可关注它对生成式 AI 的支持程度。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">10</span>
+    <h3 class="title"><a href="https://github.com/cathrynlavery/diagram-design" target="_blank" rel="noopener">cathrynlavery/diagram-design</a></h3>
+  </div>
+  <div class="meta"><span class="tag">工具/Agent</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">一个 agent skill：为 Claude Code、Codex、Cursor 等编码 agent 生成品牌化的编辑级图表，支持 52 种图型，输出自包含 HTML+SVG 单文件，明确不用 Mermaid。</p><p class="why"><b>为什么值得看</b> 它示范了 skill 型工具的分发方式：把设计规范固化进单文件产物，减少 agent 生成不可控图表代码的情况。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">11</span>
+    <h3 class="title"><a href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener">HKUDS/CLI-Anything</a></h3>
+  </div>
+  <div class="meta"><span class="tag">工具/Agent</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">项目主张让软件变成 agent 原生：把软件封装成 CLI 供 agent 调用，并配套 CLI-Hub，通过 pip 安装后用 cli-hub install 浏览和安装社区构建的 CLI。</p><p class="why"><b>为什么值得看</b> agent 操作 GUI 一直不顺，CLI 是当下最实用的接口层；这类 hub 若成熟，会直接影响 agent 的可操作范围。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">12</span>
+    <h3 class="title"><a href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener">mvanhorn/last30days-skill</a></h3>
+  </div>
+  <div class="meta"><span class="tag">工具/信息检索</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">一个 agent skill，跨 Reddit、X、YouTube、HN、Polymarket 与网页检索话题，再合成有据可查的摘要；排序依据是点赞、like 与真实资金，而非编辑。</p><p class="why"><b>为什么值得看</b> 把社区热度与预测市场赔率作为排序信号，是 agent 做调研时值得参考的信源权重设计思路。</p></div>
+</article></section>
+<section class="section"><h2>论文速递<span class="count">6</span></h2><article class="item">
+  <div class="item-head">
+    <span class="rank">13</span>
+    <h3 class="title"><a href="https://arxiv.org/abs/2611.33093v1" target="_blank" rel="noopener">AIChipBench: Benchmarking LLM Agents for Automated AI Accelerator Design</a></h3>
+  </div>
+  <div class="meta"><span class="tag">论文/评测</span><span>论文速递</span><span>cs.CL</span></div>
+  <div class="body"><p class="what">提出基准，评估 LLM coding agent 能否正确完成 AI 加速器硬件设计；论文指出错误的状态更新可能让当前 token 正确、却在几步后出错，设计因此能通过输出测试仍是错的。</p><p class="why"><b>为什么值得看</b> 提醒 agent 评测不能只看最终输出是否通过，还需检查中间状态，否则会把潜在缺陷当成成功。</p><div class="authors">Guangyuan Wang、Chengran Li、Minchen Luo、Jichen Feng</div></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">14</span>
+    <h3 class="title"><a href="https://arxiv.org/abs/2611.33153v1" target="_blank" rel="noopener">DiaCap: Jointly Learning Who Speaks When for Audiovisual Dialogue Captioning</a></h3>
+  </div>
+  <div class="meta"><span class="tag">论文/多模态</span><span>论文速递</span><span>cs.CV</span></div>
+  <div class="body"><p class="what">DiaCap 是音视频 LLM，为视频每句话输出转写、时间戳与说话人外观描述；因语句时序与音视频说话人分离强耦合，模型将二者统一，分两阶段训练。</p><p class="why"><b>为什么值得看</b> 把 diarization 与时间戳放进同一模型，比拼接流水线少一层误差传递，做会议与影视字幕的可以直接关注。</p><div class="authors">Binfei Ji、Zhiwen Cao、Anqi Yang、Prem Seetharaman</div></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">15</span>
+    <h3 class="title"><a href="https://arxiv.org/abs/2611.33148v1" target="_blank" rel="noopener">CoT-Proxy: Cross-Format Transfer for Distilling Long-Horizon Policies</a></h3>
+  </div>
+  <div class="meta"><span class="tag">论文/蒸馏</span><span>论文速递</span><span>cs.CL</span></div>
+  <div class="body"><p class="what">关注长程策略蒸馏：教师轨迹同时含 chain-of-thought 与动作，但最强教师多为闭源、CoT 藏在 API 后不可见，标准微调无法同时模仿，作者提出跨格式迁移方案。</p><p class="why"><b>为什么值得看</b> 只能拿到闭源模型输出动作时如何蒸馏其推理能力是现实问题，这条给出绕过 CoT 缺失的一种思路。</p><div class="authors">Dawid J. Kopiczko、Tijmen Blankevoort、Yuki M. Asano</div></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">16</span>
+    <h3 class="title"><a href="https://arxiv.org/abs/2611.33130v1" target="_blank" rel="noopener">Exploratory Midtraining for Robot Policies</a></h3>
+  </div>
+  <div class="meta"><span class="tag">论文/机器人</span><span>论文速递</span><span>cs.RO</span></div>
+  <div class="body"><p class="what">研究用 midtraining 为机器人策略建立低层行为覆盖：现有数据多来自人类示教，偏重胜任行为，缺少连接机器人困难状态与可继续推进状态的低层技能。</p><p class="why"><b>为什么值得看</b> 对做机器人学习的人，这提示数据瓶颈可能不在数量，而在低层行为的多样性覆盖。</p><div class="authors">Kshitiz、Zheyuan Hu、Robyn Wu、Yizhou Li</div></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">17</span>
+    <h3 class="title"><a href="https://arxiv.org/abs/2611.33111v1" target="_blank" rel="noopener">Draft Calibration for Speculative Decoding: Accelerating LLM Serving by Matching Draft and Target Distributions</a></h3>
+  </div>
+  <div class="meta"><span>论文速递</span><span>cs.LG</span></div>
+  <div class="body"><p class="raw">Speculative decoding accelerates large language model (LLM) inference by employing a lightweight draft model to propose draft tokens and allowing the target model to verify the new tokens in parallel to improve inference-time compute utilization.</p><div class="authors">Yuxing Liu、Wei Zuo、Walid Krichene、Tong Zhang</div></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">18</span>
+    <h3 class="title"><a href="https://arxiv.org/abs/2611.33080v1" target="_blank" rel="noopener">Shifter Quantization: Compact Representations for Native Integer Computation</a></h3>
+  </div>
+  <div class="meta"><span>论文速递</span><span>cs.LG</span></div>
+  <div class="body"><p class="raw">Groupwise quantization is used in LLM quantization to improve accuracy at low bit widths, but grouping weights keeps standard integer MMA from spanning the full dot product for efficient GPU inference. We develop a new quantization method, Shifter Quantization (SQ), that reconstructs native-width integer operands by appending and shifting shared bits.</p><div class="authors">Yufeng Huang</div></div>
+</article></section>
+<section class="section"><h2>行业动态<span class="count">2</span></h2><article class="item">
+  <div class="item-head">
+    <span class="rank">19</span>
+    <h3 class="title"><a href="https://huggingface.co/blog/ibm-research/an-indic-voice-agent-with-cuga" target="_blank" rel="noopener">An Indic Voice Agent with CUGA</a></h3>
+  </div>
+  <div class="meta"><span>行业动态</span></div>
+  <div class="body"><p class="raw">A Blog post by IBM Research on Hugging Face</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">20</span>
+    <h3 class="title"><a href="https://simonwillison.net/2026/Nov/24/llm-inflection-points/" target="_blank" rel="noopener">Three LLM inflection points in twelve months</a></h3>
+  </div>
+  <div class="meta"><span>行业动态</span></div>
+  <div class="body"><p class="raw">I gave a keynote at the AI Engineer Code Summit a couple of weeks ago, constructed around the idea that there have been three significant inflection points in the abilities of LLMs and coding agents in the past twelve months.
+Here&#x27;s the video of the talk.</p></div>
+</article></section>
+<section class="section"><h2>中文圈<span class="count">4</span></h2><article class="item">
+  <div class="item-head">
+    <span class="rank">21</span>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/512515.html" target="_blank" rel="noopener">A社Tibo被曝加盟OpenAI！上市前离职三人组异地团圆</a></h3>
+  </div>
+  <div class="meta"><span>中文圈</span></div>
+  <div class="body"><p class="raw">OpenAI这下要有俩Tibo了
+亏贼，OpenAI这是要把Claude Code的老班底凑齐了？？</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">22</span>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/512498.html" target="_blank" rel="noopener">华人计算机视觉泰斗二次创业！离开苹果下场，专注下一代空间与物理AI</a></h3>
+  </div>
+  <div class="meta"><span>中文圈</span></div>
+  <div class="body"><p class="raw">复杂场景三维建模成本降至10美元以内</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">23</span>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/512538.html" target="_blank" rel="noopener">Anthropic还藏着2个最强模型…</a></h3>
+  </div>
+  <div class="meta"><span>中文圈</span></div>
+  <div class="body"><p class="raw">Fable5.2已经很旧了。
+量子位 | 公众号QbitAI</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">24</span>
+    <h3 class="title"><a href="https://www.v2ex.com/t/1259787#reply1" target="_blank" rel="noopener">薅云端免费生图算力羊毛实现算力自由，桌面端 AI 创作工作台</a></h3>
+  </div>
+  <div class="meta"><span>中文圈</span></div>
+  <div class="body"><p class="raw">最近做了一个开源项目：AIGC Studio，终于可以拿出来见人了。
+这是一个桌面端 AI 创作工作台，我比较想做的一件事，就是让 AI 生图不再受算力来源的限制。
+本地有显卡，可以直接跑；想省钱，可以接 Kaggle / Colab 的免费 GPU；需要大显存，可以按秒租卡；不想折腾，也可以直接调用商业 API。
+算力随便选，模型随便切，不用为了换一种运行方式重新折腾一套环境。
+除了图片和视频生成，还集成了局部重绘、高清放大、像素对齐、序列帧切片、SVG 转换、背景移除和 PBR 材质拆解等工具。
+生成完接着处理，尽量不用在几个软件之间来回切换。
+项目完全开源免费，欢迎 Star、Fork，也欢迎提 Issue。
+GitHub： https://github.com/nanxfu/aigc-studio</p><div class="authors">nanxfu</div></div>
+</article></section>
+<div class="takeaway"><div class="lbl">今日判断</div><p>模型越轻越易得，蒸馏指控与 API 用途审计正成为新的合规风险点。</p></div><footer><span>24 条 · 来自 7 个信源</span><span>4 次模型调用</span><span>$0.0068</span><span>生成于 2026-11-25 18:42</span><span><a href="index.html">最新一期</a></span></footer>
+</div>
+</body>
+</html>

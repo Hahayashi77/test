@@ -1,0 +1,10 @@
+{
+  "entries": [
+    {
+      "date": "2026-11-24",
+      "lede": "今天共 24 条：社区最热的是 NariQ: BF16-level Qwen3.8-27B in a 10 GB file，开源榜上 openvinotoolkit/openvino 值得扫一眼；论文侧集中在推理效率与 agent 工具链。",
+      "takeaway": "排版预览用的示意文本 —— 正式运行时由模型写出当日判断。",
+      "count": 24
+    }
+  ]
+}

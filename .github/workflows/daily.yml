@@ -1,0 +1,104 @@
+name: daily-brief
+
+# 每天北京时间 07:13 生成一期；也可在 Actions 页面点 "Run workflow" 手动跑。
+# 需要仓库 Secrets 里配置 DEEPSEEK_API_KEY（Settings → Secrets and variables → Actions）。
+
+on:
+  schedule:
+    - cron: "13 23 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "只抓取不调模型（0 成本，用于排查信源）"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - "brief/**"
+      - "config.toml"
+      - ".github/workflows/daily.yml"
+
+permissions:
+  contents: write        # 提交生成的 site/
+  pages: write           # 发布 Pages
+  id-token: write
+
+concurrency:
+  group: daily-brief
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      cost: ${{ steps.gen.outputs.cost }}
+      lede: ${{ steps.gen.outputs.lede }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          # 零依赖项目，不需要缓存 pip
+
+      - name: 生成日报
+        id: gen
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python -m brief build --dry-run --force
+          else
+            python -m brief build --offline --force --github-output "$GITHUB_OUTPUT"
+          fi
+
+      - name: 提交结果
+        run: |
+          set -euo pipefail
+          git config user.name  "brief-bot"
+          git config user.email "brief-bot@users.noreply.github.com"
+          git add site/
+          if git diff --staged --quiet; then
+            echo "内容无变化，跳过提交"
+          else
+            git commit -m "chore: 日报 $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  report:
+    needs: [build, deploy]
+    if: always() && needs.build.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 运行摘要
+        env:
+          LEDE: ${{ needs.build.outputs.lede }}
+          COST: ${{ needs.build.outputs.cost }}
+        run: |
+          {
+            echo "### 今日简报"
+            echo ""
+            echo "${LEDE:-（导语为空，可能是降级运行）}"
+            echo ""
+            echo "本次模型花费：\$${COST:-0}"
+            echo ""
+            echo "站点：https://\${{ github.repository_owner }}.github.io/\${{ github.event.repository.name }}/"
+          } >> "$GITHUB_STEP_SUMMARY"

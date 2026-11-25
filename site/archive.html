@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>每日技术简报 · 归档</title>
+<meta property="og:title" content="每日技术简报 · 归档">
+
+<style>
+:root{
+  --ink:#14181f; --ink-2:#3d4653; --ink-3:#6b7686;
+  --bg:#fbfaf7; --card:#ffffff; --line:#e6e2da;
+  --accent:#0f62fe; --accent-soft:#e8f0ff;
+  --whale:#2b6cb0; --warm:#b45309;
+  --serif:"Iowan Old Style","Charter","Songti SC","Noto Serif CJK SC",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",
+         "Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  --mono:"SF Mono","JetBrains Mono",Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --ink:#e9eaee; --ink-2:#b6bcc9; --ink-3:#8b94a5;
+    --bg:#0f1216; --card:#161a20; --line:#262b33;
+    --accent:#6ea8ff; --accent-soft:#1b2637; --whale:#7aa7d9; --warm:#e0a458; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px}
+
+/* ── 报头 ── */
+header.top{padding:34px 0 22px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.masthead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.masthead h1{font-family:var(--serif);font-size:30px;margin:0;letter-spacing:-.4px}
+.masthead .date{color:var(--ink-3);font-size:13px;font-variant-numeric:tabular-nums}
+.masthead nav{margin-left:auto;font-size:13px;display:flex;gap:16px}
+.tagline{color:var(--ink-2);font-size:14px;margin-top:6px}
+
+/* ── 导语 ── */
+.lede{font-family:var(--serif);font-size:18.5px;line-height:1.72;color:var(--ink);
+  margin:0 0 26px;padding-left:16px;border-left:3px solid var(--accent)}
+.lede .lbl{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+
+/* ── 板块 ── */
+.section{margin:38px 0 0}
+.section h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;margin:0 0 14px;padding-bottom:8px;
+  border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+.section h2 .count{font-variant-numeric:tabular-nums;color:var(--accent);
+  background:var(--accent-soft);border-radius:20px;padding:1px 8px;
+  font-size:11px;letter-spacing:0}
+
+/* ── 条目 ── */
+.item{padding:16px 0 18px;border-bottom:1px dashed var(--line)}
+.item:last-child{border-bottom:0}
+.item-head{display:flex;gap:10px;align-items:baseline}
+.rank{font-family:var(--mono);font-size:12px;color:var(--ink-3);
+  min-width:22px;padding-top:3px;font-variant-numeric:tabular-nums}
+.title{font-size:17px;font-weight:600;line-height:1.45;letter-spacing:-.1px;margin:0}
+.title a{color:var(--ink)}
+.title a:hover{color:var(--accent);text-decoration:none}
+.meta{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--ink-3);
+  margin:6px 0 0 32px;font-variant-numeric:tabular-nums}
+.meta .tag{color:var(--whale);background:var(--accent-soft);border-radius:4px;
+  padding:1px 7px;font-size:11px;font-weight:600;letter-spacing:.02em}
+.body{margin:8px 0 0 32px}
+.what{color:var(--ink-2);font-size:14.5px;margin:0}
+.why{color:var(--ink-2);font-size:13.5px;margin:7px 0 0;padding-left:11px;
+  border-left:2px solid var(--line)}
+.why b{color:var(--warm);font-weight:600;font-size:12px;letter-spacing:.06em}
+.raw{color:var(--ink-3);font-size:13.5px;margin:0}
+.authors{color:var(--ink-3);font-size:12.5px;margin-top:5px}
+
+/* ── 今日判断 / 页脚 ── */
+.takeaway{margin:44px 0 0;padding:20px 22px;background:var(--card);
+  border:1px solid var(--line);border-radius:10px}
+.takeaway .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--warm);font-weight:700}
+.takeaway p{margin:8px 0 0;font-size:15.5px;line-height:1.65}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--ink-3);display:flex;gap:16px;flex-wrap:wrap;
+  font-variant-numeric:tabular-nums}
+footer a{color:var(--ink-3);text-decoration:underline}
+.degraded{background:#fff8e6;border:1px solid #f0d9a8;color:#7a5a12;
+  padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:24px}
+@media (prefers-color-scheme: dark){.degraded{background:#2a2415;border-color:#4a3d1d;color:#e0bf7a}}
+
+/* ── 归档 ── */
+.arc-list{list-style:none;padding:0;margin:0}
+.arc-list li{display:flex;gap:14px;align-items:baseline;padding:11px 0;
+  border-bottom:1px solid var(--line);font-size:15px}
+.arc-list .d{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);min-width:88px}
+.arc-list .t{color:var(--ink-2);font-size:13.5px;margin-left:auto;text-align:right;
+  max-width:52%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:640px){
+  .masthead h1{font-size:24px}
+  .masthead nav{width:100%;margin-left:0}
+  .body,.meta{margin-left:0}
+  .rank{display:none}
+  .arc-list .t{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="masthead">
+    <h1>每日技术简报</h1>
+    <span class="date">2026 年 11 月 24 日 · 星期二</span>
+    <nav><a href="index.html">最新</a><a href="feed.xml">RSS</a></nav>
+  </div>
+  <div class="tagline">AI · 开源 · 工程 —— 每天 5 分钟读完</div>
+</header><h2 style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px">全部期数</h2><ul class="arc-list"><li><span class="d">2026-11-24</span><a href="d/2026-11-24.html">今天共 24 条：社区最热的是 NariQ: BF16-level Qwen3.8-27B in a 10 GB file，开源榜上 openvinotoolkit/openvino 值得扫一眼；论文侧集中在推理效率与 agent 工具链。</a><span class="t">24 条</span></li></ul><footer><span>共 1 期</span></footer>
+</div>
+</body>
+</html>

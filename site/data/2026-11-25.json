@@ -1,16 +1,16 @@
 {
   "date": "2026-11-25",
-  "generated_at": "2026-11-25 19:21",
-  "lede": "今日两条主线：一是把模型做小做便宜——27B 三值模型压到 5.9GB、64M 模型两小时训完；二是安全边界受质疑——Check Point 管理服务器遭入侵，同推理服务器上的 agent 可绕过隔离通信。",
-  "takeaway": "沙箱隔离在推理层可能失效——同服务器 agent 可互传信息，多租户推理平台需重估隔离假设。",
+  "generated_at": "2026-11-25 19:23",
+  "lede": "今日热榜两条线：一端是把模型做小做实——5.9GB 的三元 27B、3 块钱 2 小时训出的 64M；另一端是安全提醒——Check Point 管理服务器遭入侵，沙箱内的模型竟可经推理服务器互通。",
+  "takeaway": "沙箱隔离的假设可能被推理服务器这条共享通道打破，模型间互通比数据泄露更该先测。",
   "degraded": false,
   "usage": {
-    "requests": 3,
+    "requests": 4,
     "failures": 0,
-    "prompt_tokens": 3337,
-    "completion_tokens": 5736,
-    "cache_hit_tokens": 1792,
-    "cost_usd": 0.003679,
+    "prompt_tokens": 4622,
+    "completion_tokens": 8719,
+    "cache_hit_tokens": 3568,
+    "cost_usd": 0.0054,
     "peak": false
   },
   "sources": [
@@ -65,13 +65,13 @@
       "source": "hn",
       "published": "2026-11-25T03:47:42+00:00",
       "points": 130,
-      "score": 4.0442,
+      "score": 4.0422,
       "summary": "Title possibly signs checks the article doesn’t have backing for. This is just a brief pro forma project update.\nNot much new functionality or anything to announce, last few months have mostly been bug fixes and technical debt cleanup.",
       "authors": [],
       "analysis": {
-        "what": "Marginalia Search 作者发布例行项目更新，称近几个月主要工作是修 bug 与清理技术债，没有新功能，并指出标题暗示的结论在文中缺乏依据。",
-        "why": "可观察独立搜索引擎的维护节奏：小项目长期投入多在还债而非加功能，标题容易过度承诺。",
-        "tag": "开源项目"
+        "what": "Marginalia Search 发布例行项目更新：近几个月主要是修 bug 和清理技术债务，没有新功能；社区标题暗示的资金、C++/Rust、AI 内容正文并未提供支撑。",
+        "why": "提醒读标题要回原文核对；独立小搜索引擎进入维护期的节奏也值得关注。",
+        "tag": "开源动态"
       }
     },
     {
@@ -81,13 +81,13 @@
       "source": "hn",
       "published": "2026-11-25T04:31:48+00:00",
       "points": 150,
-      "score": 3.7821,
+      "score": 3.7802,
       "summary": "Twenty-three graphics card demos by 3dfx, NVIDIA and ATI from 1998 to 2006, running in the browser.",
       "authors": [],
       "analysis": {
-        "what": "Show HN 项目把 1998 至 2006 年间 3dfx、NVIDIA、ATI 的 23 个显卡技术演示重新搬进浏览器中运行。",
-        "why": "想看老 GPU demo 如何被 Web 技术复现的开发者，可参考其兼容与渲染实现思路。",
-        "tag": "图形/复现"
+        "what": "Show HN 项目把 1998 至 2006 年间 3dfx、NVIDIA、ATI 的 23 个显卡技术演示搬进浏览器运行。",
+        "why": "老 demo 是可运行的图形史样本，也说明浏览器端兼容层已能承载早期 GPU 代码。",
+        "tag": "图形/复古"
       }
     },
     {
@@ -97,13 +97,13 @@
       "source": "hn",
       "published": "2026-11-24T20:08:03+00:00",
       "points": 461,
-      "score": 3.6078,
+      "score": 3.6057,
       "summary": "Ternary Bonsai 2.5 27B brings substantially stronger agentic coding, multi-turn tool use, and multi-step task execution to the same 5.9 GB footprint.",
       "authors": [],
       "analysis": {
-        "what": "Ternary Bonsai 2.5 27B 在保持 5.9 GB 体积不变的前提下，显著增强了 agentic coding、多轮工具调用与多步任务执行能力。",
-        "why": "三值量化让 27B 级模型落进小显存，本地跑 agent 工作流的硬件门槛进一步降低。",
-        "tag": "模型/量化"
+        "what": "Ternary Bonsai 2.5 27B 在保持 5.9 GB 体积不变的前提下，宣称在 agentic coding、多轮工具调用和多步任务执行上有明显提升。",
+        "why": "三元量化把 27B 压到 5.9GB，若 agent 能力属实，本地跑 agent 的门槛会明显下降。",
+        "tag": "模型发布"
       }
     },
     {
@@ -113,13 +113,13 @@
       "source": "hn",
       "published": "2026-11-25T00:54:49+00:00",
       "points": 273,
-      "score": 3.4677,
+      "score": 3.4658,
       "summary": "A small transformer that writes and sketches from text. The effort was 80% data, 15% speed and 5% architecture: my first project that follows the Bitter Lesson.",
       "authors": [],
       "analysis": {
-        "what": "PenGPT 是一个小型 transformer，可根据文本生成手写与草图；作者称投入比例为 80% 数据、15% 速度、5% 架构，是他第一个遵循 Bitter Lesson 的项目。",
-        "why": "对做小模型的人是个信号：数据与工程投入的收益，可能远大于架构层面的改动。",
-        "tag": "研究/模型"
+        "what": "PenGPT 是一个小型 transformer，可根据文本生成手写与简笔画；作者称投入比例为 80% 数据、15% 速度、5% 架构，是他第一个遵循 Bitter Lesson 的项目。",
+        "why": "印证小模型项目里数据与工程速度远比结构创新重要，可作为复现路线的参考。",
+        "tag": "研究/工具"
       }
     },
     {
@@ -129,13 +129,13 @@
       "source": "hn",
       "published": "2026-11-24T16:32:17+00:00",
       "points": 284,
-      "score": 3.4603,
+      "score": 3.4572,
       "summary": "GreyNoise recently discovered an intrusion campaign targeting Check Point Security Management Servers, with confirmed attack activity between October 17th and November 2nd, 2026, impacting at least 22 distinct organizations globally.",
       "authors": [],
       "analysis": {
-        "what": "GreyNoise 发现针对 Check Point 安全管理服务器的入侵活动，确认攻击发生在 10 月 17 日至 11 月 2 日，全球至少 22 个组织受影响。",
-        "why": "使用 Check Point 管理端的团队应尽快核查暴露面与日志，管理服务器失守影响面极大。",
-        "tag": "安全事件"
+        "what": "GreyNoise 发现针对 Check Point 安全管理服务器的入侵活动，确认的攻击集中在 10 月 17 日至 11 月 2 日，影响至少 22 家机构。",
+        "why": "管理服务器是安全设备的中枢，运维方应优先核查其暴露面与补丁状态。",
+        "tag": "安全"
       }
     },
     {
@@ -145,12 +145,12 @@
       "source": "hn",
       "published": "2026-11-25T02:34:21+00:00",
       "points": 253,
-      "score": 3.3943,
+      "score": 3.3925,
       "summary": "TL;DR\n* Two agents running on the same inference server can reliably communicate, even if they cannot send each other messages or access the same fi…",
       "authors": [],
       "analysis": {
-        "what": "研究显示，跑在同一推理服务器上的两个 agent 即使无法互发消息、也无法访问相同文件，仍能稳定地互相通信。",
-        "why": "共享推理资源本身可能构成侧信道，多租户 agent 平台需要重新审视隔离假设。",
+        "what": "有研究称，运行在同一推理服务器上的两个 agent，即便不能互发消息、不能访问相同文件，也能可靠地相互通信。",
+        "why": "多租户推理服务共享的侧信道可能绕过沙箱，部署 agent 平台时需纳入威胁模型。",
         "tag": "安全/研究"
       }
     },
@@ -165,9 +165,9 @@
       "summary": "The official NGINX Open Source repository.\nNGINX (pronounced \"engine x\" or \"en-jin-eks\") is the world's most popular Web Server, high performance Load Balancer, Reverse Proxy, API Gateway and Content Cache.\nNGINX is free and open source software, distributed under the terms of a simplified 2-clause BSD-like license .\nEnterprise distributions, commercial support and training are available from F5, Inc .\nImportant\nThe…",
       "authors": [],
       "analysis": {
-        "what": "NGINX 官方开源仓库，覆盖 Web 服务器、负载均衡、反向代理、API 网关与内容缓存，采用简化版 2-clause BSD 类许可证，企业发行版与商业支持由 F5 提供。",
-        "why": "作为高频依赖的基础设施，官方仓库是核对配置行为与版本差异的权威参照。",
-        "tag": "开源/基础设施"
+        "what": "nginx/nginx 是 NGINX 开源版的官方仓库，覆盖 Web 服务器、负载均衡、反向代理、API 网关与内容缓存，采用简化 BSD 类许可证，企业版由 F5 提供。",
+        "why": "确认官方源与许可证边界，避免选型时混用社区版与 F5 商业发行版。",
+        "tag": "开源项目"
       }
     },
     {
@@ -181,9 +181,9 @@
       "summary": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.\n\"大道至简\"\n中文 | English\n此开源项目旨在完全从 0 开始，仅用 3 块钱成本与 2 小时训练时间，即可训练出规模约为 64M 的超小语言模型 MiniMind。\nMiniMind 系列极其轻量，主线最小版本体积约为 GPT-3 的 $\\frac{1}{2700}$，力求让普通个人 GPU 也能快速完成训练与复现。\n项目同时开源了大模型的极简结构与完整训练链路，覆盖 MoE、数据清洗、预训练（Pretrain）、监督微调（SFT）、LoRA、RLHF（DPO）、RLAIF（PPO / GRPO / CISPO）、Tool Use、Agentic RL、自适应思考与模型蒸馏等全过程代码。",
       "authors": [],
       "analysis": {
-        "what": "MiniMind 开源从零训练 64M 超小语言模型的完整链路，称约 3 元成本、2 小时可训完，代码覆盖 MoE、数据清洗、预训练、SFT、LoRA、DPO 及 PPO/GRPO 等。",
-        "why": "把预训练到 RLHF 的全流程压缩到个人 GPU 可复现的规模，适合当入门与教学基线。",
-        "tag": "开源/训练"
+        "what": "MiniMind 称可用约 3 元成本、2 小时从零训出 64M 小模型，并开源 MoE、预训练、SFT、LoRA、DPO、Agentic RL 与蒸馏的全流程代码。",
+        "why": "把大模型全链路压到单卡可复现的规模，适合用来做实操教学与流程验证。",
+        "tag": "开源/教育"
       }
     },
     {
@@ -197,8 +197,8 @@
       "summary": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference\nOpen-source software toolkit for optimizing and deploying deep learning models.\nDocumentation • Blog • Key Features • Tutorials • Integrations • Benchmarks • Generative AI\nInference Optimization : Boost deep learning performance in computer vision, automatic speech recognition, generative AI, natural language processing with large and small…",
       "authors": [],
       "analysis": {
-        "what": "OpenVINO 是开源工具包，用于优化和部署深度学习模型的推理，覆盖计算机视觉、语音识别、生成式 AI 与自然语言处理，并提供文档、教程、集成与基准测试。",
-        "why": "想在 Intel 硬件上压缩推理延迟、落地部署的开发者可直接参照其优化与集成路径。",
+        "what": "OpenVINO 是开源工具包，用于优化和部署深度学习模型推理，覆盖计算机视觉、语音识别、生成式 AI 与自然语言处理等场景。",
+        "why": "推理部署侧的成熟工具链，关注端侧与生产环境推理性能的开发者可看。",
         "tag": "开源工具"
       }
     },
@@ -213,9 +213,9 @@
       "summary": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.\nAn agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand.\n52 diagram types. No shadows.",
       "authors": [],
       "analysis": {
-        "what": "这是一个 agent skill，为 Claude Code、Codex、GitHub Copilot、Cursor 等编码 agent 生成编辑风格的图表，共 52 种图表类型，输出为自包含的 HTML + SVG 文件。",
-        "why": "让编码 agent 直接产出符合品牌的图表，绕开 Mermaid 的样式限制，适合文档与汇报场景。",
-        "tag": "工具/设计"
+        "what": "面向 Claude Code、Codex、Cursor 等编码 agent 的技能，生成 52 种图表类型的自包含 HTML+SVG 文件，不使用 Mermaid。",
+        "why": "把图表生成从 Mermaid 文本换成可直接嵌入的 HTML+SVG，输出贴合品牌样式。",
+        "tag": "Agent技能"
       }
     },
     {
@@ -229,9 +229,9 @@
       "summary": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/\nCLI-Anything: Making ALL Software Agent-Native\nToday's Software Serves Humans👨‍💻. Tomorrow's Users will be Agents🤖.\nCLI-Anything: Bridging the Gap Between AI Agents and the World's Software\n🌐 CLI-Hub : pip install cli-anything-hub then cli-hub install <name> — browse, install, and manage all community-built CLIs.",
       "authors": [],
       "analysis": {
-        "what": "HKUDS 的 CLI-Anything 主张让所有软件变成 agent 原生，配套 CLI-Hub 可用 pip 安装，并通过 cli-hub install 浏览、安装和管理社区构建的 CLI。",
-        "why": "把软件包装成命令行接口供 agent 调用，是当前补齐 agent 工具链的一条务实路线。",
-        "tag": "开源/agent"
+        "what": "项目主张让所有软件变成 agent 原生，提供 CLI-Hub：pip 安装后可用 cli-hub install <name> 浏览、安装和管理社区构建的 CLI。",
+        "why": "给现有软件套一层 CLI 供 agent 调用，是 agent 接入存量工具的一条低成本路径。",
+        "tag": "Agent生态"
       }
     },
     {
@@ -245,9 +245,9 @@
       "summary": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary\n/last30days\nEnglish | Français | Deutsch | Español | Português (Brasil) | 日本語 | 简体中文 | العربية | فارسی | Türkçe\nAn AI agent-led search engine scored by upvotes, likes, and real money - not editors.\nThis README tracks the current v4 pipeline.",
       "authors": [],
       "analysis": {
-        "what": "该 agent skill 在 Reddit、X、YouTube、HN、Polymarket 与网页上调研任意话题，再合成有依据的摘要，排序依据是点赞、喜欢与真实资金而非编辑。",
-        "why": "做话题速览或舆情追踪的开发者，可参考其多源抓取与按互动信号排序的流程。",
-        "tag": "工具/调研"
+        "what": "一个 agent 技能，在 Reddit、X、YouTube、HN、Polymarket 和网页上检索任意话题，汇总为有依据的摘要。",
+        "why": "用点赞和预测市场的真实资金排序信息源替代编辑筛选，适合快速话题调研。",
+        "tag": "Agent技能"
       }
     },
     {
@@ -257,7 +257,7 @@
       "source": "arxiv",
       "published": "2026-11-24T18:28:41+00:00",
       "points": 0,
-      "score": 2.1362,
+      "score": 2.1349,
       "summary": "A language-model decoder carries state between decoding steps, and in hardware a wrong state update can leave the current token correct and corrupt the output several tokens later, so a design can pass output tests and still be wrong. AIChipBench asks what LLM coding agents need to build such hardware correctly.",
       "authors": [
         "Guangyuan Wang",
@@ -266,9 +266,9 @@
         "Jichen Feng"
       ],
       "analysis": {
-        "what": "AIChipBench 是面向 LLM agent 的基准，考察其自动设计 AI 加速器的能力；论文指出硬件中错误的状态更新可能让当前 token 正确、却在数步后破坏输出。",
-        "why": "说明仅靠输出测试无法验证硬件设计正确性，做 agent 代码评测的人需注意这类隐性错误。",
-        "tag": "论文/评测"
+        "what": "AIChipBench 是评估 LLM agent 自动设计 AI 加速器的基准；摘要指出解码器在解码步之间携带状态，错误的状态更新可能让当前 token 正确、却在几步之后出错。",
+        "why": "说明硬件设计可能通过输出测试仍然错误，评测需覆盖状态更新的长期影响。",
+        "tag": "论文评测"
       }
     },
     {
@@ -278,7 +278,7 @@
       "source": "arxiv",
       "published": "2026-11-24T18:59:08+00:00",
       "points": 0,
-      "score": 1.8162,
+      "score": 1.8152,
       "summary": "We present DiaCap, an audiovisual LLM for comprehensive dialogue captioning, which produces the transcript, timestamps, and a visual description of the speaker for every utterance in a video. Considering that utterance timing and audiovisual diarization are tightly coupled, DiaCap unifies the tasks in a single model, trained in two complementary stages.",
       "authors": [
         "Binfei Ji",
@@ -287,9 +287,9 @@
         "Prem Seetharaman"
       ],
       "analysis": {
-        "what": "DiaCap 是音视频 LLM，为视频中每句话输出转写、时间戳与说话人视觉描述；它认为话语时间与视听 diarization 紧密耦合，因此将任务统一进单模型并分两阶段训练。",
-        "why": "做会议记录、视频字幕的开发者，可关注其把说话人分离与时间对齐合并建模的思路。",
-        "tag": "论文/多模态"
+        "what": "DiaCap 是音视频 LLM，为视频中每句话输出转写、时间戳与说话人视觉描述；因话语时间与视听说话人分离强耦合，用单模型两阶段训练统一两项任务。",
+        "why": "把时间戳与说话人分离放进一个模型联合学习，是多模态字幕的一条工程思路。",
+        "tag": "论文多模态"
       }
     },
     {
@@ -299,7 +299,7 @@
       "source": "arxiv",
       "published": "2026-11-24T18:58:53+00:00",
       "points": 0,
-      "score": 1.7594,
+      "score": 1.7583,
       "summary": "Reasoning models become long-horizon agents through reinforcement learning or, more cheaply, through fine-tuning on a stronger teacher's trajectories, which contain the teacher's chain-of-thought as well as its actions. The standard fine-tuning approach imitates both, yet the strongest teachers are closed models whose chain-of-thought is hidden behind an API.",
       "authors": [
         "Dawid J. Kopiczko",
@@ -307,9 +307,9 @@
         "Yuki M. Asano"
       ],
       "analysis": {
-        "what": "CoT-Proxy 关注把强教师模型的轨迹蒸馏给推理模型：标准微调会同时模仿教师的 chain-of-thought 与动作，但最强教师多为闭源模型，其 chain-of-thought 藏在 API 之后。",
-        "why": "当教师 CoT 不可见时如何做跨格式迁移，直接关系到长程 agent 的低成本训练。",
-        "tag": "论文/蒸馏"
+        "what": "长时程策略蒸馏通常让学生模仿教师的 chain-of-thought 与动作，但最强教师是闭源模型、CoT 藏在 API 之后；论文提出 CoT-Proxy 做跨格式迁移。",
+        "why": "闭源教师的推理过程不可见时如何蒸馏长时程策略，是值得关注的方向。",
+        "tag": "论文蒸馏"
       }
     },
     {
@@ -319,7 +319,7 @@
       "source": "arxiv",
       "published": "2026-11-24T18:52:34+00:00",
       "points": 0,
-      "score": 1.6709,
+      "score": 1.6699,
       "summary": "Robot policies predominantly learn from human-collected data emphasizing competent behavior, limiting coverage of the low-level behaviors needed to support autonomous improvement. We study how a form of midtraining can be used to build coverage over diverse low-level behaviors that connect challenging states of the robot and its environment to states from which further progress is possible (\"connected behavioral cove…",
       "authors": [
         "Kshitiz",
@@ -328,9 +328,9 @@
         "Yizhou Li"
       ],
       "analysis": {
-        "what": "机器人策略多从人类采集的、偏重熟练行为的数据中学习，低层行为覆盖不足；论文研究一种 midtraining，用来构建连接困难状态与可继续推进状态的低层行为覆盖。",
-        "why": "若要让机器人自主改进，先补低层行为覆盖的思路对具身智能数据管线有参考价值。",
-        "tag": "论文/机器人"
+        "what": "机器人策略多从人类采集的、强调胜任行为的数据中学习，低层行为覆盖不足；论文研究用 midtraining 构建连接困难状态与可继续推进状态的低层行为覆盖。",
+        "why": "关注机器人策略自主改进所需数据覆盖的团队可看，重点是低层行为而非演示质量。",
+        "tag": "论文机器人"
       }
     },
     {
@@ -340,7 +340,7 @@
       "source": "arxiv",
       "published": "2026-11-24T18:41:59+00:00",
       "points": 0,
-      "score": 1.6371,
+      "score": 1.6361,
       "summary": "Speculative decoding accelerates large language model (LLM) inference by employing a lightweight draft model to propose draft tokens and allowing the target model to verify the new tokens in parallel to improve inference-time compute utilization.",
       "authors": [
         "Yuxing Liu",
@@ -349,8 +349,8 @@
         "Tong Zhang"
       ],
       "analysis": {
-        "what": "论文提出 Draft Calibration，用于 speculative decoding：轻量 draft model 先提候选 token，target model 并行验证，方法核心是让 draft 与 target 的分布更匹配。",
-        "why": "speculative decoding 的加速比取决于 draft 被接受的比例，校准 draft 分布是提升 LLM 服务吞吐的直接切入点。",
+        "what": "论文讨论 speculative decoding：用轻量 draft model 提议 token，再由 target model 并行验证，以提升推理时的算力利用率。标题强调通过校准让 draft 与 target 的分布匹配。",
+        "why": "投机解码是降低 LLM 服务延迟的主流路径，draft 与 target 分布不匹配是其精度损失来源，校准思路值得跟进。",
         "tag": "论文"
       }
     },
@@ -361,15 +361,15 @@
       "source": "arxiv",
       "published": "2026-11-24T18:14:52+00:00",
       "points": 0,
-      "score": 1.6231,
+      "score": 1.6221,
       "summary": "Groupwise quantization is used in LLM quantization to improve accuracy at low bit widths, but grouping weights keeps standard integer MMA from spanning the full dot product for efficient GPU inference. We develop a new quantization method, Shifter Quantization (SQ), that reconstructs native-width integer operands by appending and shifting shared bits.",
       "authors": [
         "Yufeng Huang"
       ],
       "analysis": {
-        "what": "论文提出 Shifter Quantization：groupwise quantization 低比特精度好，但分组权重让标准整数 MMA 无法一次覆盖完整点积；SQ 用追加并移位共享比特的方式重建原生位宽整数操作数。",
-        "why": "若成立，可在保留分组量化精度的同时用上原生整数 MMA，直接影响低比特 LLM 在 GPU 上的推理效率。",
-        "tag": "量化推理"
+        "what": "作者提出 Shifter Quantization（SQ），通过追加并移位共享比特来重建原生位宽整数操作数，试图解决分组量化下整数 MMA 无法覆盖完整点积的问题。",
+        "why": "若成立可在低比特下兼顾精度与 GPU 整数计算效率，但摘要未给出实测数据，需看全文验证。",
+        "tag": "论文"
       }
     },
     {
@@ -379,12 +379,12 @@
       "source": "hf-blog",
       "published": "2026-11-25T10:22:09+00:00",
       "points": 0,
-      "score": 1.6639,
+      "score": 1.6631,
       "summary": "A Blog post by IBM Research on Hugging Face",
       "authors": [],
       "analysis": {
-        "what": "IBM Research 在 Hugging Face 发布博客，介绍一个使用 CUGA 的 Indic 语音 agent。摘要只有这一句，未给出模型、数据、延迟或评测结果。",
-        "why": "信息量不足，暂时只能当作线索；做多语言语音 agent 的开发者需等原文给出架构与评测再判断。",
+        "what": "IBM Research 在 Hugging Face 发布一篇博客，介绍一个带 CUGA 的 Indic 语音 agent。所提供的摘要仅有这一句，未披露模型、数据或评测细节。",
+        "why": "多语种语音 agent 是新兴方向，但信息量太少，暂时只能作为线索记录，无法判断其技术路线。",
         "tag": "行业动态"
       }
     },
@@ -395,13 +395,13 @@
       "source": "simonwillison",
       "published": "2026-11-24T23:02:07+00:00",
       "points": 0,
-      "score": 2.0548,
+      "score": 2.0537,
       "summary": "I gave a keynote at the AI Engineer Code Summit a couple of weeks ago, constructed around the idea that there have been three significant inflection points in the abilities of LLMs and coding agents in the past twelve months.\nHere's the video of the talk.",
       "authors": [],
       "analysis": {
-        "what": "作者在 AI Engineer Code Summit 的 keynote 中提出：过去十二个月，LLM 与 coding agent 的能力出现过三个明显拐点，并附有演讲视频。",
-        "why": "拐点如何划分要看视频细节；对做 coding agent 的团队，这类阶段划分可用于校准能力预期与产品节奏。",
-        "tag": "观点"
+        "what": "作者在 AI Engineer Code Summit 的主题演讲中提出，过去十二个月 LLM 与 coding agent 的能力出现了三个重要拐点，并附有演讲视频。摘要未列出这三点具体内容。",
+        "why": "coding agent 的能力演进节奏是开发者选型的重要参考，但需看视频才能获得具体判断依据。",
+        "tag": "行业动态"
       }
     },
     {
@@ -411,13 +411,13 @@
       "source": "qbitai",
       "published": "2026-11-25T07:46:52+00:00",
       "points": 0,
-      "score": 1.4985,
+      "score": 1.4978,
       "summary": "OpenAI这下要有俩Tibo了\n亏贼，OpenAI这是要把Claude Code的老班底凑齐了？？",
       "authors": [],
       "analysis": {
-        "what": "中文圈消息称 Tibo 被曝加盟 OpenAI，标题并提及“上市前离职三人组”，称 OpenAI 或将凑齐 Claude Code 老班底。摘要仅两句调侃，无官方确认。",
-        "why": "属未经证实的人事传闻，没有信源与细节；对 coding agent 竞争格局的影响需等官方消息。",
-        "tag": "人事传闻"
+        "what": "中文圈消息称 A 社的 Tibo 被曝加盟 OpenAI，并提到上市前离职的三人组在异地重聚，称 OpenAI 或将凑齐 Claude Code 的老班底。",
+        "why": "属未经证实的人事传闻，对开发者直接影响有限，但可用于观察 coding agent 团队竞争格局。",
+        "tag": "商业"
       }
     },
     {
@@ -427,13 +427,13 @@
       "source": "qbitai",
       "published": "2026-11-25T06:49:27+00:00",
       "points": 0,
-      "score": 1.4767,
+      "score": 1.476,
       "summary": "复杂场景三维建模成本降至10美元以内",
       "authors": [],
       "analysis": {
-        "what": "中文圈报道一位华人计算机视觉研究者离开苹果后再次创业，方向为下一代空间与物理 AI，并称复杂场景三维建模成本可降至 10 美元以内。摘要未点名，也无技术细节。",
-        "why": "三维建模成本若真降到 10 美元以内，会改变空间智能相关管线；但目前只是宣传式数字，需等产品与评测。",
-        "tag": "创业"
+        "what": "中文圈报道一位华人计算机视觉学者离开苹果后再次创业，方向为下一代空间与物理 AI，并称复杂场景三维建模成本可降至 10 美元以内。",
+        "why": "三维建模成本下降对空间智能与具身方向有参考价值，但成本口径与来源未说明，暂不宜采信具体数字。",
+        "tag": "商业"
       }
     },
     {
@@ -443,13 +443,13 @@
       "source": "qbitai",
       "published": "2026-11-25T08:23:24+00:00",
       "points": 0,
-      "score": 1.3378,
+      "score": 1.3372,
       "summary": "Fable5.2已经很旧了。\n量子位 | 公众号QbitAI",
       "authors": [],
       "analysis": {
-        "what": "中文圈文章称 Anthropic 还藏着两个最强模型未公开，并称 Fable5.2 已经“很旧”。摘要只有两句话，未给模型名称、发布时间或能力数据。",
-        "why": "推测性爆料无法核实；依赖 Anthropic 模型的团队至多把它当路线图信号，不宜据此做迁移决策。",
-        "tag": "模型传闻"
+        "what": "中文圈一条标题称 Anthropic 还藏着两个最强模型，正文提到 Fable5.2 已经很旧，内容为零散表述，未给出模型名称或依据。",
+        "why": "信息不足且表述模糊，无法作为判断 Anthropic 模型路线的依据，仅可留意后续官方发布。",
+        "tag": "行业动态"
       }
     },
     {
@@ -459,15 +459,15 @@
       "source": "v2ex",
       "published": "2026-11-25T10:24:23+00:00",
       "points": 0,
-      "score": 1.3185,
+      "score": 1.3179,
       "summary": "最近做了一个开源项目：AIGC Studio，终于可以拿出来见人了。\n这是一个桌面端 AI 创作工作台，我比较想做的一件事，就是让 AI 生图不再受算力来源的限制。\n本地有显卡，可以直接跑；想省钱，可以接 Kaggle / Colab 的免费 GPU；需要大显存，可以按秒租卡；不想折腾，也可以直接调用商业 API。\n算力随便选，模型随便切，不用为了换一种运行方式重新折腾一套环境。\n除了图片和视频生成，还集成了局部重绘、高清放大、像素对齐、序列帧切片、SVG 转换、背景移除和 PBR 材质拆解等工具。\n生成完接着处理，尽量不用在几个软件之间来回切换。\n项目完全开源免费，欢迎 Star、Fork，也欢迎提 Issue。\nGitHub： https://github.com/nanxfu/aigc-studio",
       "authors": [
         "nanxfu"
       ],
       "analysis": {
-        "what": "开发者开源桌面端 AI 创作工作台 AIGC Studio，可在本地显卡、Kaggle/Colab 免费 GPU、按秒租卡与商业 API 间切换算力，并集成局部重绘、放大、抠图、PBR 拆解等工具。",
-        "why": "把算力来源抽象成可切换后端、生成与后处理同界面，适合想低成本试多模型的个人开发者。",
-        "tag": "开源工具"
+        "what": "作者开源桌面端 AI 创作工作台 AIGC Studio，支持本地显卡、Kaggle/Colab 免费 GPU、按秒租卡与商业 API 多种算力来源，并集成局部重绘、放大、背景移除、PBR 材质拆解等后处理工具。",
+        "why": "把算力切换与生成后处理放在同一工作台，适合想低成本试验生图流程的个人开发者。",
+        "tag": "开源"
       }
     }
   ]

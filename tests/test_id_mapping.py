@@ -14,7 +14,7 @@ from brief import llm
 from brief.config import Model
 from brief.feed import Item
 
-STATE = {"reply": "", "requests": 0}
+STATE = {"reply": "", "requests": 0, "queue": []}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -26,8 +26,13 @@ class Handler(BaseHTTPRequestHandler):
         n = int(self.headers.get("Content-Length") or 0)
         self.rfile.read(n)
         STATE["requests"] += 1
+        # queue 优先：模拟"第一次空、第二次正常"
+        if STATE.get("queue"):
+            content = STATE["queue"].pop(0)
+        else:
+            content = STATE["reply"]
         payload = {
-            "choices": [{"message": {"content": STATE["reply"]}}],
+            "choices": [{"message": {"content": content}}],
             "usage": {"prompt_tokens": 100, "completion_tokens": 50},
         }
         data = json.dumps(payload, ensure_ascii=False).encode()
@@ -139,6 +144,44 @@ class IdMappingTest(unittest.TestCase):
         prompt = c._build_prompt(self.items(8))
         self.assertIn("1..8", prompt, "提示词必须写清楚用本批编号")
         self.assertIn("正好 8 个对象", prompt)
+
+    # ── 空 items 的回归（真实事故：第 1 批返回空数组导致 min() 崩溃）──
+    def test_empty_items_retries_then_recovers(self):
+        """第一次返回空 items，第二次正常 —— 应重试并救回整批。"""
+        import json
+        STATE["queue"] = [
+            json.dumps({"lede": "", "takeaway": "", "items": []}),
+            json.dumps({"lede": "导语", "takeaway": "判断",
+                        "items": [{"id": i, "what": f"w{i}", "why": "y", "tag": "t"}
+                                  for i in range(1, 9)]}, ensure_ascii=False),
+        ]
+        STATE["requests"] = 0
+        batch = self.items(8)
+        out = self.client().analyze(batch, budget_left=1.0)
+        mapped = {k: v for k, v in out.items() if k != "__meta__"}
+        self.assertEqual(len(mapped), 8, "重试应把 8 条救回来")
+        self.assertEqual(STATE["requests"], 2, "应恰好重试一次")
+        STATE.pop("queue", None)
+
+    def test_empty_items_twice_returns_empty_not_crash(self):
+        """两次都空：返回空 dict（不能抛异常，上层好记录降级）。"""
+        import json
+        STATE["queue"] = [json.dumps({"items": []}), json.dumps({"items": []})]
+        STATE["requests"] = 0
+        out = self.client().analyze(self.items(8), budget_left=1.0)
+        mapped = {k: v for k, v in out.items() if k != "__meta__"}
+        self.assertEqual(mapped, {})
+        self.assertEqual(STATE["requests"], 2)
+        STATE.pop("queue", None)
+
+    def test_map_by_id_handles_empty(self):
+        """直接调用 _map_by_id / min([]) 不能崩；无 id 时按顺序兜底。"""
+        c = self.client()
+        items = self.items(8)
+        self.assertEqual(c._map_by_id(items, []), {}, "空列表必须安全返回")
+        # 有内容但没 id：按返回顺序对齐到第 1 条（有意为之的兜底）
+        got = c._map_by_id(items, [{"what": "有转述", "why": "y", "tag": "t"}])
+        self.assertEqual(got[items[0].uid]["what"], "有转述")
 
 
 if __name__ == "__main__":

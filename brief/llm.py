@@ -282,14 +282,18 @@ class DeepSeek:
             return {}
 
         data = self._ask(prompt)
-        if not data:
-            # 纯文本端点（无 json 模式）偶尔会拒答或输出废格式：补一次更严格的提示
-            data = self._ask(prompt + "\n\n再次强调：只输出一个 JSON 对象，"
-                                      "第一个字符必须是 {，不要任何前言后语。", strict=True)
+        if not data or not (data.get("items")):
+            # 模型返回了空 items（见过：长 prompt 下偶发偷懒）或格式废掉。
+            # 直接放弃会白丢整批 8 条，所以用更严格的提示重试一次。
+            data = self._ask(
+                prompt + "\n\n注意：上一次你的 items 是空的。"
+                         f"必须为输入的 {len(items)} 条每一条都输出一个对象，"
+                         f"id 依次为 1 到 {len(items)}，不能省略任何一条。",
+                strict=True)
 
-        out = self._map_by_id(items, data.get("items") or [])
-        out["__meta__"] = {"lede": str(data.get("lede", "")).strip()[:160],
-                           "takeaway": str(data.get("takeaway", "")).strip()[:120]}
+        out = self._map_by_id(items, (data or {}).get("items") or [])
+        out["__meta__"] = {"lede": str((data or {}).get("lede", "")).strip()[:160],
+                           "takeaway": str((data or {}).get("takeaway", "")).strip()[:120]}
         return out
 
     def _ask(self, prompt: str, strict: bool = False) -> dict:
@@ -304,26 +308,26 @@ class DeepSeek:
     def _map_by_id(self, items: list[Item], objs: list) -> dict[str, dict]:
         """把模型返回的 id 映射回 uid，容忍三种编号方式。"""
         n = len(items)
+        dicts = [o for o in (objs or []) if isinstance(o, dict)]
+        if not dicts:
+            return {}
+
         parsed: list[tuple[int, dict]] = []
-        for obj in objs:
-            if not isinstance(obj, dict):
-                continue
+        for obj in dicts:
             try:
-                idx = int(str(obj.get("id", "")).strip(" []#"))
+                idx = int(str(obj.get("id", "")).strip(" []#."))
             except (TypeError, ValueError):
                 continue
             parsed.append((idx, obj))
+
         if not parsed:
-            # 完全没给 id：按返回顺序一一对应（模型通常保持输入顺序）
-            parsed = [(i, obj) for i, (_, obj) in enumerate(
-                [(None, o) for o in objs if isinstance(o, dict)], 1)]
+            # 完全没给（或全是脏）id：按返回顺序一一对应，模型通常保持输入顺序
+            parsed = [(i, obj) for i, obj in enumerate(dicts[:n], 1)]
 
         ids = [i for i, _ in parsed]
         lo, hi = min(ids), max(ids)
-        # 判断编号基准：全在 1..n 内 → 本批编号；否则可能是全局编号，按 lo 平移
-        offset = 0
-        if lo < 1 or hi > n:
-            offset = lo - 1
+        # 判断编号基准：超出 1..n 范围 → 可能是全局编号，按最小值平移
+        offset = lo - 1 if (lo < 1 or hi > n) else 0
 
         out: dict[str, dict] = {}
         for idx, obj in parsed:

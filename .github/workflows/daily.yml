@@ -63,13 +63,31 @@ jobs:
           set -euo pipefail
           git config user.name  "brief-bot"
           git config user.email "brief-bot@users.noreply.github.com"
+          # rebase 而不是 merge：日报是纯生成物，冲突时以本地新生成的内容为准也没问题，
+          # 但如果不重叠就直接快进，历史最干净。
+          git config pull.rebase true
           git add site/
           if git diff --staged --quiet; then
             echo "内容无变化，跳过提交"
-          else
-            git commit -m "chore: 日报 $(date -u +%Y-%m-%d)"
-            git push
+            exit 0
           fi
+          git commit -m "chore: 日报 $(date -u +%Y-%m-%d)"
+
+          # 并发的两次运行会撞车：先拉再推，最多重试 5 次（每次指数退避）
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "推送成功（第 $i 次尝试）"
+              exit 0
+            fi
+            echo "推送被拒（第 $i 次），拉取远端后重试…"
+            git pull --rebase --autostash origin main || {
+              echo "rebase 失败，放弃本次提交（不影响已生成的产物）"
+              exit 0
+            }
+            sleep $((i * 3))
+          done
+          echo "::warning::推送连续失败，但日报已生成，下次运行会再提交"
+          exit 0
 
       - uses: actions/upload-pages-artifact@v3
         with:

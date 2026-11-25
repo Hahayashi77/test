@@ -270,45 +270,71 @@ class DeepSeek:
 
     # ── 业务层：分析一批条目 ────────────────────────────────────
     def analyze(self, items: list[Item], budget_left: float) -> dict[str, dict]:
-        """返回 {item.uid: {"what","why","tag"}}；失败或超预算返回空 dict。"""
+        """返回 {item.uid: {"what","why","tag"}}；失败或超预算返回空 dict。
+
+        注意 id 映射：模型有时按"整期全局编号"回复（第 2 批给出 9–16），
+        而不是本批的 1–8。只认 1..len(items) 会把整批结果全部丢掉（静默失败），
+        所以这里用"先按本批编号、再按全局编号偏移、最后按顺序对齐"三级兜底。
+        """
         prompt = self._build_prompt(items)
         est = estimate_cost(self.model, prompt, self.model.max_output_tokens)
         if est > budget_left:
             return {}
 
+        data = self._ask(prompt)
+        if not data:
+            # 纯文本端点（无 json 模式）偶尔会拒答或输出废格式：补一次更严格的提示
+            data = self._ask(prompt + "\n\n再次强调：只输出一个 JSON 对象，"
+                                      "第一个字符必须是 {，不要任何前言后语。", strict=True)
+
+        out = self._map_by_id(items, data.get("items") or [])
+        out["__meta__"] = {"lede": str(data.get("lede", "")).strip()[:160],
+                           "takeaway": str(data.get("takeaway", "")).strip()[:120]}
+        return out
+
+    def _ask(self, prompt: str, strict: bool = False) -> dict:
         raw = self.chat(
             [{"role": "system", "content": SYSTEM},
              {"role": "user", "content": prompt}],
             max_tokens=self.model.max_output_tokens,
-            json_mode=None,          # 交给自适应开关决定
+            json_mode=False if strict else None,
         )
-        data = _loads_loose(raw)
-        if not data:
-            # 纯文本端点（无 json 模式）偶尔会拒答或输出废格式：补一次极简重试
-            raw = self.chat(
-                [{"role": "system", "content": SYSTEM},
-                 {"role": "user", "content": prompt
-                  + "\n\n再次强调：只输出一个 JSON 对象，第一个字符必须是 {，不要任何前言后语。"}],
-                max_tokens=self.model.max_output_tokens,
-                json_mode=False,
-            )
-            data = _loads_loose(raw)
-        out: dict[str, dict] = {}
-        for obj in (data.get("items") or []):
+        return _loads_loose(raw)
+
+    def _map_by_id(self, items: list[Item], objs: list) -> dict[str, dict]:
+        """把模型返回的 id 映射回 uid，容忍三种编号方式。"""
+        n = len(items)
+        parsed: list[tuple[int, dict]] = []
+        for obj in objs:
             if not isinstance(obj, dict):
                 continue
             try:
-                idx = int(str(obj.get("id", "")).strip(" []"))
-                if 1 <= idx <= len(items):
-                    out[items[idx - 1].uid] = {
-                        "what": str(obj.get("what", "")).strip()[:220],
-                        "why": str(obj.get("why", "")).strip()[:180],
-                        "tag": str(obj.get("tag", "")).strip()[:12],
-                    }
-            except Exception:
+                idx = int(str(obj.get("id", "")).strip(" []#"))
+            except (TypeError, ValueError):
                 continue
-        out["__meta__"] = {"lede": str(data.get("lede", "")).strip()[:160],
-                           "takeaway": str(data.get("takeaway", "")).strip()[:120]}
+            parsed.append((idx, obj))
+        if not parsed:
+            # 完全没给 id：按返回顺序一一对应（模型通常保持输入顺序）
+            parsed = [(i, obj) for i, (_, obj) in enumerate(
+                [(None, o) for o in objs if isinstance(o, dict)], 1)]
+
+        ids = [i for i, _ in parsed]
+        lo, hi = min(ids), max(ids)
+        # 判断编号基准：全在 1..n 内 → 本批编号；否则可能是全局编号，按 lo 平移
+        offset = 0
+        if lo < 1 or hi > n:
+            offset = lo - 1
+
+        out: dict[str, dict] = {}
+        for idx, obj in parsed:
+            pos = idx - offset
+            if not (1 <= pos <= n):
+                continue
+            out[items[pos - 1].uid] = {
+                "what": str(obj.get("what", "")).strip()[:220],
+                "why": str(obj.get("why", "")).strip()[:180],
+                "tag": str(obj.get("tag", "")).strip()[:12],
+            }
         return out
 
     def _build_prompt(self, items: list[Item]) -> str:
@@ -321,7 +347,11 @@ class DeepSeek:
                 head += f"\n作者: {', '.join(it.extra['authors'])}"
             body = it.summary or "（无摘要）"
             lines.append(f"{head}\n摘要: {body}")
-        return ("下面是今天抓到的条目。请逐条写中文解读，并给出导语和今日判断。\n\n"
+        n = len(items)
+        return (f"下面是 {n} 条条目，编号从 [1] 到 [{n}]。"
+                f"请逐条写中文解读，并给出导语和今日判断。\n"
+                f"输出的 items 数组必须正好 {n} 个对象，id 用本批的编号 1..{n}，"
+                f"不要用其他编号体系。\n\n"
                 + "\n\n".join(lines)
                 + "\n\n" + SCHEMA_HINT)
 

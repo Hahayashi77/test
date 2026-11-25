@@ -90,16 +90,31 @@ def analyze_all(client, cfg, items) -> tuple[dict, dict]:
             log(f"预算已用完（${client.usage.cost_usd:.4f}），剩余批次跳过")
             digest_meta["degraded"] = True
             break
+        before_cost = client.usage.cost_usd
+        before_req = client.usage.requests
         try:
             t0 = time.time()
             res = client.analyze(batch, left)
             meta = res.pop("__meta__", {}) or {}
+            spent = client.usage.cost_usd - before_cost
+            sent = client.usage.requests - before_req
+
             if not res:
-                # 空结果只可能是预算不够（analyze 内部已拒绝发请求），此时别再往下刷
-                log(f"  批次 {n} 超出剩余预算，停止调用（累计 ${client.usage.cost_usd:.4f}）")
+                # 三种可能：没发请求（预算不够）、发了但解析不出、发了但 id 全不匹配。
+                # 分开报，别一律说成"超预算"——那会把静默丢数据伪装成正常行为。
+                if sent == 0:
+                    log(f"  批次 {n} 预估成本超出剩余预算，停止调用"
+                        f"（累计 ${client.usage.cost_usd:.4f}）")
+                    digest_meta["degraded"] = True
+                    break
+                log(f"  ⚠ 批次 {n} 收到了回复但没有可用解读（{sent} 次请求，"
+                    f"${spent:.4f}），已标记为降级")
                 digest_meta["degraded"] = True
-                break
-            analyses.update(res)
+            else:
+                analyses.update(res)
+                if len(res) < len(batch):
+                    log(f"  ⚠ 批次 {n} 只解析出 {len(res)}/{len(batch)} 条")
+                    digest_meta["degraded"] = True
             if meta.get("lede"):
                 ledes.append(meta["lede"])
             if meta.get("takeaway") and not digest_meta["takeaway"]:

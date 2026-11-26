@@ -1,0 +1,473 @@
+{
+  "date": "2026-11-26",
+  "generated_at": "2026-11-26 12:59",
+  "lede": "今日热点在安全与 AI 边界：1Password 后端事件、NYT 警惕 Photoshop 写入 AI metadata；HN 还在热议矩阵乘法指数与 Lean 验证，开源侧关注 NGINX 和 MiniMind。",
+  "takeaway": "优先核查 1Password 后端事件范围与官方通报，密码管理器的信任成本最高。",
+  "degraded": false,
+  "usage": {
+    "requests": 4,
+    "failures": 0,
+    "prompt_tokens": 4293,
+    "completion_tokens": 8424,
+    "cache_hit_tokens": 0,
+    "cost_usd": 0.005698,
+    "peak": false
+  },
+  "sources": [
+    {
+      "source": "hn",
+      "category": "社区热议",
+      "got": 13,
+      "error": null
+    },
+    {
+      "source": "github-trending",
+      "category": "开源趋势",
+      "got": 16,
+      "error": null
+    },
+    {
+      "source": "arxiv",
+      "category": "论文速递",
+      "got": 20,
+      "error": null
+    },
+    {
+      "source": "hf-blog",
+      "category": "行业动态",
+      "got": 12,
+      "error": null
+    },
+    {
+      "source": "simonwillison",
+      "category": "行业动态",
+      "got": 12,
+      "error": null
+    },
+    {
+      "source": "qbitai",
+      "category": "中文圈",
+      "got": 10,
+      "error": null
+    },
+    {
+      "source": "v2ex",
+      "category": "中文圈",
+      "got": 10,
+      "error": null
+    }
+  ],
+  "items": [
+    {
+      "title": "Tell HN: Lots of Ask HNs again",
+      "url": "https://news.ycombinator.com/item?id=50649864",
+      "category": "社区热议",
+      "source": "hn",
+      "published": "2026-11-26T00:43:34+00:00",
+      "points": 165,
+      "score": 3.9712,
+      "summary": "There have been questions about why the /ask page ( https://news.ycombinator.com/ask ) was running dry of Ask HNs - e.g.: Ask HN: Why is Ask HN only showing me 14 posts? - https://news.ycombinator.com/item?id=49984484 - Oct 2026 (47 comments) Ask HN: Why is pagination gone on \"Ask HN\", and showing only 19 items? - https://news.ycombinator.com/item?id=50280719 - Oct 2026 (3 comments) I believe I found the problem.",
+      "authors": [],
+      "analysis": {
+        "what": "HN 的 /ask 页面近期 Ask HN 帖子变少、分页异常，引发多条追问；发帖者称已找到问题所在。",
+        "why": "社区页面抓取与排序逻辑可能影响内容发现，依赖 HN 做信息源的工具需留意。",
+        "tag": "社区/产品"
+      }
+    },
+    {
+      "title": "The New York Times warns photographers not to update Photoshop over AI features",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1041227/the-new-york-times-warns-photographers-not-to-update-photoshop-over-ai-features",
+      "category": "社区热议",
+      "source": "hn",
+      "published": "2026-11-25T21:18:02+00:00",
+      "points": 265,
+      "score": 3.9224,
+      "summary": "The NYT doesn’t want AI metadata inadvertently added to its photos.",
+      "authors": [],
+      "analysis": {
+        "what": "《纽约时报》提醒摄影师不要因 AI 功能升级 Photoshop，担心软件在图片中无意写入 AI metadata。",
+        "why": "生成式编辑的元数据会影响新闻图片溯源与可信度，内容团队应检查导出设置。",
+        "tag": "AI/媒体"
+      }
+    },
+    {
+      "title": "1Password Security Incident",
+      "url": "https://1password.com/blog/update-on-nov-2026-security-incident",
+      "category": "社区热议",
+      "source": "hn",
+      "published": "2026-11-25T17:18:26+00:00",
+      "points": 1277,
+      "score": 3.5255,
+      "summary": "1Password identified a security incident involving some of our backend systems. Customer vaults were not accessed and remain secure.",
+      "authors": [],
+      "analysis": {
+        "what": "1Password 披露部分后端系统发生安全事件，表示客户 vault 未被访问、数据仍安全，但摘要未给出细节。",
+        "why": "密码管理器是信任基础设施，需关注官方后续通报、轮换主密码与审计登录记录。",
+        "tag": "安全/密码"
+      }
+    },
+    {
+      "title": "Holy shit holy shit holy shit holy shit: The magnitude of what’s now happening",
+      "url": "https://scottaaronson.blog/?p=10379",
+      "category": "社区热议",
+      "source": "hn",
+      "published": "2026-11-25T19:11:27+00:00",
+      "points": 1142,
+      "score": 3.2814,
+      "summary": "See also The matrix multiplication exponent is nine fourths [pdf] - https://news.ycombinator.com/item?id=50637220",
+      "authors": [],
+      "analysis": {
+        "what": "HN 热帖用情绪化标题讨论一项新结果，并链接到题为《矩阵乘法指数为 9/4》的 PDF。",
+        "why": "矩阵乘法复杂度若真降到 9/4 影响深远，但需先核对论文证明与同行验证。",
+        "tag": "论文/算法"
+      }
+    },
+    {
+      "title": "Slow Ubuntu security response times",
+      "url": "https://www.openwall.com/lists/oss-security/2026/11/25/9",
+      "category": "社区热议",
+      "source": "hn",
+      "published": "2026-11-25T20:38:00+00:00",
+      "points": 194,
+      "score": 3.195,
+      "summary": "",
+      "authors": [],
+      "analysis": {
+        "what": "HN 上出现关于 Ubuntu 安全响应速度慢的讨论，条目未附摘要，具体案例、时间线与维护者回应需查看原帖。",
+        "why": "发行版安全更新延迟会影响生产环境补丁窗口，运维团队应评估自身依赖与应急方案。",
+        "tag": "安全/运维"
+      }
+    },
+    {
+      "title": "Much shorter version of GRH Lean verification from Anthropic",
+      "url": "https://github.com/lsernau/grh-lean",
+      "category": "社区热议",
+      "source": "hn",
+      "published": "2026-11-25T21:48:10+00:00",
+      "points": 354,
+      "score": 3.1176,
+      "summary": "A short Lean 4 proof of the Generalized Riemann Hypothesis - lsernau/grh-lean",
+      "authors": [],
+      "analysis": {
+        "what": "Anthropic 相关讨论中出现 Generalized Riemann Hypothesis 的 Lean 验证更短版本，指向 lsernau/grh-lean 的 Lean 4 证明。",
+        "why": "形式化数学降低检查成本，但证明是否被社区接受仍需看仓库与评审，不宜直接当定论。",
+        "tag": "论文/形式化"
+      }
+    },
+    {
+      "title": "nginx/nginx",
+      "url": "https://github.com/nginx/nginx",
+      "category": "开源趋势",
+      "source": "github-trending",
+      "published": null,
+      "points": 0,
+      "score": 2.5147,
+      "summary": "The official NGINX Open Source repository.\nNGINX (pronounced \"engine x\" or \"en-jin-eks\") is the world's most popular Web Server, high performance Load Balancer, Reverse Proxy, API Gateway and Content Cache.\nNGINX is free and open source software, distributed under the terms of a simplified 2-clause BSD-like license .\nEnterprise distributions, commercial support and training are available from F5, Inc .\nImportant\nThe…",
+      "authors": [],
+      "analysis": {
+        "what": "nginx/nginx 是 NGINX 官方开源仓库，定位 Web 服务器、负载均衡、反向代理、API 网关与内容缓存，采用简化 BSD 类许可证。",
+        "why": "核心 Web 基础设施的官方源码入口，选型或许可证合规审查时可作为一手依据。",
+        "tag": "开源/基础设施"
+      }
+    },
+    {
+      "title": "jingyaogong/minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "category": "开源趋势",
+      "source": "github-trending",
+      "published": null,
+      "points": 0,
+      "score": 2.4379,
+      "summary": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.\n\"大道至简\"\n中文 | English\n此开源项目旨在完全从 0 开始，仅用 3 块钱成本与 2 小时训练时间，即可训练出规模约为 64M 的超小语言模型 MiniMind。\nMiniMind 系列极其轻量，主线最小版本体积约为 GPT-3 的 $\\frac{1}{2700}$，力求让普通个人 GPU 也能快速完成训练与复现。\n项目同时开源了大模型的极简结构与完整训练链路，覆盖 MoE、数据清洗、预训练（Pretrain）、监督微调（SFT）、LoRA、RLHF（DPO）、RLAIF（PPO / GRPO / CISPO）、Tool Use、Agentic RL、自适应思考与模型蒸馏等全过程代码。",
+      "authors": [],
+      "analysis": {
+        "what": "MiniMind 开源项目称用约 3 元成本和 2 小时，从 0 训练 64M 小语言模型，并开放 MoE、预训练、SFT、LoRA、RLHF 等训练链路代码。",
+        "why": "适合个人 GPU 复现完整 LLM 流程，是学习预训练到对齐各环节的低成本实验项目。",
+        "tag": "开源/大模型"
+      }
+    },
+    {
+      "title": "openvinotoolkit/openvino",
+      "url": "https://github.com/openvinotoolkit/openvino",
+      "category": "开源趋势",
+      "source": "github-trending",
+      "published": null,
+      "points": 0,
+      "score": 1.803,
+      "summary": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference\nOpen-source software toolkit for optimizing and deploying deep learning models.\nDocumentation • Blog • Key Features • Tutorials • Integrations • Benchmarks • Generative AI\nInference Optimization : Boost deep learning performance in computer vision, automatic speech recognition, generative AI, natural language processing with large and small…",
+      "authors": [],
+      "analysis": {
+        "what": "OpenVINO 是开源工具包，用于优化与部署深度学习模型推理，覆盖计算机视觉、语音识别、生成式 AI 与 NLP，仓库同时提供文档、教程、集成与基准测试入口。",
+        "why": "若要在自有硬件上压低推理延迟或统一部署链路，可把它列入候选方案做对比评估。",
+        "tag": "开源/推理"
+      }
+    },
+    {
+      "title": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "category": "开源趋势",
+      "source": "github-trending",
+      "published": null,
+      "points": 0,
+      "score": 1.7776,
+      "summary": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.\nAn agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand.\n52 diagram types. No shadows.",
+      "authors": [],
+      "analysis": {
+        "what": "面向 Claude Code、Codex、GitHub Copilot、Cursor 等编码 Agent 的绘图 skill，把图表输出为单个自包含 HTML + SVG 文件，支持 52 种图表类型，明确不用阴影、不走 Mermaid 路线。",
+        "why": "对需要在文档与演示中稳定出图并控制样式的团队，自包含 HTML + SVG 比 Mermaid 更好接管。",
+        "tag": "工具/Agent"
+      }
+    },
+    {
+      "title": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "category": "开源趋势",
+      "source": "github-trending",
+      "published": null,
+      "points": 0,
+      "score": 1.5745,
+      "summary": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/\nCLI-Anything: Making ALL Software Agent-Native\nToday's Software Serves Humans👨‍💻. Tomorrow's Users will be Agents🤖.\nCLI-Anything: Bridging the Gap Between AI Agents and the World's Software\n🌐 CLI-Hub : pip install cli-anything-hub then cli-hub install <name> — browse, install, and manage all community-built CLIs.",
+      "authors": [],
+      "analysis": {
+        "what": "HKUDS 的项目，主张让所有软件变成 Agent 原生：提供 CLI-Hub，pip 安装 cli-anything-hub 后，可用 cli-hub install <name> 浏览、安装和管理社区构建的 CLI。",
+        "why": "若你的产品要被 Agent 调用，这套 CLI 接口与分发方式可作参考，成熟度需自行验证。",
+        "tag": "开源/Agent"
+      }
+    },
+    {
+      "title": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "category": "开源趋势",
+      "source": "github-trending",
+      "published": null,
+      "points": 0,
+      "score": 1.5745,
+      "summary": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary\n/last30days\nEnglish | Français | Deutsch | Español | Português (Brasil) | 日本語 | 简体中文 | العربية | فارسی | Türkçe\nAn AI agent-led search engine scored by upvotes, likes, and real money - not editors.\nThis README tracks the current v4 pipeline.",
+      "authors": [],
+      "analysis": {
+        "what": "一个 AI agent skill：跨 Reddit、X、YouTube、HN、Polymarket 和网页检索任意话题，再合成有据可查的摘要；排序依据是点赞、投票和真实资金，而非编辑判断。",
+        "why": "做话题调研或舆情跟踪时，其多源聚合与按互动量排序的思路可以直接借鉴。",
+        "tag": "工具/检索"
+      }
+    },
+    {
+      "title": "$μ$-Bench: Benchmarking Multi-User Task Completion in Shared Interaction Voice Agents",
+      "url": "https://arxiv.org/abs/2611.34920v1",
+      "category": "论文速递",
+      "source": "arxiv",
+      "published": "2026-11-25T18:58:42+00:00",
+      "points": 0,
+      "score": 2.2566,
+      "summary": "Voice agents in shared spaces must satisfy interdependent multi-user requests while upholding per-user authority, privacy, and task constraints. Existing evaluations offer limited coverage when participants react throughout a session. We introduce $μ$-Bench, a benchmark for joint task completion in closed-loop, full-duplex multi-user voice interaction.",
+      "authors": [
+        "Qihao Lin",
+        "Guanxu Chen",
+        "Shuhang Zheng",
+        "Xiaoya Lu"
+      ],
+      "analysis": {
+        "what": "论文提出 μ-Bench，评测共享空间中语音 Agent 的多用户任务完成：需满足相互依赖的多用户请求，同时遵守各用户权限、隐私与任务约束，采用闭环全双工交互。",
+        "why": "现有评测对参与者中途反应的覆盖有限，做语音 Agent 或多人协作场景可关注其设定。",
+        "tag": "论文/语音"
+      }
+    },
+    {
+      "title": "A Survey of Security, Privacy, and Ethics of Large Language Models in Telecom",
+      "url": "https://arxiv.org/abs/2611.34868v1",
+      "category": "论文速递",
+      "source": "arxiv",
+      "published": "2026-11-25T18:33:07+00:00",
+      "points": 0,
+      "score": 2.1458,
+      "summary": "Large Language Models (LLMs) are increasingly integrated into telecommunications for customer service, network analytics, and operational support. While offering efficiency and innovation, their deployment raises critical privacy, security, and ethical challenges due to the uniquely sensitive and longitudinal nature of telecom data. This paper presents a survey of LLM risks and safeguards in telecom context.",
+      "authors": [
+        "Joy Bose",
+        "Srinivas Adyapak"
+      ],
+      "analysis": {
+        "what": "综述 LLM 在电信业的隐私、安全与伦理风险：客户服务、网络分析、运营支撑是主要落点，而电信数据敏感且时间跨度长，带来特有风险，文中也梳理了防护措施。",
+        "why": "在电信或长期留存敏感数据的行业落地 LLM，可以把这篇当作风险清单来核对。",
+        "tag": "论文/安全"
+      }
+    },
+    {
+      "title": "Diverse Alternative Reasoning Traces for Hard Math Problems",
+      "url": "https://arxiv.org/abs/2611.34928v1",
+      "category": "论文速递",
+      "source": "arxiv",
+      "published": "2026-11-25T18:59:11+00:00",
+      "points": 0,
+      "score": 2.0344,
+      "summary": "Post-training large language models (LLMs) for mathematical reasoning often relies on accepted traces whose final answers pass a verifier. For hard math problems, however, such traces can be rare under independent Monte Carlo (MC) sampling.",
+      "authors": [
+        "Lukas Aichberger",
+        "Adam Golinski",
+        "Arno Blaas",
+        "Arwen Bradley"
+      ],
+      "analysis": {
+        "what": "论文指出数学推理后训练依赖最终答案通过验证器的轨迹，但在困难题目上，独立蒙特卡洛采样得到这类轨迹的概率很低，因此研究多样化的替代推理轨迹。",
+        "why": "做数学推理后训练或合成数据时，可据此重新评估采样成本与轨迹筛选策略。",
+        "tag": "论文/推理"
+      }
+    },
+    {
+      "title": "Attack Policy Selection can Mislead Monitor Evaluators",
+      "url": "https://arxiv.org/abs/2611.34934v1",
+      "category": "论文速递",
+      "source": "arxiv",
+      "published": "2026-11-25T18:59:28+00:00",
+      "points": 0,
+      "score": 1.971,
+      "summary": "AI monitors, classifiers that flag dangerous behaviour by AI agents, are often evaluated against transcripts generated by attack policies acting as proxies for dangerous behaviour in deployment. We evaluate an ex-production OpenAI monitor as a case study and find that measured false negative rate is highly sensitive to both the method used to generate attack policies and the level of optimisation applied within that…",
+      "authors": [
+        "Charlie Griffin",
+        "Oliver Makins",
+        "Asa Cooper Stickland",
+        "Alessandro Abate"
+      ],
+      "analysis": {
+        "what": "论文以退出生产环境的 OpenAI monitor 为案例，发现测得的漏报率对攻击策略的生成方法以及该策略所施加的优化程度都高度敏感。",
+        "why": "用攻击策略作代理来评估 AI monitor，可能系统性误判实际防护能力，选型时需留意。",
+        "tag": "论文/安全"
+      }
+    },
+    {
+      "title": "Interpretable and Accurate Hybrid Decision Trees with Selective Case-Based Splits",
+      "url": "https://arxiv.org/abs/2611.34887v1",
+      "category": "论文速递",
+      "source": "arxiv",
+      "published": "2026-11-25T18:45:35+00:00",
+      "points": 0,
+      "score": 1.7417,
+      "summary": "Decision trees are among the most well-known interpretable models in Machine Learning. Over the years, a wide variety of strategies have been proposed to define split conditions within the greedy learning framework, aiming to guide instance routing and enhance predictive performance.",
+      "authors": [
+        "Cristiano Landi",
+        "Alessio Cascione",
+        "Riccardo Guidotti"
+      ],
+      "analysis": {
+        "what": "论文讨论决策树这类经典可解释模型，指出学界长期在贪心学习框架内设计各种split条件，用来控制样本路由并提升预测表现，本文提出结合案例的选择性split混合决策树。",
+        "why": "做可解释ML的开发者可关注split设计这一层，判断精度与透明度的权衡是否有新解法。",
+        "tag": "论文"
+      }
+    },
+    {
+      "title": "BOP-Refer: Benchmark for Monocular 3D and 2D Object Grounding",
+      "url": "https://arxiv.org/abs/2611.34862v1",
+      "category": "论文速递",
+      "source": "arxiv",
+      "published": "2026-11-25T18:29:36+00:00",
+      "points": 0,
+      "score": 1.7023,
+      "summary": "We introduce BOP-Refer, the first benchmark for monocular 3D and 2D grounding of everyday and industrial objects sourced from 9 diverse BOP datasets. We pair images from these datasets with VLM-generated and human-verified referring expressions, and derive accurate ground-truth 3D and 2D bounding boxes of the referred objects from their 3D models and 6DoF pose annotations.",
+      "authors": [
+        "Tomas Hodan",
+        "Vineet Bhat",
+        "Martin Sundermeyer",
+        "Jonathan Tremblay"
+      ],
+      "analysis": {
+        "what": "作者发布BOP-Refer，称是首个面向单目3D与2D物体grounding的benchmark，图像来自9个BOP数据集，指代表达由VLM生成并经人工校验，真值框由3D模型和6DoF位姿标注导出。",
+        "why": "做机器人抓取、工业视觉和3D grounding的团队多了一个带位姿真值的评测基准。",
+        "tag": "论文"
+      }
+    },
+    {
+      "title": "Where scientists draw the line on AI agents",
+      "url": "https://huggingface.co/blog/allenai/where-scientists-draw-the-line-on-ai-agents",
+      "category": "行业动态",
+      "source": "hf-blog",
+      "published": "2026-11-25T18:52:55+00:00",
+      "points": 0,
+      "score": 1.7885,
+      "summary": "📄 Tech Report",
+      "authors": [],
+      "analysis": {
+        "what": "标题指向科学家对AI agents划定边界的话题，挂在行业动态下，标注为Tech Report，但给定内容只有这一行标签，没有具体观点、结论或研究细节。",
+        "why": "题目本身值得跟，但目前无法判断其主张，需找到原文再评估，不能据此下结论。",
+        "tag": "行业动态"
+      }
+    },
+    {
+      "title": "Quoting Scott Aaronson",
+      "url": "https://simonwillison.net/2026/Nov/25/scott-aaronson/",
+      "category": "行业动态",
+      "source": "simonwillison",
+      "published": "2026-11-25T23:26:32+00:00",
+      "points": 0,
+      "score": 1.6153,
+      "summary": "It’s now obvious that we’ll be getting, not one-off solutions to this or that complexity question, but a whole new continent of mathematical truth, one that we’d previously only glimpsed through fog. Picture van Leeuwenhoek first training a microscope on pondwater, or Galileo first training his telescope on the stars.",
+      "authors": [],
+      "analysis": {
+        "what": "Scott Aaronson用类比表达判断：AI带来的不会是零散的复杂度问题答案，而是一整片此前只能透过迷雾窥见的数学真理新大陆，如同列文虎克用显微镜看池水、伽利略用望远镜看星空。",
+        "why": "这是对AI辅助数学研究走向的强判断，可作为理解该领域预期的参照，但属个人观点。",
+        "tag": "观点"
+      }
+    },
+    {
+      "title": "datasette-charts 0.3a0",
+      "url": "https://simonwillison.net/2026/Nov/25/datasette-charts/",
+      "category": "行业动态",
+      "source": "simonwillison",
+      "published": "2026-11-25T18:16:50+00:00",
+      "points": 0,
+      "score": 1.4277,
+      "summary": "Release: datasette-charts 0.3a0\nI added chart annotations to datasette-charts !\nYou can now render a chart and then annotate it with lines, shaded areas, labels, or a combination of the three.\nA chart with annotations looks like this\nHere's that same chart in Datasette Lite , where you can tweak the annotations using the chart builder UI\nIf you also install Datasette Agent the agent can build annotated charts for you…",
+      "authors": [],
+      "analysis": {
+        "what": "datasette-charts发布0.3a0，新增图表标注功能，可在渲染出的图上叠加线条、阴影区域、文字标签或三者组合，并能在Datasette Lite的图表构建UI里调整，配合Datasette Agent还可自动生成带标注图表。",
+        "why": "用Datasette做数据展示的开发者可直接试用，标注能力让图表少一步导出后加工。",
+        "tag": "工具"
+      }
+    },
+    {
+      "title": "任少卿带着世界模型3.0来了！蔚来智驾训练提效5倍，座舱也用上强化学习",
+      "url": "https://www.qbitai.com/2026/11/512897.html",
+      "category": "中文圈",
+      "source": "qbitai",
+      "published": "2026-11-26T03:23:35+00:00",
+      "points": 0,
+      "score": 1.7218,
+      "summary": "李斌坦言：不做AI变革可能活不下去",
+      "authors": [],
+      "analysis": {
+        "what": "报道称任少卿发布世界模型3.0，蔚来智驾训练提效5倍，座舱也用上强化学习；李斌表示不做AI变革可能活不下去。提效倍数与具体技术细节均来自厂商表述。",
+        "why": "关注智驾训练infra与世界模型路线的人可跟进，但5倍提效缺乏第三方验证。",
+        "tag": "商业"
+      }
+    },
+    {
+      "title": "沈向洋刚讲了好多AI非共识啊",
+      "url": "https://www.qbitai.com/2026/11/512840.html",
+      "category": "中文圈",
+      "source": "qbitai",
+      "published": "2026-11-26T03:13:16+00:00",
+      "points": 0,
+      "score": 1.5398,
+      "summary": "“灵巧手是人类最后的尊严”",
+      "authors": [],
+      "analysis": {
+        "what": "沈向洋在一场讲话中谈了不少AI领域的非共识判断，摘要只留下“灵巧手是人类最后的尊严”一句引语，其余观点与论证未给出。",
+        "why": "具身智能方向的人可留意其对灵巧手的判断，但现有信息不足以还原完整逻辑。",
+        "tag": "观点"
+      }
+    },
+    {
+      "title": "AI影视高地正在北影海淀一带崛起，「一人制片厂」基建搭好了",
+      "url": "https://www.qbitai.com/2026/11/512828.html",
+      "category": "中文圈",
+      "source": "qbitai",
+      "published": "2026-11-26T02:53:14+00:00",
+      "points": 0,
+      "score": 1.5322,
+      "summary": "叠满海淀最强AI Buff。\n量子位 | 公众号QbitAI",
+      "authors": [],
+      "analysis": {
+        "what": "文章称AI影视产业正在北京电影学院、海淀一带聚集，面向“一人制片厂”的基础设施已经搭好，摘要以“叠满海淀最强AI Buff”作概括，未给出具体项目与数据。",
+        "why": "做AI视频生成与内容生产的开发者可留意这类产业集聚，但需自行核实落地情况。",
+        "tag": "商业"
+      }
+    }
+  ]
+}

@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "date": "2026-11-27",
+      "lede": "今日热议集中在「谁掌握入口与成本」：Google 把 Workspace 接入收进自家 MCP，硬盘价格两年翻倍，而自托管与小模型训练成本反而在下降。",
+      "takeaway": "Google 2027 年 MCP 强制条款最该提前评估，它决定你的 agent 能做什么、不能做什么。",
+      "count": 24
+    },
+    {
       "date": "2026-11-26",
       "lede": "今日热点在安全与 AI 边界：1Password 后端事件、NYT 警惕 Photoshop 写入 AI metadata；HN 还在热议矩阵乘法指数与 Lean 验证，开源侧关注 NGINX 和 MiniMind。",
       "takeaway": "优先核查 1Password 后端事件范围与官方通报，密码管理器的信任成本最高。",

@@ -1,0 +1,461 @@
+{
+  "date": "2026-11-27",
+  "generated_at": "2026-11-27 12:58",
+  "lede": "今日热议集中在「谁掌握入口与成本」：Google 把 Workspace 接入收进自家 MCP，硬盘价格两年翻倍，而自托管与小模型训练成本反而在下降。",
+  "takeaway": "Google 2027 年 MCP 强制条款最该提前评估，它决定你的 agent 能做什么、不能做什么。",
+  "degraded": false,
+  "usage": {
+    "requests": 3,
+    "failures": 0,
+    "prompt_tokens": 3115,
+    "completion_tokens": 6110,
+    "cache_hit_tokens": 0,
+    "cost_usd": 0.004133,
+    "peak": false
+  },
+  "sources": [
+    {
+      "source": "hn",
+      "category": "社区热议",
+      "got": 17,
+      "error": null
+    },
+    {
+      "source": "github-trending",
+      "category": "开源趋势",
+      "got": 16,
+      "error": null
+    },
+    {
+      "source": "arxiv",
+      "category": "论文速递",
+      "got": 20,
+      "error": null
+    },
+    {
+      "source": "hf-blog",
+      "category": "行业动态",
+      "got": 12,
+      "error": null
+    },
+    {
+      "source": "simonwillison",
+      "category": "行业动态",
+      "got": 12,
+      "error": null
+    },
+    {
+      "source": "qbitai",
+      "category": "中文圈",
+      "got": 10,
+      "error": null
+    },
+    {
+      "source": "v2ex",
+      "category": "中文圈",
+      "got": 10,
+      "error": null
+    }
+  ],
+  "items": [
+    {
+      "title": "AI made self-hosting fun again",
+      "url": "https://janlukas.blog/posts/ai-self-hosting",
+      "category": "社区热议",
+      "source": "hn",
+      "published": "2026-11-26T21:47:45+00:00",
+      "points": 438,
+      "score": 4.1254,
+      "summary": "I’ve been self-hosting things for many years. There were times when I was quite enthusiastic about it, constantly trying out new software and tinkering with my infrastructure. But at some point, that enthusiasm faded a bit.",
+      "authors": [],
+      "analysis": {
+        "what": "作者自述自托管多年，曾经热衷折腾新软件与自家基础设施，但热情一度消退；这篇文章讲 AI 如何让自托管重新变得有趣，在 HN 获 438 分。",
+        "why": "自托管的老问题常是配置与维护成本，若 AI 能分担这部分，个人基础设施的投入产出比会被重新计算。",
+        "tag": "社区讨论"
+      }
+    },
+    {
+      "title": "Google Will Make AI Agents Use Its MCP Servers. The Gmail One Can't Send Email",
+      "url": "https://techstackups.com/articles/google-workspace-ai-agents-mcp/",
+      "category": "社区热议",
+      "source": "hn",
+      "published": "2026-11-26T09:44:23+00:00",
+      "points": 284,
+      "score": 3.7867,
+      "summary": "From February 2027, Google's terms require AI agents to reach Gmail, Drive and the rest of Workspace through Google's own MCP servers. What the rule says, what the servers can and can't do, and what to change before the deadline.",
+      "authors": [],
+      "analysis": {
+        "what": "自 2027 年 2 月起，Google 条款要求 AI agent 必须通过 Google 自家的 MCP server 访问 Gmail、Drive 等 Workspace 服务；文章梳理条款内容与各 server 的能力边界。",
+        "why": "摘要明确指出 Gmail 那个 server 不能发信，接入前需核对权限清单，并在截止日前改造现有集成。",
+        "tag": "平台政策"
+      }
+    },
+    {
+      "title": "Hard Drive pricing has gotten bad",
+      "url": "https://blog.ktz.me/black-friday-hard-drive-prices-are-messed-up/",
+      "category": "社区热议",
+      "source": "hn",
+      "published": "2026-11-27T01:13:49+00:00",
+      "points": 169,
+      "score": 3.0853,
+      "summary": "The same 20TB drive went from $249.99 to $549.99 in two Black Fridays. I dug through eight years of receipts, including my ServerPartDeals orders.",
+      "authors": [],
+      "analysis": {
+        "what": "作者翻出八年收据（含 ServerPartDeals 订单）对比：同一块 20TB 硬盘在两个黑色星期五之间从 249.99 美元涨到 549.99 美元。",
+        "why": "存储扩容预算需按新价位重算，自建 NAS 与大容量备份的成本假设已经失效。",
+        "tag": "硬件成本"
+      }
+    },
+    {
+      "title": "Kamil Khan Mumtaz: Pakistani architect, admired at home, almost invisible abroad",
+      "url": "https://worksinprogress.co/issue/the-greatest-architect-youve-never-heard-of-is-in-pakistan/",
+      "category": "社区热议",
+      "source": "hn",
+      "published": "2026-11-26T21:08:05+00:00",
+      "points": 298,
+      "score": 3.0398,
+      "summary": "Traditional architecture is alive and well in Lahore. A photo essay of Kamil Khan Mumtaz’s greatest works.",
+      "authors": [],
+      "analysis": {
+        "what": "巴基斯坦建筑师 Kamil Khan Mumtaz 在拉合尔的作品以传统建筑为本，本地享有声誉，海外几乎无人知晓；这是一组作品摄影随笔，HN 298 分。",
+        "why": "关注非西方建筑实践的人可借此看到传统工法在当代城市中的实际落地案例。",
+        "tag": "人物建筑"
+      }
+    },
+    {
+      "title": "Company Culture = Slack Emoji ÷ √Headcount",
+      "url": "https://lia.mg/posts/measuring-company-culture-with-slack-emoji/",
+      "category": "社区热议",
+      "source": "hn",
+      "published": "2026-11-26T20:49:49+00:00",
+      "points": 187,
+      "score": 2.9047,
+      "summary": "Companies spend an enormous amount of time and money trying to measure - and even worse, decide - culture. Engagement surveys, pulse checks, eNPS, offsites where someone from HR asks you to describe the company as a type of animal. Office posters make claims like “our culture is honesty, hard work and fun”, embarrassing the paper they’re printed on.",
+      "authors": [],
+      "analysis": {
+        "what": "作者用「Slack emoji 数 ÷ √人数」调侃公司文化度量，并批评 engagement survey、pulse check、eNPS、HR 团建和墙上标语式的文化宣称。",
+        "why": "提醒团队别把问卷分数当文化本身，指标只反映参与度，不反映协作质量。",
+        "tag": "管理文化"
+      }
+    },
+    {
+      "title": "Tell HN: Happy Thanksgiving",
+      "url": "https://news.ycombinator.com/item?id=50655664",
+      "category": "社区热议",
+      "source": "hn",
+      "published": "2026-11-26T14:26:54+00:00",
+      "points": 654,
+      "score": 2.8917,
+      "summary": "Hopefully it’s a great day spent with your friends and family. And if it’s not, make it a great day anyway!",
+      "authors": [],
+      "analysis": {
+        "what": "一条面向 HN 读者的感恩节问候：希望大家与亲友度过好的一天，如果不是，也请自己把它过好，获得 654 分。",
+        "why": "纯社区互动帖，分数说明技术社区对人际连接的回应度，无技术信息量。",
+        "tag": "社区"
+      }
+    },
+    {
+      "title": "nginx/nginx",
+      "url": "https://github.com/nginx/nginx",
+      "category": "开源趋势",
+      "source": "github-trending",
+      "published": null,
+      "points": 0,
+      "score": 2.5147,
+      "summary": "The official NGINX Open Source repository.\nNGINX (pronounced \"engine x\" or \"en-jin-eks\") is the world's most popular Web Server, high performance Load Balancer, Reverse Proxy, API Gateway and Content Cache.\nNGINX is free and open source software, distributed under the terms of a simplified 2-clause BSD-like license .\nEnterprise distributions, commercial support and training are available from F5, Inc .\nImportant\nThe…",
+      "authors": [],
+      "analysis": {
+        "what": "NGINX 官方开源仓库，定位为高性能 Web Server、负载均衡、反向代理、API Gateway 与内容缓存，采用简化版 2-clause BSD 类许可，企业版与商业支持由 F5 提供。",
+        "why": "需要确认许可与商业支持边界的人，应直接看官方仓库而非二手镜像。",
+        "tag": "开源基础设施"
+      }
+    },
+    {
+      "title": "jingyaogong/minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "category": "开源趋势",
+      "source": "github-trending",
+      "published": null,
+      "points": 0,
+      "score": 2.4379,
+      "summary": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.\n\"大道至简\"\n中文 | English\n此开源项目旨在完全从 0 开始，仅用 3 块钱成本与 2 小时训练时间，即可训练出规模约为 64M 的超小语言模型 MiniMind。\nMiniMind 系列极其轻量，主线最小版本体积约为 GPT-3 的 $\\frac{1}{2700}$，力求让普通个人 GPU 也能快速完成训练与复现。\n项目同时开源了大模型的极简结构与完整训练链路，覆盖 MoE、数据清洗、预训练（Pretrain）、监督微调（SFT）、LoRA、RLHF（DPO）、RLAIF（PPO / GRPO / CISPO）、Tool Use、Agentic RL、自适应思考与模型蒸馏等全过程代码。",
+      "authors": [],
+      "analysis": {
+        "what": "开源项目 MiniMind：用约 3 元成本、2 小时从零训练约 64M 参数小模型，主线最小版本体积约为 GPT-3 的 1/2700；同时开源 MoE、数据清洗、Pretrain、SFT、LoRA、DPO、PPO/GRPO、Tool Use、Agentic RL、蒸馏等全流程代码。",
+        "why": "适合在单张个人 GPU 上跑通大模型训练全链路，用于教学与流程验证而非效果对标。",
+        "tag": "开源模型"
+      }
+    },
+    {
+      "title": "openvinotoolkit/openvino",
+      "url": "https://github.com/openvinotoolkit/openvino",
+      "category": "开源趋势",
+      "source": "github-trending",
+      "published": null,
+      "points": 0,
+      "score": 1.803,
+      "summary": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference\nOpen-source software toolkit for optimizing and deploying deep learning models.\nDocumentation • Blog • Key Features • Tutorials • Integrations • Benchmarks • Generative AI\nInference Optimization : Boost deep learning performance in computer vision, automatic speech recognition, generative AI, natural language processing with large and small…",
+      "authors": [],
+      "analysis": {
+        "what": "OpenVINO 是优化与部署 AI 推理的开源工具包，覆盖计算机视觉、语音识别、生成式 AI 与 NLP，README 列出文档、教程、集成与基准测试入口。",
+        "why": "适合需要把模型推进生产推理链路的开发者，可从教程与 benchmark 部分入手评估。",
+        "tag": "开源/推理"
+      }
+    },
+    {
+      "title": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "category": "开源趋势",
+      "source": "github-trending",
+      "published": null,
+      "points": 0,
+      "score": 1.7776,
+      "summary": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.\nAn agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand.\n52 diagram types. No shadows.",
+      "authors": [],
+      "analysis": {
+        "what": "面向 Claude Code、Codex、Copilot、Cursor 等 agent 的 skill，输出单文件 HTML+SVG 图表，含 52 种图表类型，强调无阴影、不用 Mermaid。",
+        "why": "展示了 agent skill 的垂直细分做法：把图表规范固化成可直接接入工作流的产物。",
+        "tag": "工具/图表"
+      }
+    },
+    {
+      "title": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "category": "开源趋势",
+      "source": "github-trending",
+      "published": null,
+      "points": 0,
+      "score": 1.5745,
+      "summary": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/\nCLI-Anything: Making ALL Software Agent-Native\nToday's Software Serves Humans👨‍💻. Tomorrow's Users will be Agents🤖.\nCLI-Anything: Bridging the Gap Between AI Agents and the World's Software\n🌐 CLI-Hub : pip install cli-anything-hub then cli-hub install <name> — browse, install, and manage all community-built CLIs.",
+      "authors": [],
+      "analysis": {
+        "what": "CLI-Anything 主张让所有软件成为 agent 原生，配套 CLI-Hub：pip install cli-anything-hub 后用 cli-hub install <name> 浏览、安装和管理社区 CLI。",
+        "why": "若 agent 的主要接口从 GUI 转向 CLI，这类 hub 会成为工具接入入口，值得关注其生态。",
+        "tag": "开源/agent"
+      }
+    },
+    {
+      "title": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "category": "开源趋势",
+      "source": "github-trending",
+      "published": null,
+      "points": 0,
+      "score": 1.5745,
+      "summary": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary\n/last30days\nEnglish | Français | Deutsch | Español | Português (Brasil) | 日本語 | 简体中文 | العربية | فارسی | Türkçe\nAn AI agent-led search engine scored by upvotes, likes, and real money - not editors.\nThis README tracks the current v4 pipeline.",
+      "authors": [],
+      "analysis": {
+        "what": "一个 agent skill，跨 Reddit、X、YouTube、HN、Polymarket 与网页检索话题并合成有据摘要；排序靠点赞与真实资金而非编辑，README 标注 v4 流程。",
+        "why": "用社区信号替代编辑排序做调研，适合快速扫话题舆情，但结论仍需自行核实。",
+        "tag": "工具/检索"
+      }
+    },
+    {
+      "title": "$μ$-Bench: Benchmarking Multi-User Task Completion in Shared Interaction Voice Agents",
+      "url": "https://arxiv.org/abs/2611.34920v1",
+      "category": "论文速递",
+      "source": "arxiv",
+      "published": "2026-11-25T18:58:42+00:00",
+      "points": 0,
+      "score": 1.2525,
+      "summary": "Voice agents in shared spaces must satisfy interdependent multi-user requests while upholding per-user authority, privacy, and task constraints. Existing evaluations offer limited coverage when participants react throughout a session. We introduce $μ$-Bench, a benchmark for joint task completion in closed-loop, full-duplex multi-user voice interaction.",
+      "authors": [
+        "Qihao Lin",
+        "Guanxu Chen",
+        "Shuhang Zheng",
+        "Xiaoya Lu"
+      ],
+      "analysis": {
+        "what": "论文提出 μ-Bench，评测共享空间语音 agent 的联合任务完成：需满足多用户相互依赖的请求，同时守住每用户权限、隐私与任务约束，场景为闭环全双工交互。",
+        "why": "现有评测在“参与者会在会话中实时反应”上覆盖不足，该 benchmark 把多方实时互动纳入考核。",
+        "tag": "论文/评测"
+      }
+    },
+    {
+      "title": "A Survey of Security, Privacy, and Ethics of Large Language Models in Telecom",
+      "url": "https://arxiv.org/abs/2611.34868v1",
+      "category": "论文速递",
+      "source": "arxiv",
+      "published": "2026-11-25T18:33:07+00:00",
+      "points": 0,
+      "score": 1.1854,
+      "summary": "Large Language Models (LLMs) are increasingly integrated into telecommunications for customer service, network analytics, and operational support. While offering efficiency and innovation, their deployment raises critical privacy, security, and ethical challenges due to the uniquely sensitive and longitudinal nature of telecom data. This paper presents a survey of LLM risks and safeguards in telecom context.",
+      "authors": [
+        "Joy Bose",
+        "Srinivas Adyapak"
+      ],
+      "analysis": {
+        "what": "一篇综述，梳理 LLM 在电信行业用于客服、网络分析与运营支撑时带来的隐私、安全与伦理风险，指出电信数据敏感且具长周期性，并讨论防护措施。",
+        "why": "做电信或强合规行业落地的团队，可把它当作风险清单，重点看数据长周期特性带来的问题。",
+        "tag": "论文/安全"
+      }
+    },
+    {
+      "title": "Diverse Alternative Reasoning Traces for Hard Math Problems",
+      "url": "https://arxiv.org/abs/2611.34928v1",
+      "category": "论文速递",
+      "source": "arxiv",
+      "published": "2026-11-25T18:59:11+00:00",
+      "points": 0,
+      "score": 1.1292,
+      "summary": "Post-training large language models (LLMs) for mathematical reasoning often relies on accepted traces whose final answers pass a verifier. For hard math problems, however, such traces can be rare under independent Monte Carlo (MC) sampling.",
+      "authors": [
+        "Lukas Aichberger",
+        "Adam Golinski",
+        "Arno Blaas",
+        "Arwen Bradley"
+      ],
+      "analysis": {
+        "what": "论文关注难数学题的后训练数据来源：常见做法是保留最终答案通过验证器的推理轨迹，但在独立 Monte Carlo 采样下，难题的合格轨迹往往很稀少。",
+        "why": "点出 accepted trace 在难题上的采样瓶颈，提示需要多样化的替代推理路径。",
+        "tag": "论文/推理"
+      }
+    },
+    {
+      "title": "Swarms, Flocks, Gangs: How to build, train, and evaluate multi-agent systems",
+      "url": "https://huggingface.co/blog/training-swarms",
+      "category": "行业动态",
+      "source": "hf-blog",
+      "published": "2026-11-26T00:00:00+00:00",
+      "points": 0,
+      "score": 1.1431,
+      "summary": "We’re on a journey to advance and democratize artificial intelligence through open source and open science.",
+      "authors": [],
+      "analysis": {
+        "what": "一条行业动态，主题是如何构建、训练和评估多智能体系统，标题以 Swarms、Flocks、Gangs 作比；摘要只说明其推进开源与开放科学的使命。",
+        "why": "多 agent 系统的训练与评估方法仍在成型，可作框架对照，但本条摘要信息量有限。",
+        "tag": "行业/多智能体"
+      }
+    },
+    {
+      "title": "Quoting Jack Despain Zhou",
+      "url": "https://simonwillison.net/2026/Nov/26/jack-despain-zhou/",
+      "category": "行业动态",
+      "source": "simonwillison",
+      "published": "2026-11-26T15:09:31+00:00",
+      "points": 0,
+      "score": 1.6224,
+      "summary": "Among the many already existing effects of AI has been a great de-individualization. I open a YouTube video, and I hear Claude. I sit in a conference presentation, and I hear Claude. I open my email inbox, and I find pitches and articles from ostensibly serious people with ostensibly serious credentials attached to ostensibly serious institutions who want to publish things attached to their reputations and mine, and…",
+      "authors": [],
+      "analysis": {
+        "what": "Jack Despain Zhou 指出，AI 已带来明显的去个体化：YouTube 视频、会议演讲和收件箱 pitch 中都能听到或看到 Claude 式输出。",
+        "why": "对开发者而言，内容与表达的 AI 同质化会影响产品差异化和个人品牌识别。",
+        "tag": "行业观察"
+      }
+    },
+    {
+      "title": "20个AI Agents组队，4天狂跑350次实验，超越ClickBench最佳公开成绩",
+      "url": "https://www.qbitai.com/2026/11/513053.html",
+      "category": "中文圈",
+      "source": "qbitai",
+      "published": "2026-11-27T01:16:10+00:00",
+      "points": 0,
+      "score": 1.7831,
+      "summary": "Quickwit查询总耗时降31%，最高降87%",
+      "authors": [],
+      "analysis": {
+        "what": "20 个 AI Agents 组队，4 天运行约 350 次实验，超过 ClickBench 最佳公开成绩；Quickwit 查询总耗时降 31%，最高降 87%。",
+        "why": "多 Agent 并行实验在数据库 benchmark 上给出可量化收益，值得关注其任务编排与复现方式。",
+        "tag": "AI Agents"
+      }
+    },
+    {
+      "title": "陶哲轩下场验证黎曼猜想！“AI批量吐证明就像发电厂排核废料”",
+      "url": "https://www.qbitai.com/2026/11/513075.html",
+      "category": "中文圈",
+      "source": "qbitai",
+      "published": "2026-11-27T02:03:10+00:00",
+      "points": 0,
+      "score": 1.5133,
+      "summary": "担心课题被AI抢先，该怎么办？",
+      "authors": [],
+      "analysis": {
+        "what": "围绕陶哲轩下场验证黎曼猜想的讨论，出现“AI 批量吐证明像发电厂排核废料”的比喻，并提出担心课题被 AI 抢先。",
+        "why": "开发者应关注 AI 生成数学证明后的验证、筛选与优先级分配，而不只是生成速度。",
+        "tag": "论文/数学"
+      }
+    },
+    {
+      "title": "381个AI直播冲刺证明P=NP！把GitHub干崩了",
+      "url": "https://www.qbitai.com/2026/11/513021.html",
+      "category": "中文圈",
+      "source": "qbitai",
+      "published": "2026-11-26T13:56:01+00:00",
+      "points": 0,
+      "score": 1.2376,
+      "summary": "已跑了超过一万次会话，在Lean4里验证通过了2400多条引理",
+      "authors": [],
+      "analysis": {
+        "what": "381 个 AI 直播冲刺证明 P=NP，已跑超过一万次会话，在 Lean4 里验证通过 2400 多条引理，期间 GitHub 被干崩。",
+        "why": "大规模并行加 Lean4 形式化验证，展示了 AI 数学协作的工程化路径与基础设施压力。",
+        "tag": "形式化验证"
+      }
+    },
+    {
+      "title": "AI 3D界的“X光”来了！一图直出巴洛克雕塑，3D打印开箱即用",
+      "url": "https://www.qbitai.com/2026/11/512981.html",
+      "category": "中文圈",
+      "source": "qbitai",
+      "published": "2026-11-26T12:39:08+00:00",
+      "points": 0,
+      "score": 1.2084,
+      "summary": "还得是科班尖子生",
+      "authors": [],
+      "analysis": {
+        "what": "AI 3D 工具被形容为“X 光”，可从一张图直接生成巴洛克雕塑，并做到 3D 打印开箱即用。",
+        "why": "如果输出可直接打印，3D 内容生产链的建模与后处理环节可能被压缩。",
+        "tag": "3D生成"
+      }
+    },
+    {
+      "title": "顶尖商用级AI视频每秒只要5毛！中国开源新势力拿下全球第一",
+      "url": "https://www.qbitai.com/2026/11/512916.html",
+      "category": "中文圈",
+      "source": "qbitai",
+      "published": "2026-11-26T06:41:23+00:00",
+      "points": 0,
+      "score": 1.1989,
+      "summary": "30秒一镜到底，可自动编排镜头",
+      "authors": [],
+      "analysis": {
+        "what": "有中国开源新势力称其商用级 AI 视频每秒只要 5 毛，支持 30 秒一镜到底和自动编排镜头，并称拿下全球第一。",
+        "why": "价格与镜头编排是 AI 视频商业化的关键变量，开发者可关注其开源许可和实际生成质量。",
+        "tag": "AI视频/开源"
+      }
+    },
+    {
+      "title": "乾崑共创者计划发布：加入乾崑生态，共创出行未来！",
+      "url": "https://www.qbitai.com/2026/11/513087.html",
+      "category": "中文圈",
+      "source": "qbitai",
+      "published": "2026-11-27T02:19:12+00:00",
+      "points": 0,
+      "score": 1.1688,
+      "summary": "11月26日，“乾崑生态 共赴热爱”华为乾崑生态大会在广州南沙体育馆举行。",
+      "authors": [],
+      "analysis": {
+        "what": "华为乾崑发布“乾崑共创者计划”，邀请加入乾崑生态；乾崑生态大会于 11 月 26 日在广州南沙体育馆举行。",
+        "why": "对出行生态开发者和合作伙伴，这是了解入口与合作方式的信号，但目前细节有限。",
+        "tag": "商业/生态"
+      }
+    },
+    {
+      "title": "其他模型真的好用，我又何必折腾 Claude 呢",
+      "url": "https://www.v2ex.com/t/1260233#reply46",
+      "category": "中文圈",
+      "source": "v2ex",
+      "published": "2026-11-27T02:50:05+00:00",
+      "points": 0,
+      "score": 1.5115,
+      "summary": "最近老是看到 “不理解为什么非要用 Claude” 的言论 ，甚至还有说 “用 Claude 是为了体现高人一等”。\n我都折腾用上 Claude 了，难道你觉得我们没用过 ChatGPT、Gemini、DeepSeek、Kimi 吗？要是真的好用我至于去贴达里奥的冷屁股吗？国模好不好用我还不知道吗？",
+      "authors": [
+        "dcsuibian"
+      ],
+      "analysis": {
+        "what": "作者 dcsuibian 回应“为何非要用 Claude”的质疑，称自己用过 ChatGPT、Gemini、DeepSeek、Kimi，若其他模型更好用就不会折腾 Claude。",
+        "why": "模型选择应回到具体任务体验，而不是被“高人一等”之类的标签讨论带偏。",
+        "tag": "模型评测"
+      }
+    }
+  ]
+}

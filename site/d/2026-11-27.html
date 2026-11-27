@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>每日技术简报 · 2026-11-27</title>
+<meta property="og:title" content="每日技术简报 · 2026-11-27">
+<link rel="canonical" href="https://hahayashi77.github.io/test/d/2026-11-27.html">
+<style>
+:root{
+  --ink:#14181f; --ink-2:#3d4653; --ink-3:#6b7686;
+  --bg:#fbfaf7; --card:#ffffff; --line:#e6e2da;
+  --accent:#0f62fe; --accent-soft:#e8f0ff;
+  --whale:#2b6cb0; --warm:#b45309;
+  --serif:"Iowan Old Style","Charter","Songti SC","Noto Serif CJK SC",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",
+         "Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  --mono:"SF Mono","JetBrains Mono",Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --ink:#e9eaee; --ink-2:#b6bcc9; --ink-3:#8b94a5;
+    --bg:#0f1216; --card:#161a20; --line:#262b33;
+    --accent:#6ea8ff; --accent-soft:#1b2637; --whale:#7aa7d9; --warm:#e0a458; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px}
+
+/* ── 报头 ── */
+header.top{padding:34px 0 22px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.masthead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.masthead h1{font-family:var(--serif);font-size:30px;margin:0;letter-spacing:-.4px}
+.masthead .date{color:var(--ink-3);font-size:13px;font-variant-numeric:tabular-nums}
+.masthead nav{margin-left:auto;font-size:13px;display:flex;gap:16px}
+.tagline{color:var(--ink-2);font-size:14px;margin-top:6px}
+
+/* ── 导语 ── */
+.lede{font-family:var(--serif);font-size:18.5px;line-height:1.72;color:var(--ink);
+  margin:0 0 26px;padding-left:16px;border-left:3px solid var(--accent)}
+.lede .lbl{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+
+/* ── 板块 ── */
+.section{margin:38px 0 0}
+.section h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;margin:0 0 14px;padding-bottom:8px;
+  border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+.section h2 .count{font-variant-numeric:tabular-nums;color:var(--accent);
+  background:var(--accent-soft);border-radius:20px;padding:1px 8px;
+  font-size:11px;letter-spacing:0}
+
+/* ── 条目 ── */
+.item{padding:16px 0 18px;border-bottom:1px dashed var(--line)}
+.item:last-child{border-bottom:0}
+.item-head{display:flex;gap:10px;align-items:baseline}
+.rank{font-family:var(--mono);font-size:12px;color:var(--ink-3);
+  min-width:22px;padding-top:3px;font-variant-numeric:tabular-nums}
+.title{font-size:17px;font-weight:600;line-height:1.45;letter-spacing:-.1px;margin:0}
+.title a{color:var(--ink)}
+.title a:hover{color:var(--accent);text-decoration:none}
+.meta{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--ink-3);
+  margin:6px 0 0 32px;font-variant-numeric:tabular-nums}
+.meta .tag{color:var(--whale);background:var(--accent-soft);border-radius:4px;
+  padding:1px 7px;font-size:11px;font-weight:600;letter-spacing:.02em}
+.body{margin:8px 0 0 32px}
+.what{color:var(--ink-2);font-size:14.5px;margin:0}
+.why{color:var(--ink-2);font-size:13.5px;margin:7px 0 0;padding-left:11px;
+  border-left:2px solid var(--line)}
+.why b{color:var(--warm);font-weight:600;font-size:12px;letter-spacing:.06em}
+.raw{color:var(--ink-3);font-size:13.5px;margin:0}
+.authors{color:var(--ink-3);font-size:12.5px;margin-top:5px}
+
+/* ── 今日判断 / 页脚 ── */
+.takeaway{margin:44px 0 0;padding:20px 22px;background:var(--card);
+  border:1px solid var(--line);border-radius:10px}
+.takeaway .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--warm);font-weight:700}
+.takeaway p{margin:8px 0 0;font-size:15.5px;line-height:1.65}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--ink-3);display:flex;gap:16px;flex-wrap:wrap;
+  font-variant-numeric:tabular-nums}
+footer a{color:var(--ink-3);text-decoration:underline}
+.degraded{background:#fff8e6;border:1px solid #f0d9a8;color:#7a5a12;
+  padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:24px}
+@media (prefers-color-scheme: dark){.degraded{background:#2a2415;border-color:#4a3d1d;color:#e0bf7a}}
+
+/* ── 归档 ── */
+.arc-list{list-style:none;padding:0;margin:0}
+.arc-list li{display:flex;gap:14px;align-items:baseline;padding:11px 0;
+  border-bottom:1px solid var(--line);font-size:15px}
+.arc-list .d{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);min-width:88px}
+.arc-list .t{color:var(--ink-2);font-size:13.5px;margin-left:auto;text-align:right;
+  max-width:52%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:640px){
+  .masthead h1{font-size:24px}
+  .masthead nav{width:100%;margin-left:0}
+  .body,.meta{margin-left:0}
+  .rank{display:none}
+  .arc-list .t{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="masthead">
+    <h1>每日技术简报</h1>
+    <span class="date">2026 年 11 月 27 日 · 星期五</span>
+    <nav><a href="archive.html">归档</a><a href="feed.xml">RSS</a></nav>
+  </div>
+  <div class="tagline">AI · 开源 · 工程 —— 每天 5 分钟读完</div>
+</header><div class="lede"><span class="lbl">今日概述</span>今日热议集中在「谁掌握入口与成本」：Google 把 Workspace 接入收进自家 MCP，硬盘价格两年翻倍，而自托管与小模型训练成本反而在下降。</div>
+<section class="section"><h2>社区热议<span class="count">6</span></h2><article class="item">
+  <div class="item-head">
+    <span class="rank">01</span>
+    <h3 class="title"><a href="https://janlukas.blog/posts/ai-self-hosting" target="_blank" rel="noopener">AI made self-hosting fun again</a></h3>
+  </div>
+  <div class="meta"><span class="tag">社区讨论</span><span>社区热议</span><span>HN 438 分</span></div>
+  <div class="body"><p class="what">作者自述自托管多年，曾经热衷折腾新软件与自家基础设施，但热情一度消退；这篇文章讲 AI 如何让自托管重新变得有趣，在 HN 获 438 分。</p><p class="why"><b>为什么值得看</b> 自托管的老问题常是配置与维护成本，若 AI 能分担这部分，个人基础设施的投入产出比会被重新计算。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">02</span>
+    <h3 class="title"><a href="https://techstackups.com/articles/google-workspace-ai-agents-mcp/" target="_blank" rel="noopener">Google Will Make AI Agents Use Its MCP Servers. The Gmail One Can&#x27;t Send Email</a></h3>
+  </div>
+  <div class="meta"><span class="tag">平台政策</span><span>社区热议</span><span>HN 284 分</span></div>
+  <div class="body"><p class="what">自 2027 年 2 月起，Google 条款要求 AI agent 必须通过 Google 自家的 MCP server 访问 Gmail、Drive 等 Workspace 服务；文章梳理条款内容与各 server 的能力边界。</p><p class="why"><b>为什么值得看</b> 摘要明确指出 Gmail 那个 server 不能发信，接入前需核对权限清单，并在截止日前改造现有集成。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">03</span>
+    <h3 class="title"><a href="https://blog.ktz.me/black-friday-hard-drive-prices-are-messed-up/" target="_blank" rel="noopener">Hard Drive pricing has gotten bad</a></h3>
+  </div>
+  <div class="meta"><span class="tag">硬件成本</span><span>社区热议</span><span>HN 169 分</span></div>
+  <div class="body"><p class="what">作者翻出八年收据（含 ServerPartDeals 订单）对比：同一块 20TB 硬盘在两个黑色星期五之间从 249.99 美元涨到 549.99 美元。</p><p class="why"><b>为什么值得看</b> 存储扩容预算需按新价位重算，自建 NAS 与大容量备份的成本假设已经失效。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">04</span>
+    <h3 class="title"><a href="https://worksinprogress.co/issue/the-greatest-architect-youve-never-heard-of-is-in-pakistan/" target="_blank" rel="noopener">Kamil Khan Mumtaz: Pakistani architect, admired at home, almost invisible abroad</a></h3>
+  </div>
+  <div class="meta"><span class="tag">人物建筑</span><span>社区热议</span><span>HN 298 分</span></div>
+  <div class="body"><p class="what">巴基斯坦建筑师 Kamil Khan Mumtaz 在拉合尔的作品以传统建筑为本，本地享有声誉，海外几乎无人知晓；这是一组作品摄影随笔，HN 298 分。</p><p class="why"><b>为什么值得看</b> 关注非西方建筑实践的人可借此看到传统工法在当代城市中的实际落地案例。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">05</span>
+    <h3 class="title"><a href="https://lia.mg/posts/measuring-company-culture-with-slack-emoji/" target="_blank" rel="noopener">Company Culture = Slack Emoji ÷ √Headcount</a></h3>
+  </div>
+  <div class="meta"><span class="tag">管理文化</span><span>社区热议</span><span>HN 187 分</span></div>
+  <div class="body"><p class="what">作者用「Slack emoji 数 ÷ √人数」调侃公司文化度量，并批评 engagement survey、pulse check、eNPS、HR 团建和墙上标语式的文化宣称。</p><p class="why"><b>为什么值得看</b> 提醒团队别把问卷分数当文化本身，指标只反映参与度，不反映协作质量。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">06</span>
+    <h3 class="title"><a href="https://news.ycombinator.com/item?id=50655664" target="_blank" rel="noopener">Tell HN: Happy Thanksgiving</a></h3>
+  </div>
+  <div class="meta"><span class="tag">社区</span><span>社区热议</span><span>HN 654 分</span></div>
+  <div class="body"><p class="what">一条面向 HN 读者的感恩节问候：希望大家与亲友度过好的一天，如果不是，也请自己把它过好，获得 654 分。</p><p class="why"><b>为什么值得看</b> 纯社区互动帖，分数说明技术社区对人际连接的回应度，无技术信息量。</p></div>
+</article></section>
+<section class="section"><h2>开源趋势<span class="count">6</span></h2><article class="item">
+  <div class="item-head">
+    <span class="rank">07</span>
+    <h3 class="title"><a href="https://github.com/nginx/nginx" target="_blank" rel="noopener">nginx/nginx</a></h3>
+  </div>
+  <div class="meta"><span class="tag">开源基础设施</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">NGINX 官方开源仓库，定位为高性能 Web Server、负载均衡、反向代理、API Gateway 与内容缓存，采用简化版 2-clause BSD 类许可，企业版与商业支持由 F5 提供。</p><p class="why"><b>为什么值得看</b> 需要确认许可与商业支持边界的人，应直接看官方仓库而非二手镜像。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">08</span>
+    <h3 class="title"><a href="https://github.com/jingyaogong/minimind" target="_blank" rel="noopener">jingyaogong/minimind</a></h3>
+  </div>
+  <div class="meta"><span class="tag">开源模型</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">开源项目 MiniMind：用约 3 元成本、2 小时从零训练约 64M 参数小模型，主线最小版本体积约为 GPT-3 的 1/2700；同时开源 MoE、数据清洗、Pretrain、SFT、LoRA、DPO、PPO/GRPO、Tool Use、Agentic RL、蒸馏等全流程代码。</p><p class="why"><b>为什么值得看</b> 适合在单张个人 GPU 上跑通大模型训练全链路，用于教学与流程验证而非效果对标。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">09</span>
+    <h3 class="title"><a href="https://github.com/openvinotoolkit/openvino" target="_blank" rel="noopener">openvinotoolkit/openvino</a></h3>
+  </div>
+  <div class="meta"><span class="tag">开源/推理</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">OpenVINO 是优化与部署 AI 推理的开源工具包，覆盖计算机视觉、语音识别、生成式 AI 与 NLP，README 列出文档、教程、集成与基准测试入口。</p><p class="why"><b>为什么值得看</b> 适合需要把模型推进生产推理链路的开发者，可从教程与 benchmark 部分入手评估。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">10</span>
+    <h3 class="title"><a href="https://github.com/cathrynlavery/diagram-design" target="_blank" rel="noopener">cathrynlavery/diagram-design</a></h3>
+  </div>
+  <div class="meta"><span class="tag">工具/图表</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">面向 Claude Code、Codex、Copilot、Cursor 等 agent 的 skill，输出单文件 HTML+SVG 图表，含 52 种图表类型，强调无阴影、不用 Mermaid。</p><p class="why"><b>为什么值得看</b> 展示了 agent skill 的垂直细分做法：把图表规范固化成可直接接入工作流的产物。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">11</span>
+    <h3 class="title"><a href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener">HKUDS/CLI-Anything</a></h3>
+  </div>
+  <div class="meta"><span class="tag">开源/agent</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">CLI-Anything 主张让所有软件成为 agent 原生，配套 CLI-Hub：pip install cli-anything-hub 后用 cli-hub install &lt;name&gt; 浏览、安装和管理社区 CLI。</p><p class="why"><b>为什么值得看</b> 若 agent 的主要接口从 GUI 转向 CLI，这类 hub 会成为工具接入入口，值得关注其生态。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">12</span>
+    <h3 class="title"><a href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener">mvanhorn/last30days-skill</a></h3>
+  </div>
+  <div class="meta"><span class="tag">工具/检索</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">一个 agent skill，跨 Reddit、X、YouTube、HN、Polymarket 与网页检索话题并合成有据摘要；排序靠点赞与真实资金而非编辑，README 标注 v4 流程。</p><p class="why"><b>为什么值得看</b> 用社区信号替代编辑排序做调研，适合快速扫话题舆情，但结论仍需自行核实。</p></div>
+</article></section>
+<section class="section"><h2>论文速递<span class="count">3</span></h2><article class="item">
+  <div class="item-head">
+    <span class="rank">13</span>
+    <h3 class="title"><a href="https://arxiv.org/abs/2611.34920v1" target="_blank" rel="noopener">$μ$-Bench: Benchmarking Multi-User Task Completion in Shared Interaction Voice Agents</a></h3>
+  </div>
+  <div class="meta"><span class="tag">论文/评测</span><span>论文速递</span><span>cs.CL</span></div>
+  <div class="body"><p class="what">论文提出 μ-Bench，评测共享空间语音 agent 的联合任务完成：需满足多用户相互依赖的请求，同时守住每用户权限、隐私与任务约束，场景为闭环全双工交互。</p><p class="why"><b>为什么值得看</b> 现有评测在“参与者会在会话中实时反应”上覆盖不足，该 benchmark 把多方实时互动纳入考核。</p><div class="authors">Qihao Lin、Guanxu Chen、Shuhang Zheng、Xiaoya Lu</div></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">14</span>
+    <h3 class="title"><a href="https://arxiv.org/abs/2611.34868v1" target="_blank" rel="noopener">A Survey of Security, Privacy, and Ethics of Large Language Models in Telecom</a></h3>
+  </div>
+  <div class="meta"><span class="tag">论文/安全</span><span>论文速递</span><span>cs.CR</span></div>
+  <div class="body"><p class="what">一篇综述，梳理 LLM 在电信行业用于客服、网络分析与运营支撑时带来的隐私、安全与伦理风险，指出电信数据敏感且具长周期性，并讨论防护措施。</p><p class="why"><b>为什么值得看</b> 做电信或强合规行业落地的团队，可把它当作风险清单，重点看数据长周期特性带来的问题。</p><div class="authors">Joy Bose、Srinivas Adyapak</div></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">15</span>
+    <h3 class="title"><a href="https://arxiv.org/abs/2611.34928v1" target="_blank" rel="noopener">Diverse Alternative Reasoning Traces for Hard Math Problems</a></h3>
+  </div>
+  <div class="meta"><span class="tag">论文/推理</span><span>论文速递</span><span>cs.CL</span></div>
+  <div class="body"><p class="what">论文关注难数学题的后训练数据来源：常见做法是保留最终答案通过验证器的推理轨迹，但在独立 Monte Carlo 采样下，难题的合格轨迹往往很稀少。</p><p class="why"><b>为什么值得看</b> 点出 accepted trace 在难题上的采样瓶颈，提示需要多样化的替代推理路径。</p><div class="authors">Lukas Aichberger、Adam Golinski、Arno Blaas、Arwen Bradley</div></div>
+</article></section>
+<section class="section"><h2>行业动态<span class="count">2</span></h2><article class="item">
+  <div class="item-head">
+    <span class="rank">16</span>
+    <h3 class="title"><a href="https://huggingface.co/blog/training-swarms" target="_blank" rel="noopener">Swarms, Flocks, Gangs: How to build, train, and evaluate multi-agent systems</a></h3>
+  </div>
+  <div class="meta"><span class="tag">行业/多智能体</span><span>行业动态</span></div>
+  <div class="body"><p class="what">一条行业动态，主题是如何构建、训练和评估多智能体系统，标题以 Swarms、Flocks、Gangs 作比；摘要只说明其推进开源与开放科学的使命。</p><p class="why"><b>为什么值得看</b> 多 agent 系统的训练与评估方法仍在成型，可作框架对照，但本条摘要信息量有限。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">17</span>
+    <h3 class="title"><a href="https://simonwillison.net/2026/Nov/26/jack-despain-zhou/" target="_blank" rel="noopener">Quoting Jack Despain Zhou</a></h3>
+  </div>
+  <div class="meta"><span class="tag">行业观察</span><span>行业动态</span></div>
+  <div class="body"><p class="what">Jack Despain Zhou 指出，AI 已带来明显的去个体化：YouTube 视频、会议演讲和收件箱 pitch 中都能听到或看到 Claude 式输出。</p><p class="why"><b>为什么值得看</b> 对开发者而言，内容与表达的 AI 同质化会影响产品差异化和个人品牌识别。</p></div>
+</article></section>
+<section class="section"><h2>中文圈<span class="count">7</span></h2><article class="item">
+  <div class="item-head">
+    <span class="rank">18</span>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/513053.html" target="_blank" rel="noopener">20个AI Agents组队，4天狂跑350次实验，超越ClickBench最佳公开成绩</a></h3>
+  </div>
+  <div class="meta"><span class="tag">AI Agents</span><span>中文圈</span></div>
+  <div class="body"><p class="what">20 个 AI Agents 组队，4 天运行约 350 次实验，超过 ClickBench 最佳公开成绩；Quickwit 查询总耗时降 31%，最高降 87%。</p><p class="why"><b>为什么值得看</b> 多 Agent 并行实验在数据库 benchmark 上给出可量化收益，值得关注其任务编排与复现方式。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">19</span>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/513075.html" target="_blank" rel="noopener">陶哲轩下场验证黎曼猜想！“AI批量吐证明就像发电厂排核废料”</a></h3>
+  </div>
+  <div class="meta"><span class="tag">论文/数学</span><span>中文圈</span></div>
+  <div class="body"><p class="what">围绕陶哲轩下场验证黎曼猜想的讨论，出现“AI 批量吐证明像发电厂排核废料”的比喻，并提出担心课题被 AI 抢先。</p><p class="why"><b>为什么值得看</b> 开发者应关注 AI 生成数学证明后的验证、筛选与优先级分配，而不只是生成速度。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">20</span>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/513021.html" target="_blank" rel="noopener">381个AI直播冲刺证明P=NP！把GitHub干崩了</a></h3>
+  </div>
+  <div class="meta"><span class="tag">形式化验证</span><span>中文圈</span></div>
+  <div class="body"><p class="what">381 个 AI 直播冲刺证明 P=NP，已跑超过一万次会话，在 Lean4 里验证通过 2400 多条引理，期间 GitHub 被干崩。</p><p class="why"><b>为什么值得看</b> 大规模并行加 Lean4 形式化验证，展示了 AI 数学协作的工程化路径与基础设施压力。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">21</span>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/512981.html" target="_blank" rel="noopener">AI 3D界的“X光”来了！一图直出巴洛克雕塑，3D打印开箱即用</a></h3>
+  </div>
+  <div class="meta"><span class="tag">3D生成</span><span>中文圈</span></div>
+  <div class="body"><p class="what">AI 3D 工具被形容为“X 光”，可从一张图直接生成巴洛克雕塑，并做到 3D 打印开箱即用。</p><p class="why"><b>为什么值得看</b> 如果输出可直接打印，3D 内容生产链的建模与后处理环节可能被压缩。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">22</span>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/512916.html" target="_blank" rel="noopener">顶尖商用级AI视频每秒只要5毛！中国开源新势力拿下全球第一</a></h3>
+  </div>
+  <div class="meta"><span class="tag">AI视频/开源</span><span>中文圈</span></div>
+  <div class="body"><p class="what">有中国开源新势力称其商用级 AI 视频每秒只要 5 毛，支持 30 秒一镜到底和自动编排镜头，并称拿下全球第一。</p><p class="why"><b>为什么值得看</b> 价格与镜头编排是 AI 视频商业化的关键变量，开发者可关注其开源许可和实际生成质量。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">23</span>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/513087.html" target="_blank" rel="noopener">乾崑共创者计划发布：加入乾崑生态，共创出行未来！</a></h3>
+  </div>
+  <div class="meta"><span class="tag">商业/生态</span><span>中文圈</span></div>
+  <div class="body"><p class="what">华为乾崑发布“乾崑共创者计划”，邀请加入乾崑生态；乾崑生态大会于 11 月 26 日在广州南沙体育馆举行。</p><p class="why"><b>为什么值得看</b> 对出行生态开发者和合作伙伴，这是了解入口与合作方式的信号，但目前细节有限。</p></div>
+</article>
+<article class="item">
+  <div class="item-head">
+    <span class="rank">24</span>
+    <h3 class="title"><a href="https://www.v2ex.com/t/1260233#reply46" target="_blank" rel="noopener">其他模型真的好用，我又何必折腾 Claude 呢</a></h3>
+  </div>
+  <div class="meta"><span class="tag">模型评测</span><span>中文圈</span></div>
+  <div class="body"><p class="what">作者 dcsuibian 回应“为何非要用 Claude”的质疑，称自己用过 ChatGPT、Gemini、DeepSeek、Kimi，若其他模型更好用就不会折腾 Claude。</p><p class="why"><b>为什么值得看</b> 模型选择应回到具体任务体验，而不是被“高人一等”之类的标签讨论带偏。</p><div class="authors">dcsuibian</div></div>
+</article></section>
+<div class="takeaway"><div class="lbl">今日判断</div><p>Google 2027 年 MCP 强制条款最该提前评估，它决定你的 agent 能做什么、不能做什么。</p></div><footer><span>24 条 · 来自 7 个信源</span><span>3 次模型调用</span><span>$0.0041</span><span>生成于 2026-11-27 12:58</span><span><a href="index.html">最新一期</a></span></footer>
+</div>
+</body>
+</html>

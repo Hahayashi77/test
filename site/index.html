@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>每日技术简报 · 2026-11-26</title>
-<meta property="og:title" content="每日技术简报 · 2026-11-26">
-<link rel="canonical" href="https://hahayashi77.github.io/test/d/2026-11-26.html">
+<title>每日技术简报 · 2026-11-27</title>
+<meta property="og:title" content="每日技术简报 · 2026-11-27">
+<link rel="canonical" href="https://hahayashi77.github.io/test/d/2026-11-27.html">
 <style>
 :root{
   --ink:#14181f; --ink-2:#3d4653; --ink-3:#6b7686;
@@ -111,74 +111,74 @@ footer a{color:var(--ink-3);text-decoration:underline}
 <header class="top">
   <div class="masthead">
     <h1>每日技术简报</h1>
-    <span class="date">2026 年 11 月 26 日 · 星期四</span>
+    <span class="date">2026 年 11 月 27 日 · 星期五</span>
     <nav><a href="archive.html">归档</a><a href="feed.xml">RSS</a></nav>
   </div>
   <div class="tagline">AI · 开源 · 工程 —— 每天 5 分钟读完</div>
-</header><div class="lede"><span class="lbl">今日概述</span>今日热点在安全与 AI 边界：1Password 后端事件、NYT 警惕 Photoshop 写入 AI metadata；HN 还在热议矩阵乘法指数与 Lean 验证，开源侧关注 NGINX 和 MiniMind。</div>
+</header><div class="lede"><span class="lbl">今日概述</span>今日热议集中在「谁掌握入口与成本」：Google 把 Workspace 接入收进自家 MCP，硬盘价格两年翻倍，而自托管与小模型训练成本反而在下降。</div>
 <section class="section"><h2>社区热议<span class="count">6</span></h2><article class="item">
   <div class="item-head">
     <span class="rank">01</span>
-    <h3 class="title"><a href="https://news.ycombinator.com/item?id=50649864" target="_blank" rel="noopener">Tell HN: Lots of Ask HNs again</a></h3>
+    <h3 class="title"><a href="https://janlukas.blog/posts/ai-self-hosting" target="_blank" rel="noopener">AI made self-hosting fun again</a></h3>
   </div>
-  <div class="meta"><span class="tag">社区/产品</span><span>社区热议</span><span>HN 165 分</span></div>
-  <div class="body"><p class="what">HN 的 /ask 页面近期 Ask HN 帖子变少、分页异常，引发多条追问；发帖者称已找到问题所在。</p><p class="why"><b>为什么值得看</b> 社区页面抓取与排序逻辑可能影响内容发现，依赖 HN 做信息源的工具需留意。</p></div>
+  <div class="meta"><span class="tag">社区讨论</span><span>社区热议</span><span>HN 438 分</span></div>
+  <div class="body"><p class="what">作者自述自托管多年，曾经热衷折腾新软件与自家基础设施，但热情一度消退；这篇文章讲 AI 如何让自托管重新变得有趣，在 HN 获 438 分。</p><p class="why"><b>为什么值得看</b> 自托管的老问题常是配置与维护成本，若 AI 能分担这部分，个人基础设施的投入产出比会被重新计算。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">02</span>
-    <h3 class="title"><a href="https://www.theverge.com/ai-artificial-intelligence/1041227/the-new-york-times-warns-photographers-not-to-update-photoshop-over-ai-features" target="_blank" rel="noopener">The New York Times warns photographers not to update Photoshop over AI features</a></h3>
+    <h3 class="title"><a href="https://techstackups.com/articles/google-workspace-ai-agents-mcp/" target="_blank" rel="noopener">Google Will Make AI Agents Use Its MCP Servers. The Gmail One Can&#x27;t Send Email</a></h3>
   </div>
-  <div class="meta"><span class="tag">AI/媒体</span><span>社区热议</span><span>HN 265 分</span></div>
-  <div class="body"><p class="what">《纽约时报》提醒摄影师不要因 AI 功能升级 Photoshop，担心软件在图片中无意写入 AI metadata。</p><p class="why"><b>为什么值得看</b> 生成式编辑的元数据会影响新闻图片溯源与可信度，内容团队应检查导出设置。</p></div>
+  <div class="meta"><span class="tag">平台政策</span><span>社区热议</span><span>HN 284 分</span></div>
+  <div class="body"><p class="what">自 2027 年 2 月起，Google 条款要求 AI agent 必须通过 Google 自家的 MCP server 访问 Gmail、Drive 等 Workspace 服务；文章梳理条款内容与各 server 的能力边界。</p><p class="why"><b>为什么值得看</b> 摘要明确指出 Gmail 那个 server 不能发信，接入前需核对权限清单，并在截止日前改造现有集成。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">03</span>
-    <h3 class="title"><a href="https://1password.com/blog/update-on-nov-2026-security-incident" target="_blank" rel="noopener">1Password Security Incident</a></h3>
+    <h3 class="title"><a href="https://blog.ktz.me/black-friday-hard-drive-prices-are-messed-up/" target="_blank" rel="noopener">Hard Drive pricing has gotten bad</a></h3>
   </div>
-  <div class="meta"><span class="tag">安全/密码</span><span>社区热议</span><span>HN 1277 分</span></div>
-  <div class="body"><p class="what">1Password 披露部分后端系统发生安全事件，表示客户 vault 未被访问、数据仍安全，但摘要未给出细节。</p><p class="why"><b>为什么值得看</b> 密码管理器是信任基础设施，需关注官方后续通报、轮换主密码与审计登录记录。</p></div>
+  <div class="meta"><span class="tag">硬件成本</span><span>社区热议</span><span>HN 169 分</span></div>
+  <div class="body"><p class="what">作者翻出八年收据（含 ServerPartDeals 订单）对比：同一块 20TB 硬盘在两个黑色星期五之间从 249.99 美元涨到 549.99 美元。</p><p class="why"><b>为什么值得看</b> 存储扩容预算需按新价位重算，自建 NAS 与大容量备份的成本假设已经失效。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">04</span>
-    <h3 class="title"><a href="https://scottaaronson.blog/?p=10379" target="_blank" rel="noopener">Holy shit holy shit holy shit holy shit: The magnitude of what’s now happening</a></h3>
+    <h3 class="title"><a href="https://worksinprogress.co/issue/the-greatest-architect-youve-never-heard-of-is-in-pakistan/" target="_blank" rel="noopener">Kamil Khan Mumtaz: Pakistani architect, admired at home, almost invisible abroad</a></h3>
   </div>
-  <div class="meta"><span class="tag">论文/算法</span><span>社区热议</span><span>HN 1142 分</span></div>
-  <div class="body"><p class="what">HN 热帖用情绪化标题讨论一项新结果，并链接到题为《矩阵乘法指数为 9/4》的 PDF。</p><p class="why"><b>为什么值得看</b> 矩阵乘法复杂度若真降到 9/4 影响深远，但需先核对论文证明与同行验证。</p></div>
+  <div class="meta"><span class="tag">人物建筑</span><span>社区热议</span><span>HN 298 分</span></div>
+  <div class="body"><p class="what">巴基斯坦建筑师 Kamil Khan Mumtaz 在拉合尔的作品以传统建筑为本，本地享有声誉，海外几乎无人知晓；这是一组作品摄影随笔，HN 298 分。</p><p class="why"><b>为什么值得看</b> 关注非西方建筑实践的人可借此看到传统工法在当代城市中的实际落地案例。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">05</span>
-    <h3 class="title"><a href="https://www.openwall.com/lists/oss-security/2026/11/25/9" target="_blank" rel="noopener">Slow Ubuntu security response times</a></h3>
+    <h3 class="title"><a href="https://lia.mg/posts/measuring-company-culture-with-slack-emoji/" target="_blank" rel="noopener">Company Culture = Slack Emoji ÷ √Headcount</a></h3>
   </div>
-  <div class="meta"><span class="tag">安全/运维</span><span>社区热议</span><span>HN 194 分</span></div>
-  <div class="body"><p class="what">HN 上出现关于 Ubuntu 安全响应速度慢的讨论，条目未附摘要，具体案例、时间线与维护者回应需查看原帖。</p><p class="why"><b>为什么值得看</b> 发行版安全更新延迟会影响生产环境补丁窗口，运维团队应评估自身依赖与应急方案。</p></div>
+  <div class="meta"><span class="tag">管理文化</span><span>社区热议</span><span>HN 187 分</span></div>
+  <div class="body"><p class="what">作者用「Slack emoji 数 ÷ √人数」调侃公司文化度量，并批评 engagement survey、pulse check、eNPS、HR 团建和墙上标语式的文化宣称。</p><p class="why"><b>为什么值得看</b> 提醒团队别把问卷分数当文化本身，指标只反映参与度，不反映协作质量。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">06</span>
-    <h3 class="title"><a href="https://github.com/lsernau/grh-lean" target="_blank" rel="noopener">Much shorter version of GRH Lean verification from Anthropic</a></h3>
+    <h3 class="title"><a href="https://news.ycombinator.com/item?id=50655664" target="_blank" rel="noopener">Tell HN: Happy Thanksgiving</a></h3>
   </div>
-  <div class="meta"><span class="tag">论文/形式化</span><span>社区热议</span><span>HN 354 分</span></div>
-  <div class="body"><p class="what">Anthropic 相关讨论中出现 Generalized Riemann Hypothesis 的 Lean 验证更短版本，指向 lsernau/grh-lean 的 Lean 4 证明。</p><p class="why"><b>为什么值得看</b> 形式化数学降低检查成本，但证明是否被社区接受仍需看仓库与评审，不宜直接当定论。</p></div>
+  <div class="meta"><span class="tag">社区</span><span>社区热议</span><span>HN 654 分</span></div>
+  <div class="body"><p class="what">一条面向 HN 读者的感恩节问候：希望大家与亲友度过好的一天，如果不是，也请自己把它过好，获得 654 分。</p><p class="why"><b>为什么值得看</b> 纯社区互动帖，分数说明技术社区对人际连接的回应度，无技术信息量。</p></div>
 </article></section>
 <section class="section"><h2>开源趋势<span class="count">6</span></h2><article class="item">
   <div class="item-head">
     <span class="rank">07</span>
     <h3 class="title"><a href="https://github.com/nginx/nginx" target="_blank" rel="noopener">nginx/nginx</a></h3>
   </div>
-  <div class="meta"><span class="tag">开源/基础设施</span><span>开源趋势</span></div>
-  <div class="body"><p class="what">nginx/nginx 是 NGINX 官方开源仓库，定位 Web 服务器、负载均衡、反向代理、API 网关与内容缓存，采用简化 BSD 类许可证。</p><p class="why"><b>为什么值得看</b> 核心 Web 基础设施的官方源码入口，选型或许可证合规审查时可作为一手依据。</p></div>
+  <div class="meta"><span class="tag">开源基础设施</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">NGINX 官方开源仓库，定位为高性能 Web Server、负载均衡、反向代理、API Gateway 与内容缓存，采用简化版 2-clause BSD 类许可，企业版与商业支持由 F5 提供。</p><p class="why"><b>为什么值得看</b> 需要确认许可与商业支持边界的人，应直接看官方仓库而非二手镜像。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">08</span>
     <h3 class="title"><a href="https://github.com/jingyaogong/minimind" target="_blank" rel="noopener">jingyaogong/minimind</a></h3>
   </div>
-  <div class="meta"><span class="tag">开源/大模型</span><span>开源趋势</span></div>
-  <div class="body"><p class="what">MiniMind 开源项目称用约 3 元成本和 2 小时，从 0 训练 64M 小语言模型，并开放 MoE、预训练、SFT、LoRA、RLHF 等训练链路代码。</p><p class="why"><b>为什么值得看</b> 适合个人 GPU 复现完整 LLM 流程，是学习预训练到对齐各环节的低成本实验项目。</p></div>
+  <div class="meta"><span class="tag">开源模型</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">开源项目 MiniMind：用约 3 元成本、2 小时从零训练约 64M 参数小模型，主线最小版本体积约为 GPT-3 的 1/2700；同时开源 MoE、数据清洗、Pretrain、SFT、LoRA、DPO、PPO/GRPO、Tool Use、Agentic RL、蒸馏等全流程代码。</p><p class="why"><b>为什么值得看</b> 适合在单张个人 GPU 上跑通大模型训练全链路，用于教学与流程验证而非效果对标。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
@@ -186,23 +186,23 @@ footer a{color:var(--ink-3);text-decoration:underline}
     <h3 class="title"><a href="https://github.com/openvinotoolkit/openvino" target="_blank" rel="noopener">openvinotoolkit/openvino</a></h3>
   </div>
   <div class="meta"><span class="tag">开源/推理</span><span>开源趋势</span></div>
-  <div class="body"><p class="what">OpenVINO 是开源工具包，用于优化与部署深度学习模型推理，覆盖计算机视觉、语音识别、生成式 AI 与 NLP，仓库同时提供文档、教程、集成与基准测试入口。</p><p class="why"><b>为什么值得看</b> 若要在自有硬件上压低推理延迟或统一部署链路，可把它列入候选方案做对比评估。</p></div>
+  <div class="body"><p class="what">OpenVINO 是优化与部署 AI 推理的开源工具包，覆盖计算机视觉、语音识别、生成式 AI 与 NLP，README 列出文档、教程、集成与基准测试入口。</p><p class="why"><b>为什么值得看</b> 适合需要把模型推进生产推理链路的开发者，可从教程与 benchmark 部分入手评估。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">10</span>
     <h3 class="title"><a href="https://github.com/cathrynlavery/diagram-design" target="_blank" rel="noopener">cathrynlavery/diagram-design</a></h3>
   </div>
-  <div class="meta"><span class="tag">工具/Agent</span><span>开源趋势</span></div>
-  <div class="body"><p class="what">面向 Claude Code、Codex、GitHub Copilot、Cursor 等编码 Agent 的绘图 skill，把图表输出为单个自包含 HTML + SVG 文件，支持 52 种图表类型，明确不用阴影、不走 Mermaid 路线。</p><p class="why"><b>为什么值得看</b> 对需要在文档与演示中稳定出图并控制样式的团队，自包含 HTML + SVG 比 Mermaid 更好接管。</p></div>
+  <div class="meta"><span class="tag">工具/图表</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">面向 Claude Code、Codex、Copilot、Cursor 等 agent 的 skill，输出单文件 HTML+SVG 图表，含 52 种图表类型，强调无阴影、不用 Mermaid。</p><p class="why"><b>为什么值得看</b> 展示了 agent skill 的垂直细分做法：把图表规范固化成可直接接入工作流的产物。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">11</span>
     <h3 class="title"><a href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener">HKUDS/CLI-Anything</a></h3>
   </div>
-  <div class="meta"><span class="tag">开源/Agent</span><span>开源趋势</span></div>
-  <div class="body"><p class="what">HKUDS 的项目，主张让所有软件变成 Agent 原生：提供 CLI-Hub，pip 安装 cli-anything-hub 后，可用 cli-hub install &lt;name&gt; 浏览、安装和管理社区构建的 CLI。</p><p class="why"><b>为什么值得看</b> 若你的产品要被 Agent 调用，这套 CLI 接口与分发方式可作参考，成熟度需自行验证。</p></div>
+  <div class="meta"><span class="tag">开源/agent</span><span>开源趋势</span></div>
+  <div class="body"><p class="what">CLI-Anything 主张让所有软件成为 agent 原生，配套 CLI-Hub：pip install cli-anything-hub 后用 cli-hub install &lt;name&gt; 浏览、安装和管理社区 CLI。</p><p class="why"><b>为什么值得看</b> 若 agent 的主要接口从 GUI 转向 CLI，这类 hub 会成为工具接入入口，值得关注其生态。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
@@ -210,15 +210,15 @@ footer a{color:var(--ink-3);text-decoration:underline}
     <h3 class="title"><a href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener">mvanhorn/last30days-skill</a></h3>
   </div>
   <div class="meta"><span class="tag">工具/检索</span><span>开源趋势</span></div>
-  <div class="body"><p class="what">一个 AI agent skill：跨 Reddit、X、YouTube、HN、Polymarket 和网页检索任意话题，再合成有据可查的摘要；排序依据是点赞、投票和真实资金，而非编辑判断。</p><p class="why"><b>为什么值得看</b> 做话题调研或舆情跟踪时，其多源聚合与按互动量排序的思路可以直接借鉴。</p></div>
+  <div class="body"><p class="what">一个 agent skill，跨 Reddit、X、YouTube、HN、Polymarket 与网页检索话题并合成有据摘要；排序靠点赞与真实资金而非编辑，README 标注 v4 流程。</p><p class="why"><b>为什么值得看</b> 用社区信号替代编辑排序做调研，适合快速扫话题舆情，但结论仍需自行核实。</p></div>
 </article></section>
-<section class="section"><h2>论文速递<span class="count">6</span></h2><article class="item">
+<section class="section"><h2>论文速递<span class="count">3</span></h2><article class="item">
   <div class="item-head">
     <span class="rank">13</span>
     <h3 class="title"><a href="https://arxiv.org/abs/2611.34920v1" target="_blank" rel="noopener">$μ$-Bench: Benchmarking Multi-User Task Completion in Shared Interaction Voice Agents</a></h3>
   </div>
-  <div class="meta"><span class="tag">论文/语音</span><span>论文速递</span><span>cs.CL</span></div>
-  <div class="body"><p class="what">论文提出 μ-Bench，评测共享空间中语音 Agent 的多用户任务完成：需满足相互依赖的多用户请求，同时遵守各用户权限、隐私与任务约束，采用闭环全双工交互。</p><p class="why"><b>为什么值得看</b> 现有评测对参与者中途反应的覆盖有限，做语音 Agent 或多人协作场景可关注其设定。</p><div class="authors">Qihao Lin、Guanxu Chen、Shuhang Zheng、Xiaoya Lu</div></div>
+  <div class="meta"><span class="tag">论文/评测</span><span>论文速递</span><span>cs.CL</span></div>
+  <div class="body"><p class="what">论文提出 μ-Bench，评测共享空间语音 agent 的联合任务完成：需满足多用户相互依赖的请求，同时守住每用户权限、隐私与任务约束，场景为闭环全双工交互。</p><p class="why"><b>为什么值得看</b> 现有评测在“参与者会在会话中实时反应”上覆盖不足，该 benchmark 把多方实时互动纳入考核。</p><div class="authors">Qihao Lin、Guanxu Chen、Shuhang Zheng、Xiaoya Lu</div></div>
 </article>
 <article class="item">
   <div class="item-head">
@@ -226,7 +226,7 @@ footer a{color:var(--ink-3);text-decoration:underline}
     <h3 class="title"><a href="https://arxiv.org/abs/2611.34868v1" target="_blank" rel="noopener">A Survey of Security, Privacy, and Ethics of Large Language Models in Telecom</a></h3>
   </div>
   <div class="meta"><span class="tag">论文/安全</span><span>论文速递</span><span>cs.CR</span></div>
-  <div class="body"><p class="what">综述 LLM 在电信业的隐私、安全与伦理风险：客户服务、网络分析、运营支撑是主要落点，而电信数据敏感且时间跨度长，带来特有风险，文中也梳理了防护措施。</p><p class="why"><b>为什么值得看</b> 在电信或长期留存敏感数据的行业落地 LLM，可以把这篇当作风险清单来核对。</p><div class="authors">Joy Bose、Srinivas Adyapak</div></div>
+  <div class="body"><p class="what">一篇综述，梳理 LLM 在电信行业用于客服、网络分析与运营支撑时带来的隐私、安全与伦理风险，指出电信数据敏感且具长周期性，并讨论防护措施。</p><p class="why"><b>为什么值得看</b> 做电信或强合规行业落地的团队，可把它当作风险清单，重点看数据长周期特性带来的问题。</p><div class="authors">Joy Bose、Srinivas Adyapak</div></div>
 </article>
 <article class="item">
   <div class="item-head">
@@ -234,81 +234,81 @@ footer a{color:var(--ink-3);text-decoration:underline}
     <h3 class="title"><a href="https://arxiv.org/abs/2611.34928v1" target="_blank" rel="noopener">Diverse Alternative Reasoning Traces for Hard Math Problems</a></h3>
   </div>
   <div class="meta"><span class="tag">论文/推理</span><span>论文速递</span><span>cs.CL</span></div>
-  <div class="body"><p class="what">论文指出数学推理后训练依赖最终答案通过验证器的轨迹，但在困难题目上，独立蒙特卡洛采样得到这类轨迹的概率很低，因此研究多样化的替代推理轨迹。</p><p class="why"><b>为什么值得看</b> 做数学推理后训练或合成数据时，可据此重新评估采样成本与轨迹筛选策略。</p><div class="authors">Lukas Aichberger、Adam Golinski、Arno Blaas、Arwen Bradley</div></div>
-</article>
-<article class="item">
+  <div class="body"><p class="what">论文关注难数学题的后训练数据来源：常见做法是保留最终答案通过验证器的推理轨迹，但在独立 Monte Carlo 采样下，难题的合格轨迹往往很稀少。</p><p class="why"><b>为什么值得看</b> 点出 accepted trace 在难题上的采样瓶颈，提示需要多样化的替代推理路径。</p><div class="authors">Lukas Aichberger、Adam Golinski、Arno Blaas、Arwen Bradley</div></div>
+</article></section>
+<section class="section"><h2>行业动态<span class="count">2</span></h2><article class="item">
   <div class="item-head">
     <span class="rank">16</span>
-    <h3 class="title"><a href="https://arxiv.org/abs/2611.34934v1" target="_blank" rel="noopener">Attack Policy Selection can Mislead Monitor Evaluators</a></h3>
+    <h3 class="title"><a href="https://huggingface.co/blog/training-swarms" target="_blank" rel="noopener">Swarms, Flocks, Gangs: How to build, train, and evaluate multi-agent systems</a></h3>
   </div>
-  <div class="meta"><span class="tag">论文/安全</span><span>论文速递</span><span>cs.LG</span></div>
-  <div class="body"><p class="what">论文以退出生产环境的 OpenAI monitor 为案例，发现测得的漏报率对攻击策略的生成方法以及该策略所施加的优化程度都高度敏感。</p><p class="why"><b>为什么值得看</b> 用攻击策略作代理来评估 AI monitor，可能系统性误判实际防护能力，选型时需留意。</p><div class="authors">Charlie Griffin、Oliver Makins、Asa Cooper Stickland、Alessandro Abate</div></div>
+  <div class="meta"><span class="tag">行业/多智能体</span><span>行业动态</span></div>
+  <div class="body"><p class="what">一条行业动态，主题是如何构建、训练和评估多智能体系统，标题以 Swarms、Flocks、Gangs 作比；摘要只说明其推进开源与开放科学的使命。</p><p class="why"><b>为什么值得看</b> 多 agent 系统的训练与评估方法仍在成型，可作框架对照，但本条摘要信息量有限。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">17</span>
-    <h3 class="title"><a href="https://arxiv.org/abs/2611.34887v1" target="_blank" rel="noopener">Interpretable and Accurate Hybrid Decision Trees with Selective Case-Based Splits</a></h3>
+    <h3 class="title"><a href="https://simonwillison.net/2026/Nov/26/jack-despain-zhou/" target="_blank" rel="noopener">Quoting Jack Despain Zhou</a></h3>
   </div>
-  <div class="meta"><span class="tag">论文</span><span>论文速递</span><span>cs.LG</span></div>
-  <div class="body"><p class="what">论文讨论决策树这类经典可解释模型，指出学界长期在贪心学习框架内设计各种split条件，用来控制样本路由并提升预测表现，本文提出结合案例的选择性split混合决策树。</p><p class="why"><b>为什么值得看</b> 做可解释ML的开发者可关注split设计这一层，判断精度与透明度的权衡是否有新解法。</p><div class="authors">Cristiano Landi、Alessio Cascione、Riccardo Guidotti</div></div>
+  <div class="meta"><span class="tag">行业观察</span><span>行业动态</span></div>
+  <div class="body"><p class="what">Jack Despain Zhou 指出，AI 已带来明显的去个体化：YouTube 视频、会议演讲和收件箱 pitch 中都能听到或看到 Claude 式输出。</p><p class="why"><b>为什么值得看</b> 对开发者而言，内容与表达的 AI 同质化会影响产品差异化和个人品牌识别。</p></div>
+</article></section>
+<section class="section"><h2>中文圈<span class="count">7</span></h2><article class="item">
+  <div class="item-head">
+    <span class="rank">18</span>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/513053.html" target="_blank" rel="noopener">20个AI Agents组队，4天狂跑350次实验，超越ClickBench最佳公开成绩</a></h3>
+  </div>
+  <div class="meta"><span class="tag">AI Agents</span><span>中文圈</span></div>
+  <div class="body"><p class="what">20 个 AI Agents 组队，4 天运行约 350 次实验，超过 ClickBench 最佳公开成绩；Quickwit 查询总耗时降 31%，最高降 87%。</p><p class="why"><b>为什么值得看</b> 多 Agent 并行实验在数据库 benchmark 上给出可量化收益，值得关注其任务编排与复现方式。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
-    <span class="rank">18</span>
-    <h3 class="title"><a href="https://arxiv.org/abs/2611.34862v1" target="_blank" rel="noopener">BOP-Refer: Benchmark for Monocular 3D and 2D Object Grounding</a></h3>
-  </div>
-  <div class="meta"><span class="tag">论文</span><span>论文速递</span><span>cs.CV</span></div>
-  <div class="body"><p class="what">作者发布BOP-Refer，称是首个面向单目3D与2D物体grounding的benchmark，图像来自9个BOP数据集，指代表达由VLM生成并经人工校验，真值框由3D模型和6DoF位姿标注导出。</p><p class="why"><b>为什么值得看</b> 做机器人抓取、工业视觉和3D grounding的团队多了一个带位姿真值的评测基准。</p><div class="authors">Tomas Hodan、Vineet Bhat、Martin Sundermeyer、Jonathan Tremblay</div></div>
-</article></section>
-<section class="section"><h2>行业动态<span class="count">3</span></h2><article class="item">
-  <div class="item-head">
     <span class="rank">19</span>
-    <h3 class="title"><a href="https://huggingface.co/blog/allenai/where-scientists-draw-the-line-on-ai-agents" target="_blank" rel="noopener">Where scientists draw the line on AI agents</a></h3>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/513075.html" target="_blank" rel="noopener">陶哲轩下场验证黎曼猜想！“AI批量吐证明就像发电厂排核废料”</a></h3>
   </div>
-  <div class="meta"><span class="tag">行业动态</span><span>行业动态</span></div>
-  <div class="body"><p class="what">标题指向科学家对AI agents划定边界的话题，挂在行业动态下，标注为Tech Report，但给定内容只有这一行标签，没有具体观点、结论或研究细节。</p><p class="why"><b>为什么值得看</b> 题目本身值得跟，但目前无法判断其主张，需找到原文再评估，不能据此下结论。</p></div>
+  <div class="meta"><span class="tag">论文/数学</span><span>中文圈</span></div>
+  <div class="body"><p class="what">围绕陶哲轩下场验证黎曼猜想的讨论，出现“AI 批量吐证明像发电厂排核废料”的比喻，并提出担心课题被 AI 抢先。</p><p class="why"><b>为什么值得看</b> 开发者应关注 AI 生成数学证明后的验证、筛选与优先级分配，而不只是生成速度。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">20</span>
-    <h3 class="title"><a href="https://simonwillison.net/2026/Nov/25/scott-aaronson/" target="_blank" rel="noopener">Quoting Scott Aaronson</a></h3>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/513021.html" target="_blank" rel="noopener">381个AI直播冲刺证明P=NP！把GitHub干崩了</a></h3>
   </div>
-  <div class="meta"><span class="tag">观点</span><span>行业动态</span></div>
-  <div class="body"><p class="what">Scott Aaronson用类比表达判断：AI带来的不会是零散的复杂度问题答案，而是一整片此前只能透过迷雾窥见的数学真理新大陆，如同列文虎克用显微镜看池水、伽利略用望远镜看星空。</p><p class="why"><b>为什么值得看</b> 这是对AI辅助数学研究走向的强判断，可作为理解该领域预期的参照，但属个人观点。</p></div>
+  <div class="meta"><span class="tag">形式化验证</span><span>中文圈</span></div>
+  <div class="body"><p class="what">381 个 AI 直播冲刺证明 P=NP，已跑超过一万次会话，在 Lean4 里验证通过 2400 多条引理，期间 GitHub 被干崩。</p><p class="why"><b>为什么值得看</b> 大规模并行加 Lean4 形式化验证，展示了 AI 数学协作的工程化路径与基础设施压力。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">21</span>
-    <h3 class="title"><a href="https://simonwillison.net/2026/Nov/25/datasette-charts/" target="_blank" rel="noopener">datasette-charts 0.3a0</a></h3>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/512981.html" target="_blank" rel="noopener">AI 3D界的“X光”来了！一图直出巴洛克雕塑，3D打印开箱即用</a></h3>
   </div>
-  <div class="meta"><span class="tag">工具</span><span>行业动态</span></div>
-  <div class="body"><p class="what">datasette-charts发布0.3a0，新增图表标注功能，可在渲染出的图上叠加线条、阴影区域、文字标签或三者组合，并能在Datasette Lite的图表构建UI里调整，配合Datasette Agent还可自动生成带标注图表。</p><p class="why"><b>为什么值得看</b> 用Datasette做数据展示的开发者可直接试用，标注能力让图表少一步导出后加工。</p></div>
-</article></section>
-<section class="section"><h2>中文圈<span class="count">3</span></h2><article class="item">
+  <div class="meta"><span class="tag">3D生成</span><span>中文圈</span></div>
+  <div class="body"><p class="what">AI 3D 工具被形容为“X 光”，可从一张图直接生成巴洛克雕塑，并做到 3D 打印开箱即用。</p><p class="why"><b>为什么值得看</b> 如果输出可直接打印，3D 内容生产链的建模与后处理环节可能被压缩。</p></div>
+</article>
+<article class="item">
   <div class="item-head">
     <span class="rank">22</span>
-    <h3 class="title"><a href="https://www.qbitai.com/2026/11/512897.html" target="_blank" rel="noopener">任少卿带着世界模型3.0来了！蔚来智驾训练提效5倍，座舱也用上强化学习</a></h3>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/512916.html" target="_blank" rel="noopener">顶尖商用级AI视频每秒只要5毛！中国开源新势力拿下全球第一</a></h3>
   </div>
-  <div class="meta"><span class="tag">商业</span><span>中文圈</span></div>
-  <div class="body"><p class="what">报道称任少卿发布世界模型3.0，蔚来智驾训练提效5倍，座舱也用上强化学习；李斌表示不做AI变革可能活不下去。提效倍数与具体技术细节均来自厂商表述。</p><p class="why"><b>为什么值得看</b> 关注智驾训练infra与世界模型路线的人可跟进，但5倍提效缺乏第三方验证。</p></div>
+  <div class="meta"><span class="tag">AI视频/开源</span><span>中文圈</span></div>
+  <div class="body"><p class="what">有中国开源新势力称其商用级 AI 视频每秒只要 5 毛，支持 30 秒一镜到底和自动编排镜头，并称拿下全球第一。</p><p class="why"><b>为什么值得看</b> 价格与镜头编排是 AI 视频商业化的关键变量，开发者可关注其开源许可和实际生成质量。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">23</span>
-    <h3 class="title"><a href="https://www.qbitai.com/2026/11/512840.html" target="_blank" rel="noopener">沈向洋刚讲了好多AI非共识啊</a></h3>
+    <h3 class="title"><a href="https://www.qbitai.com/2026/11/513087.html" target="_blank" rel="noopener">乾崑共创者计划发布：加入乾崑生态，共创出行未来！</a></h3>
   </div>
-  <div class="meta"><span class="tag">观点</span><span>中文圈</span></div>
-  <div class="body"><p class="what">沈向洋在一场讲话中谈了不少AI领域的非共识判断，摘要只留下“灵巧手是人类最后的尊严”一句引语，其余观点与论证未给出。</p><p class="why"><b>为什么值得看</b> 具身智能方向的人可留意其对灵巧手的判断，但现有信息不足以还原完整逻辑。</p></div>
+  <div class="meta"><span class="tag">商业/生态</span><span>中文圈</span></div>
+  <div class="body"><p class="what">华为乾崑发布“乾崑共创者计划”，邀请加入乾崑生态；乾崑生态大会于 11 月 26 日在广州南沙体育馆举行。</p><p class="why"><b>为什么值得看</b> 对出行生态开发者和合作伙伴，这是了解入口与合作方式的信号，但目前细节有限。</p></div>
 </article>
 <article class="item">
   <div class="item-head">
     <span class="rank">24</span>
-    <h3 class="title"><a href="https://www.qbitai.com/2026/11/512828.html" target="_blank" rel="noopener">AI影视高地正在北影海淀一带崛起，「一人制片厂」基建搭好了</a></h3>
+    <h3 class="title"><a href="https://www.v2ex.com/t/1260233#reply46" target="_blank" rel="noopener">其他模型真的好用，我又何必折腾 Claude 呢</a></h3>
   </div>
-  <div class="meta"><span class="tag">商业</span><span>中文圈</span></div>
-  <div class="body"><p class="what">文章称AI影视产业正在北京电影学院、海淀一带聚集，面向“一人制片厂”的基础设施已经搭好，摘要以“叠满海淀最强AI Buff”作概括，未给出具体项目与数据。</p><p class="why"><b>为什么值得看</b> 做AI视频生成与内容生产的开发者可留意这类产业集聚，但需自行核实落地情况。</p></div>
+  <div class="meta"><span class="tag">模型评测</span><span>中文圈</span></div>
+  <div class="body"><p class="what">作者 dcsuibian 回应“为何非要用 Claude”的质疑，称自己用过 ChatGPT、Gemini、DeepSeek、Kimi，若其他模型更好用就不会折腾 Claude。</p><p class="why"><b>为什么值得看</b> 模型选择应回到具体任务体验，而不是被“高人一等”之类的标签讨论带偏。</p><div class="authors">dcsuibian</div></div>
 </article></section>
-<div class="takeaway"><div class="lbl">今日判断</div><p>优先核查 1Password 后端事件范围与官方通报，密码管理器的信任成本最高。</p></div><footer><span>24 条 · 来自 7 个信源</span><span>4 次模型调用</span><span>$0.0057</span><span>生成于 2026-11-26 12:59</span><span><a href="index.html">最新一期</a></span></footer>
+<div class="takeaway"><div class="lbl">今日判断</div><p>Google 2027 年 MCP 强制条款最该提前评估，它决定你的 agent 能做什么、不能做什么。</p></div><footer><span>24 条 · 来自 7 个信源</span><span>3 次模型调用</span><span>$0.0041</span><span>生成于 2026-11-27 12:58</span><span><a href="index.html">最新一期</a></span></footer>
 </div>
 </body>
 </html>
